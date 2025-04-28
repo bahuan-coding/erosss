@@ -32,3 +32,6 @@ pnpm-debug.log*
 *.sln
 *.sw?
 .DS_Store
+
+# Google credentials
+server/config/google-credentials.json

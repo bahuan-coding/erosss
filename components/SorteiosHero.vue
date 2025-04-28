@@ -21,6 +21,7 @@
                 size: { xl: 'text-lg' },
                 variant: { solid: 'bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 shadow-lg shadow-purple-500/30 transform transition-all duration-300 hover:-translate-y-1' }
               }"
+              @click="showModeloForm = true"
             >
               SOU MODELO
             </UButton>
@@ -120,10 +121,17 @@
         </div>
       </div>
     </UContainer>
+
+    <!-- Modelo Form Modal -->
+    <ModeloForm v-model="showModeloForm" @submit="handleModeloFormSubmit" />
   </div>
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue'
+
+const showModeloForm = ref(false)
+
 const sorteios = [
   {
     title: "Jantar Italiano",
@@ -184,6 +192,13 @@ function typeWriter() {
       setTimeout(typeWriter, typingSpeed)
     }
   }
+}
+
+// Handle modelo form submission
+function handleModeloFormSubmit(formData) {
+  console.log('Formulário de modelo enviado:', formData)
+  // Aqui você pode implementar a lógica para salvar os dados do modelo
+  // Por exemplo, enviando para uma API, salvando no localStorage, etc.
 }
 </script>
 

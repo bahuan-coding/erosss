@@ -8,7 +8,7 @@
             Cadastro de Modelo
           </h1>
           <p class="text-lg text-gray-600 dark:text-gray-400">
-            Preencha o formulário abaixo para se cadastrar como modelo em nossa plataforma.
+            Crie experiências que unam bem-estar, diversão e intimidade
           </p>
         </div>
         
@@ -17,244 +17,312 @@
           <template #header>
             <div class="text-center">
               <h3 class="text-2xl font-bold text-primary-600 dark:text-primary-400">
-                🌟 Formulário de Estilo & Experiência VIP
+                🌟 Formulário de Experiência & Intimidade VIP
               </h3>
               <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                Nosso objetivo: criar atendimentos tão bons para você quanto para os clientes. Responda com autenticidade!
+                Ajude-nos a criar momentos únicos que encantarão seus clientes e valorizarão sua arte
               </p>
             </div>
           </template>
 
-          <div class="p-5 space-y-6">
-            <!-- Pergunta 1 -->
-            <div>
-              <label class="font-medium mb-2 block">
-                1. Qual sua vibe ideal durante um atendimento? (Marque até 2) *
-              </label>
-              <div class="space-y-2">
-                <UCheckbox 
-                  v-model="formData.vibe" 
-                  value="celebracao"
-                  name="vibe" 
-                  label="🥂 Celebração: champanhe, festa privada, energia alta."
-                  :ui="{ wrapper: 'flex items-center gap-2' }"
-                />
-                <UCheckbox 
-                  v-model="formData.vibe" 
-                  value="conforto"
-                  name="vibe" 
-                  label="🎶 Conforto elegante: música suave, conversa inteligente, clima íntimo."
-                  :ui="{ wrapper: 'flex items-center gap-2' }"
-                />
-                <UCheckbox 
-                  v-model="formData.vibe" 
-                  value="romance"
-                  name="vibe" 
-                  label="🌹 Romance premium: jantar à luz de velas, luxo discreto."
-                  :ui="{ wrapper: 'flex items-center gap-2' }"
-                />
-                <UCheckbox 
-                  v-model="formData.vibe" 
-                  value="divertido"
-                  name="vibe" 
-                  label="🎮 Divertido e interativo: jogos, histórias engraçadas, descontração."
-                  :ui="{ wrapper: 'flex items-center gap-2' }"
-                />
-                <UCheckbox 
-                  v-model="formData.vibe" 
-                  value="teatral"
-                  name="vibe" 
-                  label="✨ Teatral e envolvente: roleplay, fantasia, suspense sedutor."
-                  :ui="{ wrapper: 'flex items-center gap-2' }"
-                />
+          <div class="p-5 space-y-8">
+            <!-- Seção 1: Antes da Conexão Íntima -->
+            <div class="bg-purple-50 dark:bg-purple-900/30 p-6 rounded-xl">
+              <h4 class="text-xl font-bold text-primary-600 dark:text-primary-400 mb-4">
+                1. ANTES DA CONEXÃO ÍNTIMA: O RITUAL
+              </h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 italic">
+                (Escolha ou descreva atividades que relaxem e aproximem)
+              </p>
+              
+              <div class="mb-6">
+                <label class="font-medium mb-2 block">
+                  Qual atividade anti-stress você acha ideal para começar? *
+                </label>
+                <div class="space-y-2">
+                  <UCheckbox 
+                    v-model="formData.antiStress" 
+                    value="standup"
+                    name="antiStress" 
+                    label="Stand-up intimista (sessão de risos personalizados)"
+                    :ui="{ wrapper: 'flex items-center gap-2' }"
+                  />
+                  <UCheckbox 
+                    v-model="formData.antiStress" 
+                    value="respiracao"
+                    name="antiStress" 
+                    label="Respiração guiada + toques sutis (desacelerar antes da conexão)"
+                    :ui="{ wrapper: 'flex items-center gap-2' }"
+                  />
+                  <UCheckbox 
+                    v-model="formData.antiStress" 
+                    value="jogo"
+                    name="antiStress" 
+                    label="Jogo leve de perguntas + desafios corporais (ex.: &quot;Verdade ou Toque?&quot;)"
+                    :ui="{ wrapper: 'flex items-center gap-2' }"
+                  />
+                </div>
+                <div class="mt-3">
+                  <label class="text-sm mb-1 block">Outra ideia:</label>
+                  <UInput 
+                    v-model="formData.antiStressOutro" 
+                    placeholder="Descreva sua ideia..."
+                  />
+                </div>
+              </div>
+              
+              <div>
+                <label class="font-medium mb-2 block">
+                  Se fosse criar um momento de descontração exclusivo, qual seria? *
+                </label>
+                <div class="space-y-2">
+                  <URadio 
+                    v-model="formData.descontracao" 
+                    value="massagem"
+                    name="descontracao" 
+                    label="Uma massagem relaxante... mas com apostas sensoriais"
+                    :ui="{ wrapper: 'flex items-center gap-2' }"
+                  />
+                  <URadio 
+                    v-model="formData.descontracao" 
+                    value="adivinhacao"
+                    name="descontracao" 
+                    label="Um jogo de adivinhação com estímulos progressivos"
+                    :ui="{ wrapper: 'flex items-center gap-2' }"
+                  />
+                </div>
+                <div class="mt-3">
+                  <label class="text-sm mb-1 block">Sua versão:</label>
+                  <UTextarea 
+                    v-model="formData.descontracaoOutro" 
+                    rows="2"
+                    placeholder="Descreva sua versão de um momento de descontração exclusivo..."
+                    :ui="{ base: 'w-full' }"
+                  />
+                </div>
               </div>
             </div>
-
-            <!-- Pergunta 2 -->
-            <div>
-              <label class="font-medium mb-2 block">
-                2. Quais atividades extras você ama ou gostaria de experimentar?
-              </label>
-              <div class="space-y-2">
-                <UCheckbox 
-                  v-model="formData.atividades" 
-                  value="show"
-                  name="atividades" 
-                  label="💃 Show pessoal: dança, karaokê, performance exclusiva."
-                  :ui="{ wrapper: 'flex items-center gap-2' }"
-                />
-                <UCheckbox 
-                  v-model="formData.atividades" 
-                  value="jogos"
-                  name="atividades" 
-                  label="♟️ Jogos de sedução: pôquer com apostas, desafios sensuais."
-                  :ui="{ wrapper: 'flex items-center gap-2' }"
-                />
-                <UCheckbox 
-                  v-model="formData.atividades" 
-                  value="intimas"
-                  name="atividades" 
-                  label="🛁 Experiências íntimas: banho relaxante, massagens temáticas."
-                  :ui="{ wrapper: 'flex items-center gap-2' }"
-                />
-                <UCheckbox 
-                  v-model="formData.atividades" 
-                  value="segredos"
-                  name="atividades" 
-                  label="🗝️ Segredos compartilhados: histórias pessoais, confidências."
-                  :ui="{ wrapper: 'flex items-center gap-2' }"
-                />
+            
+            <!-- Seção 2: Construindo Confiança -->
+            <div class="bg-pink-50 dark:bg-pink-900/30 p-6 rounded-xl">
+              <h4 class="text-xl font-bold text-primary-600 dark:text-primary-400 mb-4">
+                2. CONSTRUINDO CONFIANÇA
+              </h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 italic">
+                (O que faria para estabelecer uma ligação real antes da intimidade?)
+              </p>
+              
+              <div class="mb-6">
+                <label class="font-medium mb-2 block">
+                  Qual dinâmica lúdica usaria para quebrar o gelo? *
+                </label>
+                <div class="space-y-2">
+                  <URadio 
+                    v-model="formData.dinamica" 
+                    value="segredoToque"
+                    name="dinamica" 
+                    label="&quot;O Segredo do Toque&quot; (descobrir preferências sem palavras)"
+                    :ui="{ wrapper: 'flex items-center gap-2' }"
+                  />
+                  <URadio 
+                    v-model="formData.dinamica" 
+                    value="jogoPulsacoes"
+                    name="dinamica" 
+                    label="&quot;Jogo das Pulsações&quot; (controlar um vibrador pelo ritmo cardíaco)"
+                    :ui="{ wrapper: 'flex items-center gap-2' }"
+                  />
+                  <URadio 
+                    v-model="formData.dinamica" 
+                    value="desafioSentidos"
+                    name="dinamica" 
+                    label="&quot;Desafio dos Sentidos&quot; (vendar e explorar texturas antes do contato)"
+                    :ui="{ wrapper: 'flex items-center gap-2' }"
+                  />
+                </div>
+              </div>
+              
+              <div>
+                <label class="font-medium mb-2 block">
+                  Qual elemento surpresa deixaria o momento único? *
+                </label>
+                <div class="space-y-2">
+                  <URadio 
+                    v-model="formData.surpresa" 
+                    value="presente"
+                    name="surpresa" 
+                    label="Um presente inesperado (ex.: um objeto para provocar curiosidade)"
+                    :ui="{ wrapper: 'flex items-center gap-2' }"
+                  />
+                  <URadio 
+                    v-model="formData.surpresa" 
+                    value="jogo"
+                    name="surpresa" 
+                    label="Um jogo com final aberto (ex.: o cliente escolhe o próximo passo)"
+                    :ui="{ wrapper: 'flex items-center gap-2' }"
+                  />
+                  <URadio 
+                    v-model="formData.surpresa" 
+                    value="experiencia"
+                    name="surpresa" 
+                    label="Uma experiência sincronizada com música ou respiração"
+                    :ui="{ wrapper: 'flex items-center gap-2' }"
+                  />
+                </div>
+                <div class="mt-3">
+                  <label class="text-sm mb-1 block">Descreva seu elemento surpresa:</label>
+                  <UTextarea 
+                    v-model="formData.surpresaDescricao" 
+                    rows="2"
+                    placeholder="Qual seria seu elemento surpresa para tornar o momento único..."
+                    :ui="{ base: 'w-full' }"
+                  />
+                </div>
               </div>
             </div>
-
-            <!-- Pergunta 3 -->
-            <div>
-              <label class="font-medium mb-2 block">
-                3. Se pudesse escolher um cenário de fantasia, qual seria?
-              </label>
-              <div class="space-y-2">
-                <URadio 
-                  v-model="formData.cenario" 
-                  value="personagens"
-                  name="cenario" 
-                  label="🎭 Personagens: CEO poderosa, artista famosa, heroína de filme."
-                  :ui="{ wrapper: 'flex items-center gap-2' }"
-                />
-                <URadio 
-                  v-model="formData.cenario" 
-                  value="viagens"
-                  name="cenario" 
-                  label="🌎 Viagens imaginárias: encontro em Veneza, deserto secreto."
-                  :ui="{ wrapper: 'flex items-center gap-2' }"
-                />
-                <URadio 
-                  v-model="formData.cenario" 
-                  value="luxo"
-                  name="cenario" 
-                  label="🏰 Luxo absoluto: festa em um palácio, festival privativo."
-                  :ui="{ wrapper: 'flex items-center gap-2' }"
-                />
-              </div>
-              <div class="mt-3">
-                <label class="text-sm mb-1 block">Descreva seu cenário dos sonhos:</label>
-                <UTextarea 
-                  v-model="formData.cenarioDescricao" 
-                  rows="3"
-                  placeholder="Descreva seu cenário ideal aqui..."
-                  :ui="{ base: 'w-full' }"
-                />
-              </div>
-            </div>
-
-            <!-- Pergunta 4 -->
-            <div>
-              <label class="font-medium mb-2 block">
-                4. Como você gosta de iniciar a experiência com o cliente?
-              </label>
-              <div class="space-y-2">
-                <URadio 
-                  v-model="formData.inicio" 
-                  value="brinde"
-                  name="inicio" 
-                  label="🍸 Brinde especial: coquetel personalizado com seu nome."
-                  :ui="{ wrapper: 'flex items-center gap-2' }"
-                />
-                <URadio 
-                  v-model="formData.inicio" 
-                  value="jogo"
-                  name="inicio" 
-                  label="🤍 Jogo de confiança: desafio leve (ex.: verdades e mentiras)."
-                  :ui="{ wrapper: 'flex items-center gap-2' }"
-                />
-                <URadio 
-                  v-model="formData.inicio" 
-                  value="magico"
-                  name="inicio" 
-                  label="✨ Momento mágico: surpresa pré-combinada (ex.: presente ou carta)."
-                  :ui="{ wrapper: 'flex items-center gap-2' }"
-                />
+            
+            <!-- Seção 3: O Clímax da Experiência -->
+            <div class="bg-indigo-50 dark:bg-indigo-900/30 p-6 rounded-xl">
+              <h4 class="text-xl font-bold text-primary-600 dark:text-primary-400 mb-4">
+                3. O CLÍMAX DA EXPERIÊNCIA
+              </h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 italic">
+                (Como você imaginaria a transição do bem-estar para a intimidade?)
+              </p>
+              
+              <div>
+                <label class="font-medium mb-2 block">
+                  Qual seria a ponte perfeita entre descontração e desejo? *
+                </label>
+                <div class="space-y-2">
+                  <URadio 
+                    v-model="formData.ponte" 
+                    value="toque"
+                    name="ponte" 
+                    label="&quot;Um toque inesperado após uma gargalhada&quot;"
+                    :ui="{ wrapper: 'flex items-center gap-2' }"
+                  />
+                  <URadio 
+                    v-model="formData.ponte" 
+                    value="jogo"
+                    name="ponte" 
+                    label="&quot;Um jogo que lentamente se torna mais intenso&quot;"
+                    :ui="{ wrapper: 'flex items-center gap-2' }"
+                  />
+                  <URadio 
+                    v-model="formData.ponte" 
+                    value="pausa"
+                    name="ponte" 
+                    label="&quot;Uma pausa para respiração... que vira um suspiro de prazer&quot;"
+                    :ui="{ wrapper: 'flex items-center gap-2' }"
+                  />
+                </div>
+                <div class="mt-3">
+                  <label class="text-sm mb-1 block">Descreva sua ideia de transição:</label>
+                  <UTextarea 
+                    v-model="formData.ponteDescricao" 
+                    rows="3"
+                    placeholder="Como você imaginaria essa transição de forma única..."
+                    :ui="{ base: 'w-full' }"
+                  />
+                </div>
               </div>
             </div>
-
-            <!-- Pergunta 5 -->
-            <div>
-              <label class="font-medium mb-2 block">
-                5. Qual presente faria seu dia melhor? (Para clientes premium)
-              </label>
-              <div class="space-y-2">
-                <URadio 
-                  v-model="formData.presente" 
-                  value="acessorios"
-                  name="presente" 
-                  label="💎 Acessórios de luxo: colar, relógio, perfume importado."
-                  :ui="{ wrapper: 'flex items-center gap-2' }"
-                />
-                <URadio 
-                  v-model="formData.presente" 
-                  value="bem-estar"
-                  name="presente" 
-                  label="🧖 Experiências de bem-estar: dia no spa, tratamento de beleza."
-                  :ui="{ wrapper: 'flex items-center gap-2' }"
-                />
-                <URadio 
-                  v-model="formData.presente" 
-                  value="vale"
-                  name="presente" 
-                  label="🛍️ Vale-presente: das suas lojas preferidas."
-                  :ui="{ wrapper: 'flex items-center gap-2' }"
-                />
+            
+            <!-- Seção 4: Pós-Experiência -->
+            <div class="bg-fuchsia-50 dark:bg-fuchsia-900/30 p-6 rounded-xl">
+              <h4 class="text-xl font-bold text-primary-600 dark:text-primary-400 mb-4">
+                4. PÓS-EXPERIÊNCIA - O TOQUE FINAL
+              </h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 italic">
+                (Como deixar o cliente com vontade de mais?)
+              </p>
+              
+              <div>
+                <label class="font-medium mb-2 block">
+                  Que lembrança sensorial você daria no final? *
+                </label>
+                <div class="space-y-2">
+                  <URadio 
+                    v-model="formData.lembranca" 
+                    value="cheiro"
+                    name="lembranca" 
+                    label="Um cheiro marcante (ex.: perfume personalizado)"
+                    :ui="{ wrapper: 'flex items-center gap-2' }"
+                  />
+                  <URadio 
+                    v-model="formData.lembranca" 
+                    value="objeto"
+                    name="lembranca" 
+                    label="Um objeto simbólico (ex.: carta com um desafio para a próxima vez)"
+                    :ui="{ wrapper: 'flex items-center gap-2' }"
+                  />
+                  <URadio 
+                    v-model="formData.lembranca" 
+                    value="mensagem"
+                    name="lembranca" 
+                    label="Uma mensagem de voz provocante (enviada depois)"
+                    :ui="{ wrapper: 'flex items-center gap-2' }"
+                  />
+                </div>
+                <div class="mt-3">
+                  <label class="text-sm mb-1 block">Sua ideia de lembrança sensorial:</label>
+                  <UTextarea 
+                    v-model="formData.lembrancaDescricao" 
+                    rows="2"
+                    placeholder="Que lembrança única você deixaria..."
+                    :ui="{ base: 'w-full' }"
+                  />
+                </div>
               </div>
-            </div>
-
-            <!-- Pergunta 6 -->
-            <div>
-              <label class="font-medium mb-2 block">
-                6. O que tornaria um atendimento perfeito para você?
-              </label>
-              <div class="space-y-2">
-                <UCheckbox 
-                  v-model="formData.perfeito" 
-                  value="conexao"
-                  name="perfeito" 
-                  label="🌟 Conexão genuína: cliente que valoriza sua companhia."
-                  :ui="{ wrapper: 'flex items-center gap-2' }"
-                />
-                <UCheckbox 
-                  v-model="formData.perfeito" 
-                  value="surpresa"
-                  name="perfeito" 
-                  label="🎁 Surpresa memorável: algo inesperado e elegante."
-                  :ui="{ wrapper: 'flex items-center gap-2' }"
-                />
-                <UCheckbox 
-                  v-model="formData.perfeito" 
-                  value="registro"
-                  name="perfeito" 
-                  label="📸 Registro profissional: fotos ou vídeos para seu portfólio."
-                  :ui="{ wrapper: 'flex items-center gap-2' }"
-                />
+              
+              <div class="mt-6">
+                <label class="font-medium mb-2 block">
+                  Gostaria de incluir algum destes elementos extras na experiência?
+                </label>
+                <div class="space-y-2">
+                  <UCheckbox 
+                    v-model="formData.extras" 
+                    value="biofeedback"
+                    name="extras" 
+                    label="Biofeedback (ex.: sincronizar respiração + toque)"
+                    :ui="{ wrapper: 'flex items-center gap-2' }"
+                  />
+                  <UCheckbox 
+                    v-model="formData.extras" 
+                    value="roleplay"
+                    name="extras" 
+                    label="Roleplay leve (ex.: histórias sensuais durante o relaxamento)"
+                    :ui="{ wrapper: 'flex items-center gap-2' }"
+                  />
+                  <UCheckbox 
+                    v-model="formData.extras" 
+                    value="tantra"
+                    name="extras" 
+                    label="Elementos de tantra (ex.: práticas de respiração e energia)"
+                    :ui="{ wrapper: 'flex items-center gap-2' }"
+                  />
+                  <UCheckbox 
+                    v-model="formData.extras" 
+                    value="bdsm"
+                    name="extras" 
+                    label="BDSM leve (ex.: jogos de poder consensuais e seguros)"
+                    :ui="{ wrapper: 'flex items-center gap-2' }"
+                  />
+                </div>
               </div>
-            </div>
-
-            <!-- Pergunta 7 -->
-            <div>
-              <label class="font-medium mb-2 block">
-                7. Complete a frase com seu toque único: "Um atendimento inesquecível para mim é…"
-              </label>
-              <UTextarea 
-                v-model="formData.frase" 
-                rows="3"
-                placeholder="Complete a frase aqui..."
-                :ui="{ base: 'w-full' }"
-              />
             </div>
 
             <!-- Informações de Contato -->
-            <div class="border-t pt-4 border-gray-100 dark:border-gray-800">
-              <h4 class="font-medium mb-2">Informações de Contato</h4>
+            <div class="border-t pt-6 border-gray-100 dark:border-gray-800">
+              <h4 class="text-xl font-bold text-primary-600 dark:text-primary-400 mb-4">
+                INFORMAÇÕES DE CONTATO
+              </h4>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <UFormGroup label="Nome Completo *" required>
                   <UInput v-model="formData.nome" placeholder="Seu nome completo" />
+                </UFormGroup>
+                <UFormGroup label="Nome Artístico">
+                  <UInput v-model="formData.nomeArtistico" placeholder="Como prefere ser chamada" />
                 </UFormGroup>
                 <UFormGroup label="Email *" required>
                   <UInput v-model="formData.email" placeholder="Seu email" type="email" />
@@ -264,6 +332,9 @@
                 </UFormGroup>
                 <UFormGroup label="Instagram">
                   <UInput v-model="formData.instagram" placeholder="@seuinsta" />
+                </UFormGroup>
+                <UFormGroup label="Cidade/Estado *" required>
+                  <UInput v-model="formData.cidade" placeholder="São Paulo, SP" />
                 </UFormGroup>
               </div>
             </div>
@@ -316,18 +387,33 @@ const loading = ref(false)
 const toast = useToast()
 
 const formData = reactive({
-  vibe: [],
-  atividades: [],
-  cenario: null,
-  cenarioDescricao: '',
-  inicio: null,
-  presente: null,
-  perfeito: [],
-  frase: '',
+  // Seção 1
+  antiStress: [],
+  antiStressOutro: '',
+  descontracao: null,
+  descontracaoOutro: '',
+  
+  // Seção 2
+  dinamica: null,
+  surpresa: null,
+  surpresaDescricao: '',
+  
+  // Seção 3
+  ponte: null,
+  ponteDescricao: '',
+  
+  // Seção 4
+  lembranca: null,
+  lembrancaDescricao: '',
+  extras: [],
+  
+  // Contato
   nome: '',
+  nomeArtistico: '',
   email: '',
   telefone: '',
-  instagram: ''
+  instagram: '',
+  cidade: ''
 })
 
 function navigateHome() {
@@ -336,26 +422,16 @@ function navigateHome() {
 
 function submitForm() {
   // Validar que as perguntas obrigatórias foram respondidas
-  if (formData.vibe.length === 0 || !formData.nome || !formData.email || !formData.telefone) {
+  if (!formData.nome || !formData.email || !formData.telefone || !formData.cidade ||
+      !formData.antiStress.length || !formData.descontracao || 
+      !formData.dinamica || !formData.surpresa || 
+      !formData.ponte || !formData.lembranca) {
     // Exibir mensagem de erro
     toast.add({
       id: 'form-error',
       color: 'red',
       title: 'Por favor, preencha todos os campos obrigatórios',
       text: 'Os campos marcados com * são de preenchimento obrigatório',
-      icon: 'i-heroicons-exclamation-circle',
-      timeout: 5000
-    })
-    return
-  }
-
-  // Se mais de 2 opções forem selecionadas na primeira pergunta
-  if (formData.vibe.length > 2) {
-    toast.add({
-      id: 'vibe-error',
-      color: 'red',
-      title: 'Por favor, selecione no máximo 2 opções na primeira pergunta',
-      text: 'Escolha até 2 opções que melhor representem sua vibe ideal',
       icon: 'i-heroicons-exclamation-circle',
       timeout: 5000
     })
@@ -373,7 +449,7 @@ function submitForm() {
       id: 'form-success',
       color: 'green',
       title: 'Formulário enviado com sucesso!',
-      text: 'Agradecemos seu cadastro! Entraremos em contato em breve.',
+      text: 'Suas experiências exclusivas foram registradas. Entraremos em contato em breve para os próximos passos!',
       icon: 'i-heroicons-check-circle',
       timeout: 5000
     })

@@ -2,6 +2,19 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.provide('notify', (options) => {
     // Import UNotification from Nuxt UI
     const { toast } = useToast()
-    toast(options)
+    
+    // Make sure the notification includes description text
+    const enhancedOptions = {
+      ...options,
+      // If text isn't provided, add a default based on the color
+      text: options.text || 
+        (options.color === 'green' ? 'Operação concluída com sucesso!' : 
+         options.color === 'red' ? 'Ocorreu um erro. Por favor, tente novamente.' : 
+         'Aguarde enquanto processamos sua solicitação.'),
+      // Add default timeout if not specified
+      timeout: options.timeout || 3000
+    }
+    
+    toast(enhancedOptions)
   })
 }) 

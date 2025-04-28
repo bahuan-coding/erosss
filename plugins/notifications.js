@@ -1,7 +1,7 @@
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.provide('notify', (options) => {
-    // Import UNotification from Nuxt UI
-    const { toast } = useToast()
+    // Use Nuxt UI's useToast composable
+    const toast = useToast()
     
     // Make sure the notification includes description text
     const enhancedOptions = {
@@ -15,6 +15,6 @@ export default defineNuxtPlugin((nuxtApp) => {
       timeout: options.timeout || 3000
     }
     
-    toast(enhancedOptions)
+    toast.add(enhancedOptions)
   })
 }) 

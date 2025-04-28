@@ -310,8 +310,6 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import { useToast } from '@nuxt/ui'
-import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const loading = ref(false)

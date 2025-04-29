@@ -1,10 +1,10 @@
 import { initializeGoogleSheets } from '../config/googleSheetsConfig';
 
+// Definir variável para modo de teste
+const TEST_MODE = true; // Mude para false quando quiser usar o Google Sheets real
+
 export default defineEventHandler(async (event) => {
   try {
-    // Inicializar Google Sheets API
-    const { sheets, SPREADSHEET_ID, SHEET_NAME } = initializeGoogleSheets();
-    
     // Obter dados do corpo da requisição
     const formData = await readBody(event);
     
@@ -13,6 +13,26 @@ export default defineEventHandler(async (event) => {
     
     // Adicionar timestamp
     formattedData.unshift(new Date().toISOString());
+    
+    if (TEST_MODE) {
+      // Em modo de teste, apenas loga os dados no console
+      console.log('🧪 MODO DE TESTE: Dados que seriam enviados para o Google Sheets:');
+      console.log('Timestamp:', formattedData[0]);
+      console.log('Dados do formulário:', formData);
+      console.log('Dados formatados:', formattedData);
+      
+      // Simula uma resposta bem-sucedida
+      return {
+        success: true,
+        message: 'Dados salvos com sucesso (MODO DE TESTE)',
+        rowsAdded: 1,
+        testMode: true
+      };
+    }
+    
+    // Se não estiver em modo de teste, usa o Google Sheets
+    // Inicializar Google Sheets API
+    const { sheets, SPREADSHEET_ID, SHEET_NAME } = initializeGoogleSheets();
     
     // Inserir dados na planilha
     const response = await sheets.spreadsheets.values.append({

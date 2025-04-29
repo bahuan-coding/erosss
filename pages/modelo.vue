@@ -553,21 +553,28 @@ async function submitForm() {
   // Reset error state
   formErrors.value = {}
   loading.value = true
+  
+  console.log('Iniciando envio do formulário...');
+  console.log('Dados a serem enviados:', formData);
 
   try {
     // Enviar dados para a API
+    console.log('Fazendo requisição para /api/modelos...');
     const response = await $fetch('/api/modelos', {
       method: 'POST',
       body: formData
     })
     
+    console.log('Resposta recebida:', response);
+    
     if (response && response.success) {
       // Mostrar notificação de sucesso
+      console.log('Formulário enviado com sucesso!');
       toast.add({
         id: 'form-success',
         color: 'green',
-        title: 'Formulário enviado com sucesso!',
-        text: 'Suas experiências exclusivas foram registradas. Entraremos em contato em breve para os próximos passos!',
+        title: response.testMode ? 'Formulário enviado em modo de teste!' : 'Formulário enviado com sucesso!',
+        text: response.message || 'Suas experiências exclusivas foram registradas. Entraremos em contato em breve para os próximos passos!',
         icon: 'i-heroicons-check-circle',
         timeout: 5000
       })
@@ -581,6 +588,7 @@ async function submitForm() {
     }
   } catch (error) {
     // Mostrar notificação de erro
+    console.error('Erro ao enviar formulário:', error);
     toast.add({
       id: 'form-api-error',
       color: 'red',

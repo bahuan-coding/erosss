@@ -13,7 +13,7 @@
               size: { lg: 'text-sm px-4 py-1' }
             }"
           >
-            EDIÇÕES EXCLUSIVAS
+            限量版 • Edições Limitadas
           </UBadge>
           <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gradient">Destaques do Mês</h2>
           <p class="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">

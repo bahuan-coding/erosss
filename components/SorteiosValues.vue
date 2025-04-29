@@ -44,6 +44,21 @@
             </div>
           </UCard>
         </div>
+        
+        <!-- FAQ Section -->
+        <div class="mt-20">
+          <h3 class="text-2xl font-bold mb-8 text-center">Perguntas Frequentes</h3>
+          
+          <UAccordion :items="faqItems" :ui="{ 
+            wrapper: 'divide-y divide-gray-100 dark:divide-gray-800',
+            item: { 
+              base: 'py-4',
+              heading: { 
+                size: 'text-lg font-medium'
+              }
+            }
+          }" />
+        </div>
       </div>
     </UContainer>
   </section>
@@ -70,6 +85,19 @@ const valueCards = [
     image: "/images/values/value3.jpg"
   }
 ];
+
+const faqItems = [
+  {
+    label: 'É seguro?',
+    content: 'Verificamos cada participante como um clube privê de Dubai.',
+    icon: 'i-heroicons-shield-check'
+  },
+  {
+    label: 'Posso sugerir temas?',
+    content: 'As modelos adoram desafios criativos - envie sua ideia!',
+    icon: 'i-heroicons-light-bulb'
+  }
+]
 </script>
 
 <style scoped>

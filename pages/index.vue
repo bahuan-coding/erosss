@@ -15,4 +15,8 @@
 
 <script setup>
 // No script needed now as content fetching/logic moved to components or layout
-</script> 
+</script>
+
+<style>
+/* Add any custom styles here */
+</style> 

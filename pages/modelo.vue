@@ -139,6 +139,15 @@
                     :ui="{ wrapper: 'flex items-center gap-2' }"
                   />
                 </div>
+                <div class="mt-3">
+                  <label class="text-sm mb-1 block">Sua dinâmica personalizada:</label>
+                  <UTextarea 
+                    v-model="formData.dinamicaOutro" 
+                    rows="2"
+                    placeholder="Descreva sua própria dinâmica para quebrar o gelo..."
+                    :ui="{ base: 'w-full' }"
+                  />
+                </div>
               </div>
               
               <div>
@@ -395,6 +404,7 @@ const formData = reactive({
   
   // Seção 2
   dinamica: null,
+  dinamicaOutro: '',
   surpresa: null,
   surpresaDescricao: '',
   
@@ -420,7 +430,7 @@ function navigateHome() {
   router.push('/')
 }
 
-function submitForm() {
+async function submitForm() {
   // Validar que as perguntas obrigatórias foram respondidas
   if (!formData.nome || !formData.email || !formData.telefone || !formData.cidade ||
       !formData.antiStress.length || !formData.descontracao || 
@@ -440,9 +450,12 @@ function submitForm() {
 
   loading.value = true
 
-  // Simular envio do formulário
-  setTimeout(() => {
-    loading.value = false
+  try {
+    // Enviar dados para a API
+    await $fetch('/api/modelos', {
+      method: 'POST',
+      body: formData
+    })
     
     // Mostrar notificação de sucesso
     toast.add({
@@ -458,7 +471,19 @@ function submitForm() {
     setTimeout(() => {
       router.push('/')
     }, 2000)
-  }, 1500)
+  } catch (error) {
+    // Mostrar notificação de erro
+    toast.add({
+      id: 'form-api-error',
+      color: 'red',
+      title: 'Erro ao enviar o formulário',
+      text: error.message || 'Houve um problema ao salvar suas respostas. Por favor, tente novamente.',
+      icon: 'i-heroicons-exclamation-circle',
+      timeout: 5000
+    })
+  } finally {
+    loading.value = false
+  }
 }
 </script>
 

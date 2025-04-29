@@ -53,6 +53,7 @@ function formatFormData(formData) {
     
     // Seção 2
     formData.dinamica || '',
+    formData.dinamicaOutro || '',
     formData.surpresa || '',
     formData.surpresaDescricao || '',
     

@@ -1,7 +1,35 @@
 import { initializeGoogleSheets } from '../config/googleSheetsConfig';
+import { appendFileSync, existsSync, mkdirSync } from 'node:fs';
+import { resolve } from 'node:path';
 
-// Definir variável para modo de teste
-const TEST_MODE = true; // Mude para false quando quiser usar o Google Sheets real
+// Definir variável para modo de teste - registra mais detalhes, mas ainda tenta salvar na planilha
+const DEBUG_MODE = true;
+
+// ID da planilha e nome da aba
+const SPREADSHEET_ID = '1czk_7v1yw-z4DDn79XoXAEJ4wkTT6hNxhfZOh053gZk';
+const SHEET_NAME = 'Respostas';
+
+// Função para salvar dados localmente como backup
+function saveLocalBackup(data) {
+  try {
+    const timestamp = new Date().toISOString().replace(/:/g, '-');
+    const backupDir = resolve(process.cwd(), 'server/data');
+    const backupFile = resolve(backupDir, `form-data-${timestamp}.json`);
+    
+    // Garante que o diretório existe
+    if (!existsSync(backupDir)) {
+      mkdirSync(backupDir, { recursive: true });
+    }
+    
+    // Escreve os dados no arquivo
+    appendFileSync(backupFile, JSON.stringify(data, null, 2));
+    console.log(`✅ Backup salvo em: ${backupFile}`);
+    return true;
+  } catch (error) {
+    console.error('❌ Erro ao salvar backup local:', error);
+    return false;
+  }
+}
 
 export default defineEventHandler(async (event) => {
   try {
@@ -14,51 +42,67 @@ export default defineEventHandler(async (event) => {
     // Adicionar timestamp
     formattedData.unshift(new Date().toISOString());
     
-    if (TEST_MODE) {
-      // Em modo de teste, apenas loga os dados no console
-      console.log('🧪 MODO DE TESTE: Dados que seriam enviados para o Google Sheets:');
+    if (DEBUG_MODE) {
+      console.log('🔍 MODO DEBUG: Tentando salvar na planilha com os seguintes dados:');
       console.log('Timestamp:', formattedData[0]);
       console.log('Dados do formulário:', formData);
       console.log('Dados formatados:', formattedData);
-      
-      // Simula uma resposta bem-sucedida
-      return {
-        success: true,
-        message: 'Dados salvos com sucesso (MODO DE TESTE)',
-        rowsAdded: 1,
-        testMode: true
-      };
     }
     
-    // Se não estiver em modo de teste, usa o Google Sheets
-    // Inicializar Google Sheets API
-    const { sheets, SPREADSHEET_ID, SHEET_NAME } = initializeGoogleSheets();
-    
-    // Inserir dados na planilha
-    const response = await sheets.spreadsheets.values.append({
-      spreadsheetId: SPREADSHEET_ID,
-      range: `${SHEET_NAME}!A:Z`,
-      valueInputOption: 'RAW',
-      insertDataOption: 'INSERT_ROWS',
-      resource: {
-        values: [formattedData]
-      }
-    });
-    
-    return {
-      success: true,
-      message: 'Dados salvos com sucesso na planilha!',
-      rowsAdded: response.data.updates.updatedRows
-    };
+    try {
+      // Inicializar Google Sheets API
+      const { sheets } = initializeGoogleSheets();
+      
+      // Inserir dados na planilha
+      const response = await sheets.spreadsheets.values.append({
+        spreadsheetId: SPREADSHEET_ID,
+        range: `${SHEET_NAME}!A:Z`,
+        valueInputOption: 'RAW',
+        insertDataOption: 'INSERT_ROWS',
+        resource: {
+          values: [formattedData]
+        }
+      });
+      
+      console.log('✅ Dados salvos com sucesso na planilha!', response.data);
+      
+      return {
+        success: true,
+        message: 'Dados salvos com sucesso na planilha!',
+        rowsAdded: response.data.updates.updatedRows
+      };
+    } catch (googleError) {
+      console.error('❌ Erro ao salvar no Google Sheets:', googleError);
+      
+      // Em caso de erro com Google Sheets, vamos salvar em um arquivo local
+      const backupData = {
+        timestamp: formattedData[0],
+        rawData: formData,
+        formattedData: formattedData
+      };
+      
+      const backupSuccess = saveLocalBackup(backupData);
+      
+      // Return success anyway to not block the user experience
+      return {
+        success: true,
+        message: backupSuccess 
+          ? 'Dados registrados localmente para processamento posterior (Google Sheets indisponível)' 
+          : 'Dados recebidos, mas houve um problema ao salvá-los',
+        fallback: true,
+        localBackup: backupSuccess,
+        error: googleError.message
+      };
+    }
   } catch (error) {
-    console.error('Erro ao salvar dados:', error);
+    console.error('Erro ao processar dados:', error);
     
     // Retornar erro 500 com mensagem amigável
     throw createError({
       statusCode: 500,
-      statusMessage: 'Erro ao salvar os dados',
+      statusMessage: 'Erro ao processar os dados',
       data: {
-        message: 'Houve um problema ao salvar suas respostas. Por favor, tente novamente.'
+        message: 'Houve um problema ao processar suas respostas. Por favor, tente novamente.'
       }
     });
   }

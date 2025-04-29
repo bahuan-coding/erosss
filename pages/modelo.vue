@@ -570,11 +570,20 @@ async function submitForm() {
     if (response && response.success) {
       // Mostrar notificação de sucesso
       console.log('Formulário enviado com sucesso!');
+      
+      let title = 'Formulário enviado com sucesso!';
+      let text = 'Suas experiências exclusivas foram registradas. Entraremos em contato em breve para os próximos passos!';
+      
+      if (response.fallback) {
+        title = 'Dados registrados com sucesso!';
+        text = 'Os dados foram registrados no sistema. ' + (response.message || '');
+      }
+      
       toast.add({
         id: 'form-success',
         color: 'green',
-        title: response.testMode ? 'Formulário enviado em modo de teste!' : 'Formulário enviado com sucesso!',
-        text: response.message || 'Suas experiências exclusivas foram registradas. Entraremos em contato em breve para os próximos passos!',
+        title: title,
+        text: text,
         icon: 'i-heroicons-check-circle',
         timeout: 5000
       })

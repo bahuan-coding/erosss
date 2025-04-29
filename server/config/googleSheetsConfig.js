@@ -13,13 +13,30 @@ export function initializeGoogleSheets() {
       
       console.log('📁 Caminho das credenciais:', CREDENTIALS_PATH);
 
-      // Carrega as credenciais do arquivo
+      // Carrega as credenciais do arquivo ou de variáveis de ambiente
       let credentials;
       try {
-        const credentialsContent = readFileSync(CREDENTIALS_PATH, 'utf8')
-        console.log('📄 Arquivo de credenciais encontrado');
-        
-        credentials = JSON.parse(credentialsContent)
+        // Primeiro, tenta carregar do ambiente (para Netlify e outros ambientes de produção)
+        if (process.env.GOOGLE_CREDENTIALS_JSON) {
+          console.log('📄 Usando credenciais de variáveis de ambiente');
+          try {
+            credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS_JSON);
+            if (!credentials || typeof credentials !== 'object') {
+              throw new Error('Formato JSON inválido na variável de ambiente GOOGLE_CREDENTIALS_JSON');
+            }
+          } catch (parseError) {
+            console.error('❌ Erro ao processar credenciais das variáveis de ambiente:', parseError.message);
+            throw new Error('Falha ao processar credenciais do Google das variáveis de ambiente: ' + parseError.message);
+          }
+        } 
+        // Se não houver variáveis de ambiente, tenta carregar do arquivo
+        else {
+          console.log('📄 Carregando credenciais do arquivo local');
+          const credentialsContent = readFileSync(CREDENTIALS_PATH, 'utf8')
+          console.log('📄 Arquivo de credenciais encontrado');
+          
+          credentials = JSON.parse(credentialsContent)
+        }
         
         // Verifica se as credenciais contêm as propriedades necessárias
         if (!credentials.client_email || !credentials.private_key) {
@@ -208,7 +225,7 @@ export function initializeGoogleSheets() {
       
       return {
         sheets,
-        SPREADSHEET_ID: process.env.MODELO_SPREADSHEET_ID || '1czk_7v1yw-z4DDn79XoXAEJ4wkTT6hNxhfZOh053gZk',
+        SPREADSHEET_ID: process.env.GOOGLE_SPREADSHEET_ID || process.env.MODELO_SPREADSHEET_ID || '1czk_7v1yw-z4DDn79XoXAEJ4wkTT6hNxhfZOh053gZk',
         SHEET_NAME: 'Sheet1'
       }
     } catch (error) {
@@ -225,7 +242,7 @@ export function initializeGoogleSheets() {
             } 
           } 
         },
-        SPREADSHEET_ID: '1czk_7v1yw-z4DDn79XoXAEJ4wkTT6hNxhfZOh053gZk',
+        SPREADSHEET_ID: process.env.GOOGLE_SPREADSHEET_ID || process.env.MODELO_SPREADSHEET_ID || '1czk_7v1yw-z4DDn79XoXAEJ4wkTT6hNxhfZOh053gZk',
         SHEET_NAME: 'Sheet1'
       }
     }
@@ -234,8 +251,8 @@ export function initializeGoogleSheets() {
     console.warn('GoogleSheetsConfig: Tentando acessar no ambiente client-side')
     return {
       sheets: { spreadsheets: { values: { append: async () => ({ data: { updates: { updatedRows: 0 } } }) } } },
-      SPREADSHEET_ID: 'mock-id',
-      SHEET_NAME: 'mock-sheet'
+      SPREADSHEET_ID: process.env.GOOGLE_SPREADSHEET_ID || process.env.MODELO_SPREADSHEET_ID || '1czk_7v1yw-z4DDn79XoXAEJ4wkTT6hNxhfZOh053gZk',
+      SHEET_NAME: 'Sheet1'
     }
   }
 } 

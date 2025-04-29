@@ -5,31 +5,42 @@ import { google } from 'googleapis'
 
 // Função para inicializar a API do Google Sheets - tornando lazy-loaded para melhor compatibilidade
 export function initializeGoogleSheets() {
-  try {
-    // Caminho para o arquivo de credenciais
-    const CREDENTIALS_PATH = resolve(process.cwd(), 'server/config/google-credentials.json')
+  // Esta função só será executada no server-side (API routes)
+  if (import.meta.server) {
+    try {
+      // Caminho para o arquivo de credenciais
+      const CREDENTIALS_PATH = resolve(process.cwd(), 'server/config/google-credentials.json')
 
-    // Carrega as credenciais do arquivo
-    const credentials = JSON.parse(readFileSync(CREDENTIALS_PATH, 'utf8'))
+      // Carrega as credenciais do arquivo
+      const credentials = JSON.parse(readFileSync(CREDENTIALS_PATH, 'utf8'))
 
-    // Configura a autenticação JWT (Service Account)
-    const auth = new google.auth.JWT(
-      credentials.client_email,
-      null,
-      credentials.private_key,
-      ['https://www.googleapis.com/auth/spreadsheets']
-    )
+      // Configura a autenticação JWT (Service Account)
+      const auth = new google.auth.JWT(
+        credentials.client_email,
+        null,
+        credentials.private_key,
+        ['https://www.googleapis.com/auth/spreadsheets']
+      )
 
-    // Cria a instância da API do Google Sheets
-    const sheets = google.sheets({ version: 'v4', auth })
-    
-    return {
-      sheets,
-      SPREADSHEET_ID: process.env.MODELO_SPREADSHEET_ID || '1czk_7v1yw-z4DDn79XoXAEJ4wkTT6hNxhfZOh053gZk',
-      SHEET_NAME: 'Respostas'
+      // Cria a instância da API do Google Sheets
+      const sheets = google.sheets({ version: 'v4', auth })
+      
+      return {
+        sheets,
+        SPREADSHEET_ID: process.env.MODELO_SPREADSHEET_ID || '1czk_7v1yw-z4DDn79XoXAEJ4wkTT6hNxhfZOh053gZk',
+        SHEET_NAME: 'Respostas'
+      }
+    } catch (error) {
+      console.error('Erro ao inicializar Google Sheets:', error)
+      throw error
     }
-  } catch (error) {
-    console.error('Erro ao inicializar Google Sheets:', error)
-    throw error
+  } else {
+    // Se não estiver no server-side, retorna um mock para evitar erros durante o build
+    console.warn('GoogleSheetsConfig: Tentando acessar no ambiente client-side')
+    return {
+      sheets: { spreadsheets: { values: { append: async () => ({ data: { updates: { updatedRows: 0 } } }) } } },
+      SPREADSHEET_ID: 'mock-id',
+      SHEET_NAME: 'mock-sheet'
+    }
   }
 } 

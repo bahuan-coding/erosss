@@ -25,14 +25,12 @@ export default defineNuxtConfig({
     }
   },
 
+  // Configuração para geração estática e deploy no Netlify
+  ssr: false,
+
   // Nitro server config para Netlify
   nitro: {
-    preset: 'netlify',
-    output: {
-      dir: 'dist',
-      serverDir: 'dist/server',
-      publicDir: 'dist'
-    }
+    preset: 'netlify'
   },
 
   // Vite build options

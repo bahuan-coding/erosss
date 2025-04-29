@@ -35,9 +35,9 @@
                 (Escolha ou descreva atividades que relaxem e aproximem)
               </p>
               
-              <div class="mb-6 relative required-field">
+              <div class="mb-6">
                 <label class="font-medium mb-2 block">
-                  Qual atividade anti-stress você acha ideal para começar? *
+                  Qual atividade anti-stress você acha ideal para começar?
                   <span v-if="formErrors.antiStress" class="text-red-500 ml-1 animate-pulse">Campo obrigatório</span>
                 </label>
                 <div class="space-y-2" :class="{'border-l-4 border-red-500 pl-2': formErrors.antiStress}">
@@ -74,7 +74,7 @@
               
               <div>
                 <label class="font-medium mb-2 block">
-                  Se fosse criar um momento de descontração exclusivo, qual seria? *
+                  Se fosse criar um momento de descontração exclusivo, qual seria?
                   <span v-if="formErrors.descontracao" class="text-red-500 ml-1 animate-pulse">Campo obrigatório</span>
                 </label>
                 <div class="space-y-2" :class="{'border-l-4 border-red-500 pl-2': formErrors.descontracao}">
@@ -114,9 +114,9 @@
                 (O que faria para estabelecer uma ligação real antes da intimidade?)
               </p>
               
-              <div class="mb-6 relative required-field">
+              <div class="mb-6">
                 <label class="font-medium mb-2 block">
-                  Qual dinâmica lúdica usaria para quebrar o gelo? *
+                  Qual dinâmica lúdica usaria para quebrar o gelo?
                   <span v-if="formErrors.dinamica" class="text-red-500 ml-1 animate-pulse">Campo obrigatório</span>
                 </label>
                 <div class="space-y-2" :class="{'border-l-4 border-red-500 pl-2': formErrors.dinamica}">
@@ -155,7 +155,7 @@
               
               <div>
                 <label class="font-medium mb-2 block">
-                  Qual elemento surpresa deixaria o momento único? *
+                  Qual elemento surpresa deixaria o momento único?
                   <span v-if="formErrors.surpresa" class="text-red-500 ml-1 animate-pulse">Campo obrigatório</span>
                 </label>
                 <div class="space-y-2" :class="{'border-l-4 border-red-500 pl-2': formErrors.surpresa}">
@@ -202,9 +202,9 @@
                 (Como você imaginaria a transição do bem-estar para a intimidade?)
               </p>
               
-              <div class="relative required-field">
+              <div>
                 <label class="font-medium mb-2 block">
-                  Qual seria a ponte perfeita entre descontração e desejo? *
+                  Qual seria a ponte perfeita entre descontração e desejo?
                   <span v-if="formErrors.ponte" class="text-red-500 ml-1 animate-pulse">Campo obrigatório</span>
                 </label>
                 <div class="space-y-2" :class="{'border-l-4 border-red-500 pl-2': formErrors.ponte}">
@@ -251,9 +251,9 @@
                 (Como deixar o cliente com vontade de mais?)
               </p>
               
-              <div class="relative required-field">
+              <div>
                 <label class="font-medium mb-2 block">
-                  Que lembrança sensorial você daria no final? *
+                  Que lembrança sensorial você daria no final?
                   <span v-if="formErrors.lembranca" class="text-red-500 ml-1 animate-pulse">Campo obrigatório</span>
                 </label>
                 <div class="space-y-2" :class="{'border-l-4 border-red-500 pl-2': formErrors.lembranca}">
@@ -333,7 +333,7 @@
                 INFORMAÇÕES DE CONTATO
               </h4>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <UFormGroup label="Nome Completo *" required :error="formErrors.nome ? 'Campo obrigatório' : null">
+                <UFormGroup label="Nome Completo" :error="formErrors.nome ? 'Campo obrigatório' : null">
                   <UInput 
                     v-model="formData.nome" 
                     placeholder="Seu nome completo" 
@@ -350,7 +350,7 @@
                     @keydown="(e) => handleEnterKey(e, emailRef)"
                   />
                 </UFormGroup>
-                <UFormGroup label="Email *" required :error="formErrors.email ? 'Campo obrigatório' : null">
+                <UFormGroup label="Email" :error="formErrors.email ? 'Campo obrigatório' : null">
                   <UInput 
                     v-model="formData.email" 
                     placeholder="Seu email" 
@@ -360,7 +360,7 @@
                     @keydown="(e) => handleEnterKey(e, telefoneRef)"
                   />
                 </UFormGroup>
-                <UFormGroup label="Telefone/WhatsApp *" required :error="formErrors.telefone ? 'Campo obrigatório' : null">
+                <UFormGroup label="Telefone/WhatsApp" :error="formErrors.telefone ? 'Campo obrigatório' : null">
                   <UInput 
                     v-model="formData.telefone" 
                     placeholder="(00) 00000-0000"
@@ -380,7 +380,7 @@
                     @keydown="(e) => handleEnterKey(e, cidadeRef)"
                   />
                 </UFormGroup>
-                <UFormGroup label="Cidade/Estado *" required :error="formErrors.cidade ? 'Campo obrigatório' : null">
+                <UFormGroup label="Cidade/Estado" :error="formErrors.cidade ? 'Campo obrigatório' : null">
                   <UInput 
                     v-model="formData.cidade" 
                     placeholder="São Paulo, SP"
@@ -552,74 +552,6 @@ function handleEnterKey(event, nextFieldRef) {
 async function submitForm() {
   // Reset error state
   formErrors.value = {}
-  let hasErrors = false
-  
-  // Validate antiStress (multiple selection)
-  if (!formData.antiStress || formData.antiStress.length === 0) {
-    formErrors.value.antiStress = true
-    hasErrors = true
-  }
-  
-  // Validate radio selections
-  const requiredRadios = ['descontracao', 'dinamica', 'surpresa', 'ponte', 'lembranca']
-  requiredRadios.forEach(field => {
-    if (!formData[field]) {
-      formErrors.value[field] = true
-      hasErrors = true
-    }
-  })
-  
-  // Validate contact fields
-  const requiredContacts = ['nome', 'email', 'telefone', 'cidade']
-  requiredContacts.forEach(field => {
-    if (!formData[field]) {
-      formErrors.value[field] = true
-      hasErrors = true
-    }
-  })
-  
-  // Validate email format
-  if (formData.email && !/^\S+@\S+\.\S+$/.test(formData.email)) {
-    formErrors.value.email = true
-    hasErrors = true
-    toast.add({
-      id: 'email-error',
-      color: 'red',
-      title: 'Email inválido',
-      text: 'Por favor, insira um endereço de email válido',
-      icon: 'i-heroicons-exclamation-circle',
-      timeout: 5000
-    })
-  }
-  
-  // Validate phone format
-  if (formData.telefone && !/^\(\d{2}\) \d{5}-\d{4}$/.test(formData.telefone)) {
-    formErrors.value.telefone = true
-    hasErrors = true
-    toast.add({
-      id: 'phone-error',
-      color: 'red',
-      title: 'Telefone inválido',
-      text: 'Por favor, insira um número de telefone válido no formato (XX) XXXXX-XXXX',
-      icon: 'i-heroicons-exclamation-circle',
-      timeout: 5000
-    })
-  }
-  
-  // Show error message if validation fails
-  if (hasErrors) {
-    // Exibir mensagem de erro
-    toast.add({
-      id: 'form-error',
-      color: 'red',
-      title: 'Por favor, preencha todos os campos obrigatórios',
-      text: 'Os campos marcados com * são de preenchimento obrigatório',
-      icon: 'i-heroicons-exclamation-circle',
-      timeout: 5000
-    })
-    return
-  }
-
   loading.value = true
 
   try {

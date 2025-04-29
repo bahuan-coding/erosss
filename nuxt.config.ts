@@ -25,11 +25,13 @@ export default defineNuxtConfig({
     }
   },
 
-  // Nitro server config
+  // Nitro server config para Netlify
   nitro: {
-    preset: 'node-server',
-    experimental: {
-      asyncContext: true
+    preset: 'netlify',
+    output: {
+      dir: 'dist',
+      serverDir: 'dist/server',
+      publicDir: 'dist'
     }
   },
 

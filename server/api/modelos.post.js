@@ -1,7 +1,10 @@
-import { sheets, SPREADSHEET_ID, SHEET_NAME } from '../config/googleSheetsConfig';
+import { initializeGoogleSheets } from '../config/googleSheetsConfig';
 
 export default defineEventHandler(async (event) => {
   try {
+    // Inicializar Google Sheets API
+    const { sheets, SPREADSHEET_ID, SHEET_NAME } = initializeGoogleSheets();
+    
     // Obter dados do corpo da requisição
     const formData = await readBody(event);
     

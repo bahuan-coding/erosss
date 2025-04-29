@@ -7,7 +7,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "build:netlify": "nuxt build"
   },
   "dependencies": {
     "@builder.io/sdk-vue": "^4.0.10",
@@ -22,6 +23,7 @@
     "@nuxt/ui-pro": "^3.1.0",
     "@unhead/vue": "^2.0.8",
     "eslint": "^9.25.1",
+    "googleapis": "^148.0.0",
     "nuxt": "^3.16.2",
     "typescript": "^5.8.3",
     "vue": "^3.5.13",

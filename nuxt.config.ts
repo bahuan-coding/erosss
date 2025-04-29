@@ -23,5 +23,22 @@ export default defineNuxtConfig({
     public: {
       builderApiKey: process.env.BUILDER_PUBLIC_KEY
     }
+  },
+
+  // Nitro server config
+  nitro: {
+    preset: 'node-server',
+    experimental: {
+      asyncContext: true
+    }
+  },
+
+  // Vite build options
+  vite: {
+    build: {
+      rollupOptions: {
+        external: ['googleapis', 'node:fs', 'node:path']
+      }
+    }
   }
 })

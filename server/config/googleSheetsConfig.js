@@ -21,7 +21,7 @@ const sheets = google.sheets({ version: 'v4', auth });
 
 // ID da planilha - aqui você pode colocar o ID da sua planilha
 // Ou pegar de uma variável de ambiente (para testes, deixo um valor padrão)
-const SPREADSHEET_ID = process.env.MODELO_SPREADSHEET_ID || '1_R8mXMtHQkYRQKNJ0pjmA5mEOQIrKXnqtUJPOjWKbAw';
+const SPREADSHEET_ID = process.env.MODELO_SPREADSHEET_ID || '1czk_7v1yw-z4DDn79XoXAEJ4wkTT6hNxhfZOh053gZk';
 const SHEET_NAME = 'Respostas';
 
 export { sheets, SPREADSHEET_ID, SHEET_NAME }; 

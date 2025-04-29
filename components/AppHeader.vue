@@ -60,55 +60,106 @@ onUnmounted(() => {
 
 <style scoped>
 .app-header {
-  @apply fixed top-0 left-0 w-full z-50 transition-all duration-300;
-  @apply bg-white/80 dark:bg-gray-900/80;
-  @apply backdrop-blur-md backdrop-saturate-150;
-  @apply border-b border-primary-100 dark:border-primary-800;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px) saturate(150%);
+  -webkit-backdrop-filter: blur(8px) saturate(150%);
+  border-bottom: 1px solid rgb(243, 232, 255);
+}
+
+.dark .app-header {
+  background-color: rgba(17, 24, 39, 0.8);
+  border-bottom-color: rgb(107, 33, 168);
 }
 
 .app-header.scrolled {
-  @apply shadow-sm;
-  @apply bg-white/95 dark:bg-gray-900/95;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.dark .app-header.scrolled {
+  background-color: rgba(17, 24, 39, 0.95);
 }
 
 .header-container {
-  @apply flex justify-between items-center;
-  @apply max-w-6xl mx-auto;
-  @apply px-4 md:px-6;
-  @apply h-16;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+  height: 64px;
+}
+
+@media (min-width: 768px) {
+  .header-container {
+    padding: 0 1.5rem;
+  }
 }
 
 .logo-link {
-  @apply flex items-center;
-  @apply no-underline;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
 }
 
 .logo-text {
-  @apply text-xl font-bold font-serif;
-  @apply text-primary-900 dark:text-primary-100;
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-family: serif;
+  color: rgb(88, 28, 135);
+}
+
+.dark .logo-text {
+  color: rgb(243, 232, 255);
 }
 
 .nav-list {
-  @apply flex gap-8;
-  @apply list-none m-0 p-0;
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-link {
-  @apply text-sm font-medium;
-  @apply text-gray-700 dark:text-gray-300;
-  @apply hover:text-primary-600 dark:hover:text-primary-400;
-  @apply transition-colors duration-200;
-  @apply py-2;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgb(55, 65, 81);
+  transition: color 0.2s ease;
+  padding: 0.5rem 0;
+  text-decoration: none;
+}
+
+.dark .nav-link {
+  color: rgb(209, 213, 219);
+}
+
+.nav-link:hover {
+  color: rgb(147, 51, 234);
+}
+
+.dark .nav-link:hover {
+  color: rgb(192, 132, 252);
 }
 
 .nav-link.router-link-active {
-  @apply text-primary-600 dark:text-primary-400;
-  @apply font-semibold;
+  color: rgb(147, 51, 234);
+  font-weight: 600;
+}
+
+.dark .nav-link.router-link-active {
+  color: rgb(192, 132, 252);
 }
 
 @media (max-width: 768px) {
   .nav-menu {
-    @apply hidden;
+    display: none;
   }
 }
 </style> 

@@ -33,6 +33,14 @@ export default defineNuxtConfig({
     preset: 'netlify'
   },
 
+  // PostCSS Configuration (integrated with Nuxt)
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {}
+    }
+  },
+
   // Vite build options
   vite: {
     build: {

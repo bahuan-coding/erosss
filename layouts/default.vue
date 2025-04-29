@@ -81,12 +81,14 @@ const handleAgeVerification = () => {
 
 <style scoped>
 .app-layout {
-  @apply min-h-screen flex flex-col;
-  @apply font-sans;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 .main-content {
-  @apply flex-1;
-  @apply pt-16; /* Matches the header height */
+  flex: 1;
+  padding-top: 64px; /* Matches the header height */
 }
 </style> 

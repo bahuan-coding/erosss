@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
     './components/**/*.{js,vue,ts}',
     './layouts/**/*.vue',
@@ -42,8 +42,5 @@ export default {
     }
   },
   darkMode: 'class',
-  plugins: [
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/typography')
-  ]
+  plugins: []
 } 

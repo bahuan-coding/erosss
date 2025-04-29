@@ -1,0 +1,52 @@
+{
+  "timestamp": "2025-04-29T19:22:35.256Z",
+  "rawData": {
+    "antiStress": [
+      "respiracao"
+    ],
+    "antiStressOutro": "qwdqwqwdqw",
+    "descontracao": null,
+    "descontracaoOutro": "qwdwqdqwdqwdwqd",
+    "dinamica": null,
+    "dinamicaOutro": "",
+    "surpresa": null,
+    "surpresaDescricao": "",
+    "ponte": null,
+    "ponteDescricao": "",
+    "lembranca": null,
+    "lembrancaDescricao": "qwdqwdqwdqwd",
+    "extras": [],
+    "nome": "",
+    "nomeArtistico": "",
+    "email": "",
+    "telefone": "(12) 31231-2312",
+    "instagram": "@1212112",
+    "cidade": ""
+  },
+  "formattedData": [
+    "2025-04-29T19:22:35.256Z",
+    "respiracao",
+    "qwdqwqwdqw",
+    "",
+    "qwdwqdqwdqwdwqd",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "qwdqwdqwdqwd",
+    "",
+    "",
+    "",
+    "",
+    "(12) 31231-2312",
+    "@1212112",
+    ""
+  ],
+  "error": {
+    "message": "invalid_grant: Invalid JWT Signature.",
+    "status": 400
+  }
+}

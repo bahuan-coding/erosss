@@ -1,166 +1,139 @@
 <script setup>
-const isAdult = ref(false)
-const emit = defineEmits(['access-granted'])
+defineEmits(['access-granted']);
 
-const confirmAge = () => {
-  if (isAdult.value) {
-    emit('access-granted')
-  }
-}
-
-const closeTab = () => {
-  window.close()
-}
+const exitSite = () => {
+  window.location.href = 'https://www.google.com';
+};
 </script>
 
 <template>
-  <div class="age-gate-overlay">
-    <div class="smoke-animation"></div>
-    
-    <UCard class="age-gate-card" :ui="{ 
-      base: 'backdrop-blur-md bg-black/50 border-2 border-primary-500/50',
-      body: { base: 'p-8 sm:p-10' },
-      rounded: 'rounded-xl',
-      shadow: 'shadow-xl shadow-primary-900/20'
-    }">
-      <div class="text-center mb-8">
-        <h1 class="text-3xl sm:text-4xl font-bold mb-4 text-white">ACESSO RESTRITO A CONHECEDORES</h1>
-        <p class="text-lg text-gray-300 mb-8">Modelos profissionais criando experiências únicas para adultos exigentes</p>
+  <div class="age-gate">
+    <div class="age-gate-container">
+      <div class="age-gate-content">
+        <h1 class="age-gate-title">Verificação de Idade</h1>
+        <p class="age-gate-description">
+          Para acessar este conteúdo, você precisa ter pelo menos 18 anos de idade.
+        </p>
         
-        <div class="flex items-start space-x-3 justify-center mb-10">
-          <UCheckbox v-model="isAdult" size="lg" name="age-confirmation" :ui="{
-            wrapper: 'relative flex items-start',
-            base: 'h-6 w-6 rounded border-2 border-primary-300 focus:ring-primary-500 text-primary-500',
-            default: { checked: 'bg-gradient-to-r from-primary-600 to-purple-500' }
-          }">
-            <template #checkmark>
-              <div class="absolute inset-0 flex items-center justify-center text-white">
-                <UIcon name="i-heroicons-sparkles" class="h-4 w-4" />
-              </div>
-            </template>
-          </UCheckbox>
-          <label for="age-confirmation" class="text-white text-left cursor-pointer">
-            Confirmo que sou maior de 18 anos e busco interações premium
-          </label>
+        <div class="age-gate-buttons">
+          <button @click="$emit('access-granted')" class="age-gate-button primary-button">
+            Tenho 18 anos ou mais
+          </button>
+          <button @click="exitSite" class="age-gate-button secondary-button">
+            Sair do site
+          </button>
         </div>
         
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <UButton 
-            size="xl" 
-            :disabled="!isAdult" 
-            @click="confirmAge"
-            class="btn-primary"
-            :ui="{
-              base: 'font-bold text-white',
-              rounded: 'rounded-full',
-              padding: 'py-4 px-8',
-              size: { xl: 'text-lg' },
-              variant: { solid: 'shadow-lg transition-all duration-300' }
-            }"
-          >
-            ENTRAR NO UNIVERSO
-          </UButton>
-          
-          <UButton 
-            size="xl" 
-            color="gray" 
-            variant="ghost" 
-            @click="closeTab"
-            class="btn-secondary"
-            :ui="{
-              base: 'font-medium transition-colors',
-              rounded: 'rounded-full',
-              padding: 'py-4 px-8',
-              size: { xl: 'text-base' },
-              variant: { ghost: 'text-gray-300 hover:text-white hover:bg-gray-800' }
-            }"
-          >
-            Não me interessa
-          </UButton>
-        </div>
+        <p class="age-gate-notice">
+          Ao clicar em "Tenho 18 anos ou mais", você confirma que tem idade legal para visualizar o conteúdo deste site.
+        </p>
       </div>
-    </UCard>
+    </div>
   </div>
 </template>
 
 <style scoped>
-.age-gate-overlay {
+.age-gate {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 2000;
   display: flex;
-  align-items: center;
   justify-content: center;
-  z-index: 50;
-  background: rgba(0, 0, 0, 0.85);
+  align-items: center;
   padding: 1rem;
 }
 
-.age-gate-card {
-  max-width: 600px;
+.age-gate-container {
+  max-width: 500px;
   width: 100%;
-  position: relative;
-  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
 }
 
-.smoke-animation {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  opacity: 0.6;
-  background: url('https://assets.codepen.io/3364143/cloud-15.webp') no-repeat center center;
-  background-size: cover;
-  filter: hue-rotate(240deg);
-  animation: smoke 20s infinite alternate;
-  z-index: 0;
+.age-gate-content {
+  padding: 2.5rem;
+  text-align: center;
 }
 
-.btn-primary {
-  background: linear-gradient(45deg, #8b5cf6, #6366f1, #7e22ce);
-  background-size: 200% 200%;
-  animation: gradient 3s ease infinite;
+.age-gate-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #111;
+  letter-spacing: -0.02em;
+}
+
+.age-gate-description {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.age-gate-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.age-gate-button {
+  width: 100%;
+  padding: 14px 20px;
+  border-radius: 980px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
   border: none;
-  transform: translateY(0);
-  transition: all 0.3s;
 }
 
-.btn-primary:hover:not(:disabled) {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(139, 92, 246, 0.3);
+.age-gate-button.primary-button {
+  background-color: #0071e3;
+  color: white;
 }
 
-.btn-primary:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
+.age-gate-button.primary-button:hover {
+  background-color: #0077ed;
+  transform: scale(1.02);
 }
 
-@keyframes smoke {
-  0% {
-    transform: translate(-5%, -5%) scale(1);
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 0.7;
-  }
-  100% {
-    transform: translate(5%, 5%) scale(1.1);
-    opacity: 0.5;
-  }
+.age-gate-button.secondary-button {
+  background-color: transparent;
+  color: #0071e3;
+  border: 1px solid #0071e3;
 }
 
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
+.age-gate-button.secondary-button:hover {
+  background-color: rgba(0, 113, 227, 0.05);
+}
+
+.age-gate-notice {
+  font-size: 0.85rem;
+  color: #777;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .age-gate-content {
+    padding: 2rem 1.5rem;
   }
-  50% {
-    background-position: 100% 50%;
+  
+  .age-gate-title {
+    font-size: 1.8rem;
   }
-  100% {
-    background-position: 0% 50%;
+  
+  .age-gate-description {
+    font-size: 1rem;
   }
 }
 </style> 

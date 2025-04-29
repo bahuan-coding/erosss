@@ -1,0 +1,52 @@
+{
+  "timestamp": "2025-04-29T19:05:49.808Z",
+  "rawData": {
+    "antiStress": [
+      "standup"
+    ],
+    "antiStressOutro": "wefwfwef",
+    "descontracao": null,
+    "descontracaoOutro": "",
+    "dinamica": null,
+    "dinamicaOutro": "",
+    "surpresa": null,
+    "surpresaDescricao": "",
+    "ponte": null,
+    "ponteDescricao": "",
+    "lembranca": null,
+    "lembrancaDescricao": "",
+    "extras": [],
+    "nome": "",
+    "nomeArtistico": "",
+    "email": "wefwefwefwefwefwef",
+    "telefone": "(23) 23230-0000",
+    "instagram": "@wefwefwef",
+    "cidade": ""
+  },
+  "formattedData": [
+    "2025-04-29T19:05:49.808Z",
+    "standup",
+    "wefwfwef",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "wefwefwefwefwefwef",
+    "(23) 23230-0000",
+    "@wefwefwef",
+    ""
+  ],
+  "error": {
+    "message": "invalid_grant: Invalid JWT Signature.",
+    "status": 400
+  }
+}

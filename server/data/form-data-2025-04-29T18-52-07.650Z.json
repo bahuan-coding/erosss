@@ -1,0 +1,48 @@
+{
+  "timestamp": "2025-04-29T18:52:07.468Z",
+  "rawData": {
+    "antiStress": [
+      "jogo"
+    ],
+    "antiStressOutro": "qweqweqwe",
+    "descontracao": null,
+    "descontracaoOutro": "qweqweqwee",
+    "dinamica": null,
+    "dinamicaOutro": "11e12e12e12",
+    "surpresa": null,
+    "surpresaDescricao": "e12e",
+    "ponte": null,
+    "ponteDescricao": "",
+    "lembranca": null,
+    "lembrancaDescricao": "",
+    "extras": [],
+    "nome": "",
+    "nomeArtistico": "",
+    "email": "",
+    "telefone": "(12) 12120-0000",
+    "instagram": "",
+    "cidade": "12e12e12"
+  },
+  "formattedData": [
+    "2025-04-29T18:52:07.468Z",
+    "jogo",
+    "qweqweqwe",
+    "",
+    "qweqweqwee",
+    "",
+    "11e12e12e12",
+    "",
+    "e12e",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "(12) 12120-0000",
+    "",
+    "12e12e12"
+  ]
+}

@@ -3,14 +3,6 @@ import { ref } from 'vue'
 
 const ageVerified = ref(false)
 
-const navigation = [
-  { name: 'Home', href: '/' },
-  { name: 'Sorteios', href: '/sorteios' },
-  { name: 'Vencedores', href: '/vencedores' },
-  { name: 'Sobre', href: '/sobre' },
-  { name: 'Contato', href: '/contato' }
-]
-
 const handleAgeVerification = () => {
   ageVerified.value = true
 }
@@ -22,53 +14,99 @@ const handleAgeVerification = () => {
     <AgeGate v-if="!ageVerified" @access-granted="handleAgeVerification" />
 
     <!-- Main Application Layout (Only visible after age verification) -->
-    <div v-else class="min-h-screen flex flex-col">
-      <!-- Header with Navigation -->
-      <UHeader
-        :links="navigation"
-        :search="{ placeholder: 'Pesquisar sorteios...' }"
-      >
-        <template #logo>
-          <NuxtLink to="/" class="flex items-center gap-2">
-            <UIcon name="i-heroicons-trophy" class="text-primary-500 w-8 h-8" />
-            <span class="font-bold text-xl">Sorteios Premium</span>
-          </NuxtLink>
-        </template>
-        
-        <template #right>
-          <div class="flex items-center gap-4">
-            <UColorModeButton />
-            <UButton color="primary">Entrar</UButton>
-            <UButton color="gray" variant="ghost">Cadastrar</UButton>
-          </div>
-        </template>
-      </UHeader>
+    <div v-else class="app-layout">
+      <!-- Apple-inspired Header -->
+      <AppHeader />
 
-      <!-- Page Content Slot -->
-      <main class="flex-grow">
+      <!-- Main Content with Top Padding for Fixed Header -->
+      <main class="main-content">
         <slot />
       </main>
 
-      <!-- Newsletter Section -->
-      <UContainer class="py-12 bg-gray-100 dark:bg-gray-800">
-        <div class="max-w-2xl mx-auto text-center">
-          <h2 class="text-2xl font-bold mb-4">Receba Atualizações</h2>
-          <p class="mb-6">Inscreva-se em nossa newsletter para receber as últimas novidades sobre sorteios e ofertas especiais.</p>
-          <div class="max-w-md mx-auto">
-            <form @submit.prevent class="flex space-x-2">
-              <UInput placeholder="Digite seu email" type="email" class="flex-grow" />
-              <UButton color="primary" label="Inscrever-se" />
-            </form>
+      <!-- Simple Footer -->
+      <footer class="app-footer">
+        <div class="footer-container">
+          <div class="footer-content">
+            <div class="footer-logo">Experiências</div>
+            <p class="footer-copyright">© {{ new Date().getFullYear() }} Todos os direitos reservados.</p>
+          </div>
+          <div class="footer-links">
+            <a href="#" class="footer-link">Política de Privacidade</a>
+            <a href="#" class="footer-link">Termos de Uso</a>
+            <a href="#" class="footer-link">Contato</a>
           </div>
         </div>
-      </UContainer>
-
-      <!-- Footer -->
-      <SorteiosFooter />
+      </footer>
     </div>
   </div>
 </template>
 
 <style scoped>
-/* Scoped styles can remain if needed, or be moved to a global CSS file */
+.app-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.main-content {
+  flex: 1;
+  padding-top: 60px; /* Same as header height */
+}
+
+.app-footer {
+  background-color: #f5f5f7;
+  padding: 3rem 1.5rem;
+  color: #666;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.footer-logo {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 0.5rem;
+}
+
+.footer-copyright {
+  font-size: 0.85rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-link {
+  color: #666;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: #0071e3;
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  
+  .footer-links {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+}
 </style> 

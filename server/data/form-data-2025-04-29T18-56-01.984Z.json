@@ -1,0 +1,52 @@
+{
+  "timestamp": "2025-04-29T18:56:01.691Z",
+  "rawData": {
+    "antiStress": [
+      "respiracao"
+    ],
+    "antiStressOutro": "",
+    "descontracao": null,
+    "descontracaoOutro": "",
+    "dinamica": null,
+    "dinamicaOutro": "",
+    "surpresa": null,
+    "surpresaDescricao": "",
+    "ponte": null,
+    "ponteDescricao": "",
+    "lembranca": null,
+    "lembrancaDescricao": "",
+    "extras": [],
+    "nome": "asdasdas",
+    "nomeArtistico": "",
+    "email": "dasdasdasdasdasdas",
+    "telefone": "",
+    "instagram": "",
+    "cidade": ""
+  },
+  "formattedData": [
+    "2025-04-29T18:56:01.691Z",
+    "respiracao",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "asdasdas",
+    "",
+    "dasdasdasdasdasdas",
+    "",
+    "",
+    ""
+  ],
+  "error": {
+    "message": "invalid_grant: Invalid JWT Signature.",
+    "status": 400
+  }
+}

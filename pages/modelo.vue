@@ -38,9 +38,10 @@
               <div class="mb-6">
                 <label class="font-medium mb-2 block">
                   Qual atividade anti-stress você acha ideal para começar?
-                  <span v-if="formErrors.antiStress" class="text-red-500 ml-1 animate-pulse">Campo obrigatório</span>
+                  <span v-if="formErrors.antiStress" class="text-rose-500 ml-1 text-sm opacity-80 animate-pulse">recomendado</span>
+                  <span class="help-tooltip" data-tooltip="Escolha no mínimo uma opção - isso ajuda a personalizar a experiência">?</span>
                 </label>
-                <div class="space-y-2" :class="{'border-l-4 border-red-500 pl-2': formErrors.antiStress}">
+                <div class="pl-2" :class="{'has-error': formErrors.antiStress, 'field-success': formData.antiStress.length > 0}">
                   <UCheckbox 
                     :model-value="formData.antiStress.includes('standup')"
                     @update:model-value="val => updateCheckboxArray('antiStress', 'standup', val)"
@@ -75,9 +76,10 @@
               <div>
                 <label class="font-medium mb-2 block">
                   Se fosse criar um momento de descontração exclusivo, qual seria?
-                  <span v-if="formErrors.descontracao" class="text-red-500 ml-1 animate-pulse">Campo obrigatório</span>
+                  <span v-if="formErrors.descontracao" class="text-rose-500 ml-1 text-sm opacity-80 animate-pulse">recomendado</span>
+                  <span class="help-tooltip" data-tooltip="Escolha uma das opções ou descreva sua própria ideia no campo abaixo">?</span>
                 </label>
-                <div class="space-y-2" :class="{'border-l-4 border-red-500 pl-2': formErrors.descontracao}">
+                <div class="pl-2" :class="{'has-error': formErrors.descontracao, 'field-success': formData.descontracao || formData.descontracaoOutro}">
                   <URadio 
                     v-model="formData.descontracao" 
                     value="massagem"
@@ -117,9 +119,10 @@
               <div class="mb-6">
                 <label class="font-medium mb-2 block">
                   Qual dinâmica lúdica usaria para quebrar o gelo?
-                  <span v-if="formErrors.dinamica" class="text-red-500 ml-1 animate-pulse">Campo obrigatório</span>
+                  <span v-if="formErrors.dinamica" class="text-rose-500 ml-1 text-sm opacity-80 animate-pulse">recomendado</span>
+                  <span class="help-tooltip" data-tooltip="Escolha uma das opções ou descreva sua própria ideia no campo abaixo">?</span>
                 </label>
-                <div class="space-y-2" :class="{'border-l-4 border-red-500 pl-2': formErrors.dinamica}">
+                <div class="pl-2" :class="{'has-error': formErrors.dinamica, 'field-success': formData.dinamica || formData.dinamicaOutro}">
                   <URadio 
                     v-model="formData.dinamica" 
                     value="segredoToque"
@@ -156,9 +159,10 @@
               <div>
                 <label class="font-medium mb-2 block">
                   Qual elemento surpresa deixaria o momento único?
-                  <span v-if="formErrors.surpresa" class="text-red-500 ml-1 animate-pulse">Campo obrigatório</span>
+                  <span v-if="formErrors.surpresa" class="text-rose-500 ml-1 text-sm opacity-80 animate-pulse">recomendado</span>
+                  <span class="help-tooltip" data-tooltip="Escolha uma das opções ou descreva seu elemento surpresa no campo abaixo">?</span>
                 </label>
-                <div class="space-y-2" :class="{'border-l-4 border-red-500 pl-2': formErrors.surpresa}">
+                <div class="pl-2" :class="{'has-error': formErrors.surpresa, 'field-success': formData.surpresa || formData.surpresaDescricao}">
                   <URadio 
                     v-model="formData.surpresa" 
                     value="presente"
@@ -205,9 +209,10 @@
               <div>
                 <label class="font-medium mb-2 block">
                   Qual seria a ponte perfeita entre descontração e desejo?
-                  <span v-if="formErrors.ponte" class="text-red-500 ml-1 animate-pulse">Campo obrigatório</span>
+                  <span v-if="formErrors.ponte" class="text-rose-500 ml-1 text-sm opacity-80 animate-pulse">recomendado</span>
+                  <span class="help-tooltip" data-tooltip="Escolha uma das opções ou descreva sua ideia de transição no campo abaixo">?</span>
                 </label>
-                <div class="space-y-2" :class="{'border-l-4 border-red-500 pl-2': formErrors.ponte}">
+                <div class="pl-2" :class="{'has-error': formErrors.ponte, 'field-success': formData.ponte || formData.ponteDescricao}">
                   <URadio 
                     v-model="formData.ponte" 
                     value="toque"
@@ -254,9 +259,10 @@
               <div>
                 <label class="font-medium mb-2 block">
                   Que lembrança sensorial você daria no final?
-                  <span v-if="formErrors.lembranca" class="text-red-500 ml-1 animate-pulse">Campo obrigatório</span>
+                  <span v-if="formErrors.lembranca" class="text-rose-500 ml-1 text-sm opacity-80 animate-pulse">recomendado</span>
+                  <span class="help-tooltip" data-tooltip="Escolha uma das opções ou descreva sua lembrança sensorial no campo abaixo">?</span>
                 </label>
-                <div class="space-y-2" :class="{'border-l-4 border-red-500 pl-2': formErrors.lembranca}">
+                <div class="pl-2" :class="{'has-error': formErrors.lembranca, 'field-success': formData.lembranca || formData.lembrancaDescricao}">
                   <URadio 
                     v-model="formData.lembranca" 
                     value="cheiro"
@@ -328,16 +334,16 @@
             </div>
 
             <!-- Informações de Contato -->
-            <div class="border-t pt-6 border-gray-100 dark:border-gray-800">
+            <div id="contact-section" class="border-t pt-6 border-gray-100 dark:border-gray-800">
               <h4 class="text-xl font-bold text-primary-600 dark:text-primary-400 mb-4">
                 INFORMAÇÕES DE CONTATO
               </h4>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <UFormGroup label="Nome Completo" :error="formErrors.nome ? 'Campo obrigatório' : null">
+                <UFormGroup label="Nome Completo" :class="{'required': !formData.nome}" :error="formErrors.nome ? 'Campo recomendado' : null">
                   <UInput 
                     v-model="formData.nome" 
                     placeholder="Seu nome completo" 
-                    :ui="{ base: formErrors.nome ? 'border-red-500 focus:ring-red-500 animate-pulse' : '' }"
+                    :ui="{ base: formErrors.nome ? 'focus:ring-rose-500 has-error' : formData.nome ? 'field-success' : '' }"
                     ref="nomeRef"
                     @keydown="(e) => handleEnterKey(e, nomeArtisticoRef)"
                   />
@@ -350,21 +356,21 @@
                     @keydown="(e) => handleEnterKey(e, emailRef)"
                   />
                 </UFormGroup>
-                <UFormGroup label="Email" :error="formErrors.email ? 'Campo obrigatório' : null">
+                <UFormGroup label="Email" :class="{'required': !formData.email}" :error="formErrors.email ? 'Campo recomendado' : null">
                   <UInput 
                     v-model="formData.email" 
                     placeholder="Seu email" 
                     type="email"
-                    :ui="{ base: formErrors.email ? 'border-red-500 focus:ring-red-500 animate-pulse' : '' }"
+                    :ui="{ base: formErrors.email ? 'focus:ring-rose-500 has-error' : formData.email ? 'field-success' : '' }"
                     ref="emailRef"
                     @keydown="(e) => handleEnterKey(e, telefoneRef)"
                   />
                 </UFormGroup>
-                <UFormGroup label="Telefone/WhatsApp" :error="formErrors.telefone ? 'Campo obrigatório' : null">
+                <UFormGroup label="Telefone/WhatsApp" :class="{'required': !formData.telefone}" :error="formErrors.telefone ? 'Campo recomendado' : null">
                   <UInput 
                     v-model="formData.telefone" 
                     placeholder="(00) 00000-0000"
-                    :ui="{ base: formErrors.telefone ? 'border-red-500 focus:ring-red-500 animate-pulse' : '' }"
+                    :ui="{ base: formErrors.telefone ? 'focus:ring-rose-500 has-error' : formData.telefone ? 'field-success' : '' }"
                     ref="telefoneRef"
                     @input="formatPhoneNumber"
                     @blur="formatPhoneOnBlur"
@@ -380,11 +386,11 @@
                     @keydown="(e) => handleEnterKey(e, cidadeRef)"
                   />
                 </UFormGroup>
-                <UFormGroup label="Cidade/Estado" :error="formErrors.cidade ? 'Campo obrigatório' : null">
+                <UFormGroup label="Cidade/Estado" :class="{'required': !formData.cidade}" :error="formErrors.cidade ? 'Campo recomendado' : null">
                   <UInput 
                     v-model="formData.cidade" 
                     placeholder="São Paulo, SP"
-                    :ui="{ base: formErrors.cidade ? 'border-red-500 focus:ring-red-500 animate-pulse' : '' }"
+                    :ui="{ base: formErrors.cidade ? 'focus:ring-rose-500 has-error' : formData.cidade ? 'field-success' : '' }"
                     ref="cidadeRef"
                     @keydown.enter="submitForm"
                   />
@@ -399,18 +405,21 @@
                 color="gray" 
                 variant="ghost" 
                 @click="navigateHome"
+                icon="i-heroicons-arrow-left"
               >
-                Cancelar
+                Voltar
               </UButton>
               <UButton 
                 color="primary" 
                 :loading="loading"
                 :ui="{
-                  variant: { solid: 'bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600' }
+                  variant: { solid: 'bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 shadow-md hover:shadow-lg transition-all duration-200' }
                 }"
+                size="lg"
+                icon="i-heroicons-sparkles"
                 @click="submitForm"
               >
-                Enviar
+                Registrar minha experiência
               </UButton>
             </div>
           </template>
@@ -552,7 +561,98 @@ function handleEnterKey(event, nextFieldRef) {
 async function submitForm() {
   // Reset error state
   formErrors.value = {}
-  loading.value = true
+  
+  // Verificações suaves
+  const requiredSections = [
+    {
+      field: 'antiStress',
+      condition: formData.antiStress.length === 0 && !formData.antiStressOutro.trim(),
+      message: 'Qual atividade anti-stress você prefere?'
+    },
+    {
+      field: 'descontracao',
+      condition: !formData.descontracao && !formData.descontracaoOutro.trim(),
+      message: 'Qual momento de descontração você criaria?'
+    },
+    {
+      field: 'dinamica',
+      condition: !formData.dinamica && !formData.dinamicaOutro.trim(),
+      message: 'Qual dinâmica você usaria para quebrar o gelo?'
+    },
+    {
+      field: 'surpresa',
+      condition: !formData.surpresa && !formData.surpresaDescricao.trim(),
+      message: 'Qual elemento surpresa você considera único?'
+    },
+    {
+      field: 'ponte',
+      condition: !formData.ponte && !formData.ponteDescricao.trim(),
+      message: 'Como você transitaria da descontração para o desejo?'
+    },
+    {
+      field: 'lembranca',
+      condition: !formData.lembranca && !formData.lembrancaDescricao.trim(),
+      message: 'Que lembrança sensorial você deixaria?'
+    }
+  ];
+  
+  // Conta quantos campos das seções estão preenchidos
+  const filledSections = requiredSections.filter(section => !section.condition).length;
+  const percentComplete = Math.round((filledSections / requiredSections.length) * 100);
+  
+  // Se menos de 4 campos preenchidos, mostra dica amigável
+  if (filledSections < 4) {
+    // Marca os campos não preenchidos
+    requiredSections.forEach(section => {
+      if (section.condition) {
+        formErrors.value[section.field] = true;
+      }
+    });
+    
+    // Feedback amigável
+    toast.add({
+      id: 'form-progress',
+      color: 'blue',
+      title: 'Mais algumas ideias...',
+      text: `Você já completou ${percentComplete}% do formulário! Preencha pelo menos 4 das 6 perguntas principais para compartilhar sua experiência conosco.`,
+      icon: 'i-heroicons-sparkles',
+      timeout: 4000
+    });
+    
+    // Scroll para o primeiro campo com erro
+    const firstErrorField = requiredSections.find(section => section.condition)?.field;
+    if (firstErrorField) {
+      const element = document.querySelector(`[name="${firstErrorField}"]`);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+    
+    return;
+  }
+  
+  // Verifica campos de contato essenciais (nome e email, no mínimo)
+  if (!formData.nome || !formData.email) {
+    if (!formData.nome) formErrors.value.nome = true;
+    if (!formData.email) formErrors.value.email = true;
+    
+    // Feedback amigável
+    toast.add({
+      id: 'contact-missing',
+      color: 'amber',
+      title: 'Quase lá!',
+      text: 'Adoramos suas ideias! Precisamos apenas de seu nome e email para seguir com o cadastro.',
+      icon: 'i-heroicons-identification',
+      timeout: 4000
+    });
+    
+    // Scroll para a seção de contato
+    document.querySelector('#contact-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    
+    return;
+  }
+  
+  loading.value = true;
   
   console.log('Iniciando envio do formulário...');
   console.log('Dados a serem enviados:', formData);
@@ -563,7 +663,7 @@ async function submitForm() {
     const response = await $fetch('/api/modelos', {
       method: 'POST',
       body: formData
-    })
+    });
     
     console.log('Resposta recebida:', response);
     
@@ -571,8 +671,8 @@ async function submitForm() {
       // Mostrar notificação de sucesso
       console.log('Formulário enviado com sucesso!');
       
-      let title = 'Formulário enviado com sucesso!';
-      let text = 'Suas experiências exclusivas foram registradas. Entraremos em contato em breve para os próximos passos!';
+      let title = 'Experiência cadastrada!';
+      let text = 'Suas ideias criativas foram registradas. Entraremos em contato em breve!';
       
       if (response.fallback) {
         title = 'Dados registrados com sucesso!';
@@ -590,14 +690,14 @@ async function submitForm() {
         color: 'green',
         title: title,
         text: text,
-        icon: 'i-heroicons-check-circle',
+        icon: 'i-heroicons-sparkles',
         timeout: 5000
-      })
+      });
       
       // Redirecionar para página inicial após envio
       setTimeout(() => {
         router.push('/')
-      }, 2000)
+      }, 2000);
     } else {
       throw new Error('Resposta do servidor indicou falha')
     }
@@ -607,13 +707,13 @@ async function submitForm() {
     toast.add({
       id: 'form-api-error',
       color: 'red',
-      title: 'Erro ao enviar o formulário',
+      title: 'Ops, algo não funcionou',
       text: error.message || 'Houve um problema ao salvar suas respostas. Por favor, tente novamente.',
       icon: 'i-heroicons-exclamation-circle',
       timeout: 5000
-    })
+    });
   } finally {
-    loading.value = false
+    loading.value = false;
   }
 }
 
@@ -697,33 +797,113 @@ const cidadeRef = ref(null)
     url('/images/hero.jpg');
 }
 
-/* Animação de brilho para campos obrigatórios */
-@keyframes glow {
+/* Animação suave para campos obrigatórios */
+@keyframes gentlePulse {
   0% { box-shadow: 0 0 0 rgba(236, 72, 153, 0); }
-  50% { box-shadow: 0 0 5px rgba(236, 72, 153, 0.5); }
+  50% { box-shadow: 0 0 8px rgba(236, 72, 153, 0.3); }
   100% { box-shadow: 0 0 0 rgba(236, 72, 153, 0); }
 }
 
+/* Estilo mais sutil para indicação de campos obrigatórios */
 .required-field {
   position: relative;
+}
+
+.required-field::before {
+  content: "";
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 80%;
+  background: linear-gradient(to bottom, rgba(236, 72, 153, 0.2), rgba(124, 58, 237, 0.2));
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.required-field:focus-within::before {
+  background: linear-gradient(to bottom, rgba(236, 72, 153, 0.8), rgba(124, 58, 237, 0.8));
+}
+
+/* Animação elegante para erros de campos */
+@keyframes gentleHighlight {
+  0% { border-left-color: rgba(239, 68, 68, 0.2); }
+  50% { border-left-color: rgba(239, 68, 68, 0.8); }
+  100% { border-left-color: rgba(239, 68, 68, 0.2); }
+}
+
+.has-error {
+  animation: gentleHighlight 2s infinite;
+  border-left: 3px solid rgba(239, 68, 68, 0.4);
   padding-left: 10px;
-  border-left: 4px solid #ec489930;
+  transition: all 0.3s ease;
 }
 
-/* Pulsating animation for error fields */
-@keyframes pulse {
-  0% { border-left-color: rgba(239, 68, 68, 0.4); }
-  50% { border-left-color: rgba(239, 68, 68, 1); }
-  100% { border-left-color: rgba(239, 68, 68, 0.4); }
+/* Estilo para grupos de formulário com campos obrigatórios */
+:deep(.required) label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
 }
 
-.border-red-500 {
-  animation: pulse 1s infinite;
-}
-
-/* Style for required form groups */
 :deep(.required) label::after {
-  content: " *";
-  color: #ef4444;
+  content: "•";
+  color: rgba(236, 72, 153, 0.8);
+  font-size: 10px;
+  margin-left: 4px;
+  opacity: 0.8;
+  vertical-align: super;
+}
+
+/* Estilo para tooltip de ajuda */
+.help-tooltip {
+  display: inline-block;
+  position: relative;
+  margin-left: 6px;
+  font-size: 12px;
+  color: #6b7280;
+  cursor: help;
+}
+
+.help-tooltip:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 100%;
+  margin-bottom: 6px;
+  background: white;
+  color: #374151;
+  padding: 6px 12px;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  width: 220px;
+  z-index: 10;
+  font-size: 11px;
+  text-align: center;
+  animation: fadeIn 0.2s ease-out;
+  white-space: normal;
+}
+
+.dark .help-tooltip:hover::after {
+  background: #1f2937;
+  color: #e5e7eb;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* Feedback visual para sucesso de preenchimento */
+.field-success {
+  border-left: 3px solid rgba(16, 185, 129, 0.4) !important;
+  padding-left: 10px;
+  transition: all 0.3s ease;
+}
+
+.field-success:focus-within {
+  border-left: 3px solid rgba(16, 185, 129, 0.8) !important;
 }
 </style> 

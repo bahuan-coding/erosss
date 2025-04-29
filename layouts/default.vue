@@ -15,25 +15,63 @@ const handleAgeVerification = () => {
 
     <!-- Main Application Layout (Only visible after age verification) -->
     <div v-else class="app-layout">
-      <!-- Apple-inspired Header -->
+      <!-- Site Header -->
       <AppHeader />
 
-      <!-- Main Content with Top Padding for Fixed Header -->
+      <!-- Main Content -->
       <main class="main-content">
         <slot />
       </main>
 
-      <!-- Simple Footer -->
-      <footer class="app-footer">
-        <div class="footer-container">
-          <div class="footer-content">
-            <div class="footer-logo">Experiências</div>
-            <p class="footer-copyright">© {{ new Date().getFullYear() }} Todos os direitos reservados.</p>
-          </div>
-          <div class="footer-links">
-            <a href="#" class="footer-link">Política de Privacidade</a>
-            <a href="#" class="footer-link">Termos de Uso</a>
-            <a href="#" class="footer-link">Contato</a>
+      <!-- Footer -->
+      <footer class="bg-gray-50 dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800">
+        <div class="max-w-6xl mx-auto py-12 px-4 md:px-6">
+          <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-8">
+            <div class="text-center md:text-left">
+              <div class="text-xl font-bold font-serif text-primary-900 dark:text-primary-100 mb-2">Sorteios Premium</div>
+              <p class="text-sm text-gray-500 dark:text-gray-400">
+                © {{ new Date().getFullYear() }} Todos os direitos reservados.
+              </p>
+            </div>
+            
+            <div class="flex gap-8">
+              <div class="space-y-4">
+                <h4 class="text-sm font-semibold text-gray-900 dark:text-white mb-3">Links</h4>
+                <ul class="space-y-3">
+                  <li>
+                    <NuxtLink to="/" class="text-sm text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                      Início
+                    </NuxtLink>
+                  </li>
+                  <li>
+                    <NuxtLink to="/experiencias" class="text-sm text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                      Experiências
+                    </NuxtLink>
+                  </li>
+                  <li>
+                    <NuxtLink to="/modelo" class="text-sm text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                      Modelos
+                    </NuxtLink>
+                  </li>
+                </ul>
+              </div>
+              
+              <div class="space-y-4">
+                <h4 class="text-sm font-semibold text-gray-900 dark:text-white mb-3">Legal</h4>
+                <ul class="space-y-3">
+                  <li>
+                    <a href="#" class="text-sm text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                      Política de Privacidade
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="text-sm text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                      Termos de Uso
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
@@ -43,70 +81,12 @@ const handleAgeVerification = () => {
 
 <style scoped>
 .app-layout {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  @apply min-h-screen flex flex-col;
+  @apply font-sans;
 }
 
 .main-content {
-  flex: 1;
-  padding-top: 60px; /* Same as header height */
-}
-
-.app-footer {
-  background-color: #f5f5f7;
-  padding: 3rem 1.5rem;
-  color: #666;
-}
-
-.footer-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 2rem;
-}
-
-.footer-logo {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #111;
-  margin-bottom: 0.5rem;
-}
-
-.footer-copyright {
-  font-size: 0.85rem;
-}
-
-.footer-links {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.footer-link {
-  color: #666;
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: color 0.2s ease;
-}
-
-.footer-link:hover {
-  color: #0071e3;
-}
-
-@media (max-width: 768px) {
-  .footer-container {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.5rem;
-  }
-  
-  .footer-links {
-    flex-direction: column;
-    gap: 0.8rem;
-  }
+  @apply flex-1;
+  @apply pt-16; /* Matches the header height */
 }
 </style> 

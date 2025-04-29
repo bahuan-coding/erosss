@@ -3,7 +3,7 @@
     <div class="header-container">
       <div class="logo">
         <NuxtLink to="/" class="logo-link">
-          Experiências
+          <span class="logo-text">Sorteios Premium</span>
         </NuxtLink>
       </div>
       
@@ -22,9 +22,19 @@
       </nav>
       
       <div class="nav-actions">
-        <button class="action-button">
+        <UColorModeButton color="primary" class="mr-2" />
+        <UButton 
+          color="primary" 
+          variant="solid"
+          :ui="{
+            rounded: 'rounded-full',
+            variant: { 
+              solid: 'bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600'
+            }
+          }"
+        >
           Entrar
-        </button>
+        </UButton>
       </div>
     </div>
   </header>
@@ -50,90 +60,55 @@ onUnmounted(() => {
 
 <style scoped>
 .app-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  transition: all 0.3s ease;
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  @apply fixed top-0 left-0 w-full z-50 transition-all duration-300;
+  @apply bg-white/80 dark:bg-gray-900/80;
+  @apply backdrop-blur-md backdrop-saturate-150;
+  @apply border-b border-primary-100 dark:border-primary-800;
 }
 
 .app-header.scrolled {
-  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.05);
-  background-color: rgba(255, 255, 255, 0.95);
+  @apply shadow-sm;
+  @apply bg-white/95 dark:bg-gray-900/95;
 }
 
 .header-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0.8rem 1.5rem;
-  height: 60px;
+  @apply flex justify-between items-center;
+  @apply max-w-6xl mx-auto;
+  @apply px-4 md:px-6;
+  @apply h-16;
 }
 
 .logo-link {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #111;
-  text-decoration: none;
-  letter-spacing: -0.02em;
+  @apply flex items-center;
+  @apply no-underline;
+}
+
+.logo-text {
+  @apply text-xl font-bold font-serif;
+  @apply text-primary-900 dark:text-primary-100;
 }
 
 .nav-list {
-  display: flex;
-  list-style: none;
-  gap: 2rem;
-  margin: 0;
-  padding: 0;
+  @apply flex gap-8;
+  @apply list-none m-0 p-0;
 }
 
 .nav-link {
-  font-size: 0.95rem;
-  color: #444;
-  text-decoration: none;
-  transition: color 0.2s ease;
-  font-weight: 500;
-  padding: 0.5rem 0;
-}
-
-.nav-link:hover {
-  color: #0071e3;
+  @apply text-sm font-medium;
+  @apply text-gray-700 dark:text-gray-300;
+  @apply hover:text-primary-600 dark:hover:text-primary-400;
+  @apply transition-colors duration-200;
+  @apply py-2;
 }
 
 .nav-link.router-link-active {
-  color: #0071e3;
-  font-weight: 600;
-}
-
-.action-button {
-  background-color: #0071e3;
-  color: #fff;
-  border: none;
-  border-radius: 980px;
-  padding: 8px 18px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.action-button:hover {
-  background-color: #0077ed;
-  transform: scale(1.02);
+  @apply text-primary-600 dark:text-primary-400;
+  @apply font-semibold;
 }
 
 @media (max-width: 768px) {
   .nav-menu {
-    display: none;
-  }
-  
-  .header-container {
-    padding: 0.8rem 1rem;
+    @apply hidden;
   }
 }
 </style> 

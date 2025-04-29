@@ -7,24 +7,49 @@ const exitSite = () => {
 </script>
 
 <template>
-  <div class="age-gate">
-    <div class="age-gate-container">
-      <div class="age-gate-content">
-        <h1 class="age-gate-title">Verificação de Idade</h1>
-        <p class="age-gate-description">
+  <div class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="max-w-md w-full bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden animate-fade-in">
+      <div class="p-8 md:p-10 text-center">
+        <UIcon name="i-heroicons-shield-check" class="w-16 h-16 mx-auto mb-6 text-primary-500 dark:text-primary-400" />
+        
+        <h1 class="text-2xl md:text-3xl font-bold mb-4 text-gray-900 dark:text-white">
+          Verificação de Idade
+        </h1>
+        
+        <p class="text-base text-gray-600 dark:text-gray-400 mb-8">
           Para acessar este conteúdo, você precisa ter pelo menos 18 anos de idade.
         </p>
         
-        <div class="age-gate-buttons">
-          <button @click="$emit('access-granted')" class="age-gate-button primary-button">
+        <div class="space-y-4 mb-8">
+          <UButton 
+            @click="$emit('access-granted')" 
+            block
+            :ui="{
+              rounded: 'rounded-full',
+              variant: { 
+                solid: 'bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600'
+              },
+              padding: 'py-3'
+            }"
+          >
             Tenho 18 anos ou mais
-          </button>
-          <button @click="exitSite" class="age-gate-button secondary-button">
+          </UButton>
+          
+          <UButton 
+            @click="exitSite" 
+            color="gray" 
+            variant="ghost"
+            block
+            :ui="{
+              rounded: 'rounded-full',
+              padding: 'py-3'
+            }"
+          >
             Sair do site
-          </button>
+          </UButton>
         </div>
         
-        <p class="age-gate-notice">
+        <p class="text-xs text-gray-500 dark:text-gray-500">
           Ao clicar em "Tenho 18 anos ou mais", você confirma que tem idade legal para visualizar o conteúdo deste site.
         </p>
       </div>
@@ -33,107 +58,18 @@ const exitSite = () => {
 </template>
 
 <style scoped>
-.age-gate {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  z-index: 2000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
 }
 
-.age-gate-container {
-  max-width: 500px;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
-}
-
-.age-gate-content {
-  padding: 2.5rem;
-  text-align: center;
-}
-
-.age-gate-title {
-  font-size: 2rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: #111;
-  letter-spacing: -0.02em;
-}
-
-.age-gate-description {
-  font-size: 1.1rem;
-  color: #555;
-  margin-bottom: 2rem;
-  line-height: 1.5;
-}
-
-.age-gate-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.age-gate-button {
-  width: 100%;
-  padding: 14px 20px;
-  border-radius: 980px;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: none;
-}
-
-.age-gate-button.primary-button {
-  background-color: #0071e3;
-  color: white;
-}
-
-.age-gate-button.primary-button:hover {
-  background-color: #0077ed;
-  transform: scale(1.02);
-}
-
-.age-gate-button.secondary-button {
-  background-color: transparent;
-  color: #0071e3;
-  border: 1px solid #0071e3;
-}
-
-.age-gate-button.secondary-button:hover {
-  background-color: rgba(0, 113, 227, 0.05);
-}
-
-.age-gate-notice {
-  font-size: 0.85rem;
-  color: #777;
-  line-height: 1.5;
-}
-
-@media (max-width: 640px) {
-  .age-gate-content {
-    padding: 2rem 1.5rem;
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  .age-gate-title {
-    font-size: 1.8rem;
-  }
-  
-  .age-gate-description {
-    font-size: 1rem;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 </style> 

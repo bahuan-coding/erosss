@@ -7,7 +7,7 @@ const DEBUG_MODE = true;
 
 // ID da planilha e nome da aba
 const SPREADSHEET_ID = '1czk_7v1yw-z4DDn79XoXAEJ4wkTT6hNxhfZOh053gZk';
-const SHEET_NAME = 'Respostas';
+const SHEET_NAME = 'Sheet1';
 
 // Função para salvar dados localmente como backup
 function saveLocalBackup(data) {
@@ -54,17 +54,23 @@ export default defineEventHandler(async (event) => {
       const { sheets } = initializeGoogleSheets();
       
       // Inserir dados na planilha
+      console.log('🔍 Tentando inserir dados na planilha:', SPREADSHEET_ID, 'aba:', SHEET_NAME);
       const response = await sheets.spreadsheets.values.append({
         spreadsheetId: SPREADSHEET_ID,
         range: `${SHEET_NAME}!A:Z`,
-        valueInputOption: 'RAW',
+        valueInputOption: 'USER_ENTERED',
         insertDataOption: 'INSERT_ROWS',
         resource: {
           values: [formattedData]
         }
       });
       
-      console.log('✅ Dados salvos com sucesso na planilha!', response.data);
+      console.log('✅ Dados salvos com sucesso na planilha!');
+      if (response && response.data) {
+        console.log('✅ Detalhes da resposta:', JSON.stringify(response.data, null, 2));
+        console.log('✅ Linhas atualizadas:', response.data.updates?.updatedRows || 0);
+        console.log('✅ Células atualizadas:', response.data.updates?.updatedCells || 0);
+      }
       
       return {
         success: true,
@@ -72,13 +78,20 @@ export default defineEventHandler(async (event) => {
         rowsAdded: response.data.updates.updatedRows
       };
     } catch (googleError) {
-      console.error('❌ Erro ao salvar no Google Sheets:', googleError);
+      console.error('❌ Erro ao salvar no Google Sheets:', googleError.message);
+      console.error('❌ Status:', googleError.status);
+      console.error('❌ Detalhes completos:', JSON.stringify(googleError, null, 2));
       
       // Em caso de erro com Google Sheets, vamos salvar em um arquivo local
       const backupData = {
         timestamp: formattedData[0],
         rawData: formData,
-        formattedData: formattedData
+        formattedData: formattedData,
+        error: {
+          message: googleError.message,
+          code: googleError.code,
+          status: googleError.status
+        }
       };
       
       const backupSuccess = saveLocalBackup(backupData);
@@ -91,7 +104,12 @@ export default defineEventHandler(async (event) => {
           : 'Dados recebidos, mas houve um problema ao salvá-los',
         fallback: true,
         localBackup: backupSuccess,
-        error: googleError.message
+        error: googleError.message,
+        errorDetails: {
+          message: googleError.message,
+          code: googleError.code,
+          status: googleError.status
+        }
       };
     }
   } catch (error) {

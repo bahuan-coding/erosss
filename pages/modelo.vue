@@ -576,7 +576,13 @@ async function submitForm() {
       
       if (response.fallback) {
         title = 'Dados registrados com sucesso!';
-        text = 'Os dados foram registrados no sistema. ' + (response.message || '');
+        text = 'Os dados foram registrados localmente, mas não na planilha. ' + (response.message || '');
+        
+        // Log error details for debugging
+        console.error('Erro na integração com Google Sheets:', response.error);
+        if (response.errorDetails) {
+          console.error('Detalhes do erro:', response.errorDetails);
+        }
       }
       
       toast.add({

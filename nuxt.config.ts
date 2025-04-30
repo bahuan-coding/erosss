@@ -1,52 +1,48 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { defineNuxtConfig } from 'nuxt/config'
+
 export default defineNuxtConfig({
-  compatibilityDate: '2024-11-01',
+  // Future-proof configuration for Nuxt 4 compatibility
+  future: {
+    compatibilityVersion: 4,
+  },
+
+  // Core settings
   devtools: { enabled: true },
 
-  // Add CSS file to config
+  // CSS resources
   css: ['~/assets/css/main.css'],
 
+  // Module configuration
   modules: [
     '@nuxt/eslint',
-    '@nuxt/fonts',
-    '@nuxt/icon',
+    '@nuxt/ui-pro',
     '@nuxt/image',
-    '@nuxt/scripts',
-    '@nuxt/test-utils',
-    '@nuxt/ui-pro'
+    '@nuxt/content'
   ],
-  
-  // Fix warning about NuxtPage component
-  pages: true,
-  
+
+  // Runtime configuration (environment variables)
   runtimeConfig: {
     public: {
       builderApiKey: process.env.BUILDER_PUBLIC_KEY
     }
   },
 
-  // Configuração para geração estática e deploy no Netlify
-  ssr: false,
-
-  // Nitro server config para Netlify
+  // Server configuration
   nitro: {
     preset: 'netlify'
   },
+  // Module-specific configuration
 
-  // PostCSS Configuration (integrated with Nuxt)
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {}
-    }
+
+  // TypeScript configuration
+  typescript: {
+    strict: true,
+    typeCheck: false // Disable type checking to avoid vue-tsc errors
   },
 
-  // Vite build options
-  vite: {
-    build: {
-      rollupOptions: {
-        external: ['googleapis', 'node:fs', 'node:path']
-      }
-    }
-  }
+  // Experimental features (aligned with latest best practices)
+  
+
+  compatibilityDate: '2025-04-30'
 })

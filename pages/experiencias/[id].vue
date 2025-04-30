@@ -105,7 +105,7 @@
               Conteúdo Exclusivo
             </UBadge>
             
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gradient">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-custom-purple to-custom-pink bg-clip-text text-transparent">
               Conheça {{ experience.modelName }}
             </h2>
             
@@ -217,7 +217,7 @@
               Sorteio Exclusivo
             </UBadge>
             
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gradient">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-custom-purple to-custom-pink bg-clip-text text-transparent">
               Participe da Rifa
             </h2>
             
@@ -316,7 +316,7 @@
                     :key="n" 
                     :class="[
                       'ticket-number',
-                      selectedTickets.includes(n) ? 'bg-gradient-to-r from-purple-600 to-pink-500 text-white' : '',
+                      selectedTickets.includes(n) ? 'bg-gradient-to-r from-custom-purple to-custom-pink text-white' : '',
                       soldTickets.includes(n) ? 'bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed' : ''
                     ]"
                     @click="toggleTicket(n)"
@@ -352,7 +352,7 @@
                       rounded: 'rounded-full',
                       padding: 'px-6 py-2',
                       variant: { 
-                        solid: 'bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600'
+                        solid: 'bg-gradient-to-r from-custom-purple to-custom-pink hover:from-primary-700 hover:to-pink-600'
                       }
                     }"
                   >
@@ -379,7 +379,7 @@
                   shadow: 'shadow-2xl'
                 }"
               >
-                <h2 class="text-3xl font-bold mb-6 text-gradient">Uma Experiência Única</h2>
+                <h2 class="text-3xl font-bold mb-6 bg-gradient-to-r from-custom-purple to-custom-pink bg-clip-text text-transparent">Uma Experiência Única</h2>
                 <p class="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
                   {{ experience.longDescription }}
                 </p>
@@ -416,7 +416,7 @@
       <section class="py-20 bg-gray-50 dark:bg-gray-900">
         <UContainer>
           <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold mb-4 text-gradient">Outras Experiências</h2>
+            <h2 class="text-3xl font-bold mb-4 bg-gradient-to-r from-custom-purple to-custom-pink bg-clip-text text-transparent">Outras Experiências</h2>
             <p class="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
               Você também pode se interessar por estas experiências exclusivas
             </p>
@@ -529,16 +529,12 @@ const handleScroll = () => {
 <style scoped>
 /* Base Styles with dark mode support */
 .experience-page {
-  @apply overflow-x-hidden;
-}
-
-.text-gradient {
-  @apply bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent;
+  overflow-x: hidden;
 }
 
 /* Hero Section */
 .experience-hero {
-  @apply h-screen;
+  height: 100vh;
 }
 
 /* Pattern Background */
@@ -554,49 +550,90 @@ const handleScroll = () => {
 
 /* Ticket Grid */
 .ticket-grid {
-  @apply grid grid-cols-5 sm:grid-cols-10 gap-2;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .ticket-grid {
+    grid-template-columns: repeat(10, 1fr);
+  }
 }
 
 .ticket-number {
-  @apply w-full aspect-square flex items-center justify-center rounded-md text-sm font-medium
-  bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700
-  text-gray-900 dark:text-gray-100 transition-all duration-200 cursor-pointer;
+  width: 100%;
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  background-color: #f3f4f6;
+  color: #111827;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.dark .ticket-number {
+  background-color: #1f2937;
+  color: #f9fafb;
+}
+
+.ticket-number:hover {
+  background-color: #e5e7eb;
+}
+
+.dark .ticket-number:hover {
+  background-color: #374151;
 }
 
 /* Parallax Section */
 .immersive-experience {
-  @apply h-screen overflow-hidden;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .parallax-container {
-  @apply h-full relative;
+  height: 100%;
+  position: relative;
 }
 
 .parallax-bg {
-  @apply absolute inset-0 bg-cover bg-center z-0;
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
 }
 
 .parallax-bg::after {
   content: '';
-  @apply absolute inset-0 bg-black/50 dark:bg-black/60;
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.dark .parallax-bg::after {
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .parallax-content {
-  @apply relative z-10 h-full;
-}
-
-/* Features */
-.feature-card {
-  @apply bg-white dark:bg-gray-800 p-4 rounded-xl;
+  position: relative;
+  z-index: 10;
+  height: 100%;
 }
 
 /* Experience Card Styles */
 .experience-card {
-  @apply transform transition-all duration-300 cursor-pointer;
+  transform: translateY(0);
+  transition: all 0.3s;
+  cursor: pointer;
 }
 
 .experience-card:hover {
-  @apply -translate-y-2;
+  transform: translateY(-0.5rem);
 }
 
 /* Custom Scrollbar */
@@ -606,14 +643,19 @@ const handleScroll = () => {
 }
 
 .custom-scrollbar::-webkit-scrollbar {
-  @apply h-1;
+  height: 0.25rem;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  @apply bg-transparent;
+  background-color: transparent;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  @apply bg-primary-300 dark:bg-primary-700 rounded-full;
+  background-color: rgb(216, 180, 254);
+  border-radius: 9999px;
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgb(126, 34, 206);
 }
 </style>

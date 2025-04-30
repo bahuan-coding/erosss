@@ -16,7 +16,7 @@
           限量版 • Edições Limitadas
         </UBadge>
         
-        <h1 class="text-3xl md:text-5xl font-bold mb-4 text-gradient">
+        <h1 class="text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-custom-purple to-custom-pink bg-clip-text text-transparent">
           Experiências Exclusivas
         </h1>
         
@@ -36,7 +36,7 @@
         <UCard 
           v-for="experience in experiences" 
           :key="experience.id"
-          class="experience-card cursor-pointer"
+          class="cursor-pointer transform translate-y-0 transition-all duration-300 hover:-translate-y-2"
           :ui="{
             base: 'overflow-hidden bg-white dark:bg-gray-900 transition-all duration-300 flex flex-col',
             body: { base: 'p-0 flex-1 flex flex-col' },
@@ -98,7 +98,7 @@
                   base: 'relative overflow-hidden w-full rounded-full',
                   track: { background: 'bg-gray-200 dark:bg-gray-700' },
                   progress: { 
-                    background: 'bg-gradient-to-r from-primary-500 to-pink-500',
+                    background: 'bg-gradient-to-r from-custom-purple to-custom-pink',
                     transition: 'width 0.5s ease-in-out'
                   }
                 }"
@@ -160,18 +160,3 @@ const navigateToExperience = (id) => {
   router.push(`/experiencias/${id}`);
 };
 </script>
-
-<style scoped>
-.text-gradient {
-  @apply bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent;
-}
-
-.experience-card {
-  transform: translateY(0);
-  transition: all 0.3s ease;
-}
-
-.experience-card:hover {
-  transform: translateY(-8px);
-}
-</style>

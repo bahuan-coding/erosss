@@ -112,7 +112,6 @@ onUnmounted(() => {
   font-size: 1.25rem;
   font-weight: 700;
   color: rgb(88, 28, 135);
-  font-family: sans-serif;
 }
 
 .dark .logo-text {

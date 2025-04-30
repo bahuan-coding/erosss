@@ -21,7 +21,7 @@
         </ul>
       </nav>
       
-      <div class="nav-actions">
+      <div class="flex items-center gap-2">
         <UColorModeButton color="primary" class="mr-2" />
         <UButton 
           color="primary" 
@@ -111,8 +111,8 @@ onUnmounted(() => {
 .logo-text {
   font-size: 1.25rem;
   font-weight: 700;
-  font-family: serif;
   color: rgb(88, 28, 135);
+  font-family: sans-serif;
 }
 
 .dark .logo-text {

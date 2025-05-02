@@ -218,11 +218,11 @@
             </UBadge>
             
             <h2 class="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-custom-purple to-custom-pink bg-clip-text text-transparent">
-              Participe da Rifa
+              Participe do Sorteio
             </h2>
             
             <p class="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
-              Concorra a prêmios exclusivos com a {{ experience.modelName }}.
+              Concorra a prêmios exclusivos nesta experiência premium.
             </p>
           </div>
           
@@ -306,7 +306,7 @@
               >
                 <template #header>
                   <div class="px-4 py-3 bg-gray-50 dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
-                    <h3 class="text-lg font-bold">Escolha seus Números</h3>
+                    <h3 class="text-lg font-bold">Escolha seus Números da Sorte</h3>
                   </div>
                 </template>
                 
@@ -337,7 +337,7 @@
                 <div class="flex justify-between items-center">
                   <div>
                     <div class="text-sm text-gray-600 dark:text-gray-400">
-                      {{ selectedTickets.length }} números selecionados
+                      {{ selectedTickets.length }} número{{ selectedTickets.length !== 1 ? 's' : '' }} selecionado{{ selectedTickets.length !== 1 ? 's' : '' }}
                     </div>
                     <div class="text-xl font-bold text-primary-600 dark:text-primary-400">
                       R$ {{ selectedTickets.length * ticketPrice }}

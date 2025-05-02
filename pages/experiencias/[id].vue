@@ -505,14 +505,21 @@ onMounted(async () => {
 });
 
 const toggleTicket = (number) => {
-  if (soldTickets.value.includes(number)) return;
+  // Prevent clicking on sold tickets
+  if (soldTickets.value.includes(number)) {
+    return;
+  }
   
+  // Toggle ticket selection
   const index = selectedTickets.value.indexOf(number);
   if (index === -1) {
     selectedTickets.value.push(number);
   } else {
     selectedTickets.value.splice(index, 1);
   }
+  
+  // Optional: Add haptic feedback or animation
+  console.log(`Ticket ${number} ${index === -1 ? 'selected' : 'unselected'}`);
 };
 
 onMounted(() => {
@@ -569,11 +576,37 @@ const handleScroll = () => {
   justify-content: center;
   border-radius: 0.375rem;
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
   background-color: #f3f4f6;
   color: #111827;
   transition: all 0.2s;
   cursor: pointer;
+  border: 2px solid transparent;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.ticket-number::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: currentColor;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.ticket-number:not([disabled]):hover {
+  background-color: #e5e7eb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.ticket-number:not([disabled]):active {
+  transform: translateY(0);
 }
 
 .dark .ticket-number {
@@ -581,12 +614,18 @@ const handleScroll = () => {
   color: #f9fafb;
 }
 
-.ticket-number:hover {
-  background-color: #e5e7eb;
+.dark .ticket-number:not([disabled]):hover {
+  background-color: #374151;
 }
 
-.dark .ticket-number:hover {
-  background-color: #374151;
+.ticket-number[disabled] {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.ticket-number.bg-gradient-to-r {
+  border: 2px solid #8b5cf6;
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
 }
 
 /* Parallax Section */

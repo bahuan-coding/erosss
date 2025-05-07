@@ -8,10 +8,10 @@
             Uma plataforma que valoriza profissionais e entrega experiências exclusivas
           </p>
         </div>
-        
+
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <UCard 
-            v-for="(card, index) in valueCards" 
+          <UCard
+            v-for="(card, index) in valueCards"
             :key="index"
             class="value-card"
             :ui="{
@@ -23,37 +23,37 @@
             }"
           >
             <div class="relative">
-              <LazyImage 
-                :src="card.image" 
+              <LazyImage
+                :src="card.image"
                 :alt="card.title"
                 height="12rem"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
             </div>
-            
+
             <div class="p-6 flex flex-col items-center text-center">
               <div class="icon-wrapper mb-4">
                 <UIcon :name="card.icon" class="text-3xl" />
               </div>
-              
+
               <h3 class="text-xl font-bold mb-3">{{ card.title }}</h3>
-              
+
               <p class="text-gray-700 dark:text-gray-300">
                 {{ card.text }}
               </p>
             </div>
           </UCard>
         </div>
-        
+
         <!-- FAQ Section -->
         <div class="mt-20">
           <h3 class="text-2xl font-bold mb-8 text-center">Perguntas Frequentes</h3>
-          
-          <UAccordion :items="faqItems" :ui="{ 
+
+          <UAccordion :items="faqItems" :ui="{
             wrapper: 'divide-y divide-gray-100 dark:divide-gray-800',
-            item: { 
+            item: {
               base: 'py-4',
-              heading: { 
+              heading: {
                 size: 'text-lg font-medium'
               }
             }
@@ -67,7 +67,7 @@
 <script setup>
 const valueCards = [
   {
-    icon: "i-heroicons-crown",
+    icon: "i-lucide-crown",
     title: "Para Modelos",
     text: "Controle total da sua imagem e lucratividade. Ganhe R$3k-10k por experiência criada.",
     image: "/images/values/value1.jpg"

@@ -13,6 +13,8 @@ export default defineNuxtConfig({
   // CSS resources
   css: ['~/assets/css/main.css'],
 
+  pages: true,
+
   // Module configuration
   modules: [
     '@nuxt/eslint',
@@ -42,7 +44,7 @@ export default defineNuxtConfig({
   },
 
   // Experimental features (aligned with latest best practices)
-  
+
 
   compatibilityDate: '2025-04-30'
 })

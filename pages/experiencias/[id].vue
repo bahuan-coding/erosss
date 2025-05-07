@@ -296,70 +296,11 @@
             
             <!-- Ticket Selection -->
             <div>
-              <UCard
-                class="mb-4"
-                :ui="{
-                  base: '',
-                  ring: '',
-                  divide: ''
-                }"
-              >
-                <template #header>
-                  <div class="px-4 py-3 bg-gray-50 dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
-                    <h3 class="text-lg font-bold">Escolha seus Números da Sorte</h3>
-                  </div>
-                </template>
-                
-                <div class="ticket-grid p-4">
-                  <button 
-                    v-for="n in 100" 
-                    :key="n" 
-                    :class="[
-                      'ticket-number',
-                      selectedTickets.includes(n) ? 'bg-gradient-to-r from-custom-purple to-custom-pink text-white' : '',
-                      soldTickets.includes(n) ? 'bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed' : ''
-                    ]"
-                    @click="toggleTicket(n)"
-                    :disabled="soldTickets.includes(n)"
-                  >
-                    {{ n }}
-                  </button>
-                </div>
-              </UCard>
-              
-              <UCard
-                :ui="{
-                  base: 'bg-primary-50 dark:bg-primary-950/30',
-                  divide: '',
-                  ring: 'ring-0'
-                }"
-              >
-                <div class="flex justify-between items-center">
-                  <div>
-                    <div class="text-sm text-gray-600 dark:text-gray-400">
-                      {{ selectedTickets.length }} número{{ selectedTickets.length !== 1 ? 's' : '' }} selecionado{{ selectedTickets.length !== 1 ? 's' : '' }}
-                    </div>
-                    <div class="text-xl font-bold text-primary-600 dark:text-primary-400">
-                      R$ {{ selectedTickets.length * ticketPrice }}
-                    </div>
-                  </div>
-                  
-                  <UButton
-                    color="primary"
-                    :disabled="selectedTickets.length === 0"
-                    icon="i-heroicons-shopping-cart"
-                    :ui="{
-                      rounded: 'rounded-full',
-                      padding: 'px-6 py-2',
-                      variant: { 
-                        solid: 'bg-gradient-to-r from-custom-purple to-custom-pink hover:from-primary-700 hover:to-pink-600'
-                      }
-                    }"
-                  >
-                    Comprar Agora
-                  </UButton>
-                </div>
-              </UCard>
+              <ExperienceCalendar
+                v-model:selectedTickets="selectedTickets"
+                :soldTickets="soldTickets"
+                :ticketPrice="ticketPrice"
+              />
             </div>
           </div>
         </UContainer>
@@ -477,6 +418,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import ExperienceCalendar from '~/components/ExperienceCalendar.vue';
 
 const route = useRoute();
 const router = useRouter();
@@ -503,24 +445,6 @@ onMounted(async () => {
     loading.value = false;
   }
 });
-
-const toggleTicket = (number) => {
-  // Prevent clicking on sold tickets
-  if (soldTickets.value.includes(number)) {
-    return;
-  }
-  
-  // Toggle ticket selection
-  const index = selectedTickets.value.indexOf(number);
-  if (index === -1) {
-    selectedTickets.value.push(number);
-  } else {
-    selectedTickets.value.splice(index, 1);
-  }
-  
-  // Optional: Add haptic feedback or animation
-  console.log(`Ticket ${number} ${index === -1 ? 'selected' : 'unselected'}`);
-};
 
 onMounted(() => {
   // Animation and parallax effects initialization would go here

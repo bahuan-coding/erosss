@@ -31,8 +31,8 @@
       <!-- Hero Section with Immersive Experience Viewport -->
       <section class="experience-hero relative overflow-hidden">
         <div class="absolute inset-0 z-0">
-          <img :src="experience.heroImage" alt="Imagem da experiência" class="w-full h-full object-cover" />
-          <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20 dark:from-black/80 dark:via-black/60 dark:to-black/40"></div>
+          <img :src="experience.heroImage" alt="Imagem da experiência" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20 dark:from-black/80 dark:via-black/60 dark:to-black/40" />
         </div>
         
         <UContainer class="relative z-10 h-full flex items-center">
@@ -130,7 +130,7 @@
                     :src="experience.modelProfileImage" 
                     :alt="experience.modelName" 
                     class="w-full h-full md:h-full object-cover aspect-[4/3] md:aspect-auto"
-                  />
+                  >
                 </div>
                 <div class="p-6 md:p-8 md:w-2/3 flex flex-col justify-center">
                   <h3 class="text-2xl font-bold mb-3 text-primary-600 dark:text-primary-400">
@@ -186,8 +186,8 @@
                       :src="item.thumbnail" 
                       :alt="item.title" 
                       class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                    >
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                     <div class="absolute bottom-0 left-0 right-0 p-4">
                       <p class="text-white font-medium">{{ item.title }}</p>
                     </div>
@@ -202,7 +202,7 @@
       <!-- Raffle Interaction Section -->
       <section class="py-20 bg-white dark:bg-gray-950 relative overflow-hidden">
         <!-- Subtle diagonal pattern background -->
-        <div class="absolute inset-0 opacity-[0.02] pattern-diagonal"></div>
+        <div class="absolute inset-0 opacity-[0.02] pattern-diagonal" />
         
         <UContainer>
           <div class="text-center mb-12">
@@ -242,7 +242,7 @@
                   :src="experience.raffleMainPrizeImage" 
                   alt="Prêmio principal" 
                   class="w-full aspect-video object-cover"
-                />
+                >
                 
                 <div class="p-6">
                   <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">
@@ -297,9 +297,9 @@
             <!-- Ticket Selection -->
             <div>
               <ExperienceCalendar
-                v-model:selectedTickets="selectedTickets"
-                :soldTickets="soldTickets"
-                :ticketPrice="ticketPrice"
+                v-model:selected-tickets="selectedTickets"
+                :sold-tickets="soldTickets"
+                :ticket-orice="ticketPrice"
               />
             </div>
           </div>
@@ -309,7 +309,7 @@
       <!-- Immersive Experience Details -->
       <section class="immersive-experience relative">
         <div class="parallax-container">
-          <div class="parallax-bg" :style="{ backgroundImage: `url(${experience.parallaxBackground})` }"></div>
+          <div class="parallax-bg" :style="{ backgroundImage: `url(${experience.parallaxBackground})` }" />
           <div class="parallax-content">
             <UContainer class="py-24 md:py-32 relative z-10 flex md:justify-end">
               <UCard 
@@ -328,7 +328,7 @@
                 <div class="space-y-6 mb-8">
                   <div v-for="(feature, index) in experience.features" :key="index" class="flex gap-4">
                     <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-primary-50 dark:bg-primary-950/50 flex items-center justify-center">
-                      <img :src="feature.icon" :alt="feature.title" class="w-6 h-6" />
+                      <img :src="feature.icon" :alt="feature.title" class="w-6 h-6" >
                     </div>
                     <div>
                       <h4 class="font-bold text-gray-900 dark:text-white mb-1">{{ feature.title }}</h4>
@@ -375,15 +375,15 @@
                 ring: 'ring-1 ring-gray-200 dark:ring-gray-700',
                 shadow: 'shadow-lg hover:shadow-primary-500/20'
               }"
-              @click="router.push(`/experiencias/${['yacht-party', 'beach-photoshoot', 'fashion-week'][index-1]}`)"
+              @click="navigateTo.push(`/experiencias/${['yacht-party', 'beach-photoshoot', 'fashion-week'][index-1]}`)"
             >
               <div class="relative">
                 <img 
                   :src="`/images/experiences/${['escape', 'boudoir', 'gatsby'][index-1]}.jpg`" 
                   alt="Experience" 
                   class="w-full h-48 object-cover"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               </div>
               
               <div class="p-5 flex-1 flex flex-col justify-between">
@@ -416,12 +416,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
 import ExperienceCalendar from '~/components/ExperienceCalendar.vue';
 
 const route = useRoute();
-const router = useRouter();
 const experienceId = route.params.id;
 const experience = ref(null);
 const loading = ref(true);
@@ -439,7 +436,7 @@ onMounted(async () => {
     console.error('Failed to load experience:', e);
     error.value = e;
     if (e.response?.status === 404) {
-      router.push('/experiencias');
+      await navigateTo('/experiencias');
     }
   } finally {
     loading.value = false;

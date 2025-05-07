@@ -125,10 +125,6 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-
-const router = useRouter()
-
 const sorteios = [
   {
     title: "Jantar Italiano",
@@ -192,8 +188,8 @@ function typeWriter() {
 }
 
 // Navigate to modelo page
-function navigateToModelo() {
-  router.push('/modelo')
+async function navigateToModelo() {
+  await navigateTo('/modelo')
 }
 </script>
 

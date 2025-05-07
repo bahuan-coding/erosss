@@ -16,7 +16,7 @@
       <div 
         class="h-full bg-gradient-to-r from-purple-600 to-pink-500 transition-all duration-500 ease-out"
         :style="{ width: `${progress || 30}%` }"
-      ></div>
+      />
     </div>
     
     <!-- Card header -->
@@ -28,8 +28,8 @@
             :src="image || '/images/experience-default.jpg'" 
             :alt="title"
             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+          >
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
         </div>
         
         <!-- Badges e status em overlay -->
@@ -38,7 +38,7 @@
           <UBadge v-if="limited" color="rose" class="shadow-md" variant="solid">
             <template #default>
               <span class="flex items-center gap-1">
-                <span class="i-heroicons-fire text-amber-300"></span>
+                <span class="i-heroicons-fire text-amber-300" />
                 <span>Edição limitada</span>
               </span>
             </template>
@@ -65,17 +65,17 @@
       <!-- Estatísticas em ícones -->
       <div class="flex items-center justify-between mb-4 text-sm text-gray-600 dark:text-gray-400">
         <div class="flex items-center gap-1">
-          <span class="i-heroicons-clock"></span>
+          <span class="i-heroicons-clock" />
           <span>{{ duration || '2-3 horas' }}</span>
         </div>
         
         <div class="flex items-center gap-1">
-          <span class="i-heroicons-user-group"></span>
+          <span class="i-heroicons-user-group" />
           <span>{{ participants || '1 pessoa' }}</span>
         </div>
         
         <div class="flex items-center gap-1">
-          <span class="i-heroicons-star"></span>
+          <span class="i-heroicons-star" />
           <span>{{ rating || '4.9' }}</span>
         </div>
       </div>
@@ -95,7 +95,7 @@
             class="h-full transition-all duration-500 ease-out rounded-full"
             :class="spotsLeft <= 5 ? 'bg-rose-500' : 'bg-gradient-to-r from-purple-600 to-pink-500'"
             :style="{ width: `${100 - (spotsLeft / availableSlots * 100) || 70}%` }"
-          ></div>
+          />
         </div>
       </div>
       
@@ -109,11 +109,11 @@
         </p>
         
         <button 
-          @click="expanded = !expanded" 
           class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 mt-2 flex items-center"
+          @click="expanded = !expanded" 
         >
           <span>{{ expanded ? 'Menos detalhes' : 'Mais detalhes' }}</span>
-          <span :class="expanded ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'" class="ml-1"></span>
+          <span :class="expanded ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'" class="ml-1" />
         </button>
       </div>
       
@@ -121,9 +121,9 @@
       <div v-if="expanded" class="mt-4 space-y-4">
         <!-- Separador elegante -->
         <div class="flex items-center gap-2">
-          <div class="h-px bg-gray-200 dark:bg-gray-700 flex-1"></div>
+          <div class="h-px bg-gray-200 dark:bg-gray-700 flex-1" />
           <span class="text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400">Detalhes</span>
-          <div class="h-px bg-gray-200 dark:bg-gray-700 flex-1"></div>
+          <div class="h-px bg-gray-200 dark:bg-gray-700 flex-1" />
         </div>
         
         <!-- Destaques da experiência -->
@@ -131,7 +131,7 @@
           <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">Destaques</h4>
           <ul class="space-y-1">
             <li v-for="(highlight, index) in highlights || defaultHighlights" :key="index" class="flex items-start gap-2 text-sm">
-              <span class="i-heroicons-check-circle text-green-500 mt-0.5"></span>
+              <span class="i-heroicons-check-circle text-green-500 mt-0.5" />
               <span class="text-gray-700 dark:text-gray-300">{{ highlight }}</span>
             </li>
           </ul>
@@ -142,14 +142,17 @@
           <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">Incluso na experiência</h4>
           <ul class="grid grid-cols-2 gap-2">
             <li v-for="(item, index) in includes || defaultIncludes" :key="index" class="flex items-center gap-2 text-sm">
-              <span class="i-heroicons-check text-purple-600 dark:text-purple-400"></span>
+              <span class="i-heroicons-check text-purple-600 dark:text-purple-400" />
               <span class="text-gray-700 dark:text-gray-300">{{ item }}</span>
             </li>
           </ul>
         </div>
         
         <!-- Datas disponíveis -->
-        <div class="space-y-2" v-if="availableDates?.length">
+        <div
+          v-if="availableDates?.length"
+          class="space-y-2"
+        >
           <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">Datas disponíveis</h4>
           <div class="flex gap-2 flex-wrap">
             <UBadge 
@@ -172,14 +175,13 @@
         <UButton
           color="white"
           variant="ghost"
-          @click="$emit('details', id)"
           size="sm"
+          @click="$emit('details', id)"
         >
           Ver detalhes completos
         </UButton>
         
         <UButton
-          @click="$emit('select', id)"
           color="primary"
           size="md"
           :ui="{
@@ -187,10 +189,11 @@
           }"
           class="relative overflow-hidden group/btn"
           :disabled="spotsLeft <= 0"
+          @click="$emit('select', id)"
         >
-          <span class="absolute inset-0 bg-white/10 w-0 group-hover/btn:w-full transition-all duration-500 ease-out rounded-md"></span>
+          <span class="absolute inset-0 bg-white/10 w-0 group-hover/btn:w-full transition-all duration-500 ease-out rounded-md" />
           <span class="flex items-center gap-1 relative z-10">
-            <span v-if="spotsLeft <= 5" class="animate-pulse i-heroicons-fire"></span>
+            <span v-if="spotsLeft <= 5" class="animate-pulse i-heroicons-fire" />
             <span>{{ spotsLeft <= 0 ? 'Esgotado' : 'Selecionar' }}</span>
           </span>
         </UButton>

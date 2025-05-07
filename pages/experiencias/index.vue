@@ -51,8 +51,8 @@
               :src="experience.image" 
               :alt="experience.title" 
               class="w-full h-48 md:h-56 object-cover"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            >
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             
             <UBadge 
               v-if="experience.isNew"
@@ -139,10 +139,6 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
-
-const router = useRouter();
 const experiences = ref([]);
 const loading = ref(true);
 
@@ -156,7 +152,7 @@ onMounted(async () => {
   }
 });
 
-const navigateToExperience = (id) => {
-  router.push(`/experiencias/${id}`);
+const navigateToExperience = async (id) => {
+  await navigateTo(`/experiencias/${id}`);
 };
 </script>

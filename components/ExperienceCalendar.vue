@@ -23,8 +23,8 @@
             selectedTickets.includes(n) ? 'bg-gradient-to-r from-custom-purple to-custom-pink text-white' : '',
             soldTickets.includes(n) ? 'bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed' : ''
           ]"
-          @click="toggleTicket(n)"
           :disabled="soldTickets.includes(n)"
+          @click="toggleTicket(n)"
         >
           {{ n }}
         </button>
@@ -68,8 +68,6 @@
 </template>
 
 <script setup>
-import { defineEmits } from 'vue';
-
 const emit = defineEmits(['update:selectedTickets']);
 
 const props = defineProps({

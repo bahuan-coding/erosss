@@ -44,24 +44,24 @@
                 <div class="pl-2" :class="{'has-error': formErrors.antiStress, 'field-success': formData.antiStress.length > 0}">
                   <UCheckbox 
                     :model-value="formData.antiStress.includes('standup')"
-                    @update:model-value="val => updateCheckboxArray('antiStress', 'standup', val)"
                     name="antiStress" 
                     label="Stand-up intimista (sessão de risos personalizados)"
                     :ui="{ wrapper: 'flex items-center gap-2' }"
+                    @update:model-value="val => updateCheckboxArray('antiStress', 'standup', val)"
                   />
                   <UCheckbox 
                     :model-value="formData.antiStress.includes('respiracao')"
-                    @update:model-value="val => updateCheckboxArray('antiStress', 'respiracao', val)"
                     name="antiStress" 
                     label="Respiração guiada + toques sutis (desacelerar antes da conexão)"
                     :ui="{ wrapper: 'flex items-center gap-2' }"
+                    @update:model-value="val => updateCheckboxArray('antiStress', 'respiracao', val)"
                   />
                   <UCheckbox 
                     :model-value="formData.antiStress.includes('jogo')"
-                    @update:model-value="val => updateCheckboxArray('antiStress', 'jogo', val)"
                     name="antiStress" 
                     label="Jogo leve de perguntas + desafios corporais (ex.: &quot;Verdade ou Toque?&quot;)"
                     :ui="{ wrapper: 'flex items-center gap-2' }"
+                    @update:model-value="val => updateCheckboxArray('antiStress', 'jogo', val)"
                   />
                 </div>
                 <div class="mt-3">
@@ -303,31 +303,31 @@
                 <div class="space-y-2">
                   <UCheckbox 
                     :model-value="formData.extras.includes('biofeedback')"
-                    @update:model-value="val => updateCheckboxArray('extras', 'biofeedback', val)"
                     name="extras" 
                     label="Biofeedback (ex.: sincronizar respiração + toque)"
                     :ui="{ wrapper: 'flex items-center gap-2' }"
+                    @update:model-value="val => updateCheckboxArray('extras', 'biofeedback', val)"
                   />
                   <UCheckbox 
                     :model-value="formData.extras.includes('roleplay')"
-                    @update:model-value="val => updateCheckboxArray('extras', 'roleplay', val)"
                     name="extras" 
                     label="Roleplay leve (ex.: histórias sensuais durante o relaxamento)"
                     :ui="{ wrapper: 'flex items-center gap-2' }"
+                    @update:model-value="val => updateCheckboxArray('extras', 'roleplay', val)"
                   />
                   <UCheckbox 
                     :model-value="formData.extras.includes('tantra')"
-                    @update:model-value="val => updateCheckboxArray('extras', 'tantra', val)"
                     name="extras" 
                     label="Elementos de tantra (ex.: práticas de respiração e energia)"
                     :ui="{ wrapper: 'flex items-center gap-2' }"
+                    @update:model-value="val => updateCheckboxArray('extras', 'tantra', val)"
                   />
                   <UCheckbox 
                     :model-value="formData.extras.includes('bdsm')"
-                    @update:model-value="val => updateCheckboxArray('extras', 'bdsm', val)"
                     name="extras" 
                     label="BDSM leve (ex.: jogos de poder consensuais e seguros)"
                     :ui="{ wrapper: 'flex items-center gap-2' }"
+                    @update:model-value="val => updateCheckboxArray('extras', 'bdsm', val)"
                   />
                 </div>
               </div>
@@ -341,37 +341,37 @@
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <UFormGroup label="Nome Completo" :class="{'required': !formData.nome}" :error="formErrors.nome ? 'Campo recomendado' : null">
                   <UInput 
+                    ref="nomeRef"
                     v-model="formData.nome" 
                     placeholder="Seu nome completo" 
                     :ui="{ base: formErrors.nome ? 'focus:ring-rose-500 has-error' : formData.nome ? 'field-success' : '' }"
-                    ref="nomeRef"
                     @keydown="(e) => handleEnterKey(e, nomeArtisticoRef)"
                   />
                 </UFormGroup>
                 <UFormGroup label="Nome Artístico">
                   <UInput 
+                    ref="nomeArtisticoRef"
                     v-model="formData.nomeArtistico" 
                     placeholder="Como prefere ser chamada" 
-                    ref="nomeArtisticoRef"
                     @keydown="(e) => handleEnterKey(e, emailRef)"
                   />
                 </UFormGroup>
                 <UFormGroup label="Email" :class="{'required': !formData.email}" :error="formErrors.email ? 'Campo recomendado' : null">
                   <UInput 
+                    ref="emailRef"
                     v-model="formData.email" 
                     placeholder="Seu email" 
                     type="email"
                     :ui="{ base: formErrors.email ? 'focus:ring-rose-500 has-error' : formData.email ? 'field-success' : '' }"
-                    ref="emailRef"
                     @keydown="(e) => handleEnterKey(e, telefoneRef)"
                   />
                 </UFormGroup>
                 <UFormGroup label="Telefone/WhatsApp" :class="{'required': !formData.telefone}" :error="formErrors.telefone ? 'Campo recomendado' : null">
                   <UInput 
+                    ref="telefoneRef"
                     v-model="formData.telefone" 
                     placeholder="(00) 00000-0000"
                     :ui="{ base: formErrors.telefone ? 'focus:ring-rose-500 has-error' : formData.telefone ? 'field-success' : '' }"
-                    ref="telefoneRef"
                     @input="formatPhoneNumber"
                     @blur="formatPhoneOnBlur"
                     @keydown="(e) => handleEnterKey(e, instagramRef)"
@@ -379,19 +379,19 @@
                 </UFormGroup>
                 <UFormGroup label="Instagram">
                   <UInput 
+                    ref="instagramRef"
                     v-model="formData.instagram" 
                     placeholder="@seuinsta"
-                    ref="instagramRef"
                     @blur="formatInstagramOnBlur"
                     @keydown="(e) => handleEnterKey(e, cidadeRef)"
                   />
                 </UFormGroup>
                 <UFormGroup label="Cidade/Estado" :class="{'required': !formData.cidade}" :error="formErrors.cidade ? 'Campo recomendado' : null">
                   <UInput 
+                    ref="cidadeRef"
                     v-model="formData.cidade" 
                     placeholder="São Paulo, SP"
                     :ui="{ base: formErrors.cidade ? 'focus:ring-rose-500 has-error' : formData.cidade ? 'field-success' : '' }"
-                    ref="cidadeRef"
                     @keydown.enter="submitForm"
                   />
                 </UFormGroup>
@@ -404,8 +404,8 @@
               <UButton 
                 color="gray" 
                 variant="ghost" 
-                @click="navigateHome"
                 icon="i-heroicons-arrow-left"
+                @click="navigateHome"
               >
                 Voltar
               </UButton>
@@ -442,9 +442,6 @@
 </template>
 
 <script setup>
-import { ref, reactive, watch } from 'vue'
-
-const router = useRouter()
 const loading = ref(false)
 const toast = useToast()
 const formErrors = ref({})
@@ -484,8 +481,8 @@ const formData = reactive({
 if (!Array.isArray(formData.antiStress)) formData.antiStress = []
 if (!Array.isArray(formData.extras)) formData.extras = []
 
-function navigateHome() {
-  router.push('/')
+async function navigateHome() {
+  await navigateTo('/')
 }
 
 // Função para formatar o número de telefone no formato brasileiro
@@ -695,8 +692,8 @@ async function submitForm() {
       });
       
       // Redirecionar para página inicial após envio
-      setTimeout(() => {
-        router.push('/')
+      setTimeout(async () => {
+        await navigateTo('/')
       }, 2000);
     } else {
       throw new Error('Resposta do servidor indicou falha')

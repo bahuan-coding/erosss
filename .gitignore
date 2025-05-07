@@ -35,3 +35,5 @@ pnpm-debug.log*
 
 # Google credentials
 server/config/google-credentials.json
+# Local Netlify folder
+.netlify

@@ -137,60 +137,36 @@
 <script setup>
 const experiences = [
   {
-    title: "VIP Sunset Cocktail",
+    title: "Show de Stand-Up e Role-Play Romântico",
     badge: "EXPERIÊNCIA EXCLUSIVA",
     image: "/images/experiences/cocktail.jpg", 
-    progress: 80,
-    remaining: 2,
-    total: 10
+    progress: 75,
+    remaining: 3,
+    total: 12
   },
   {
-    title: "Masterclass de Fotografia Boudoir",
-    badge: "APRENDA COM UMA PRO",
+    title: "Concerto Intimista + Workshop de Dança ou Culinária",
+    badge: "ARTE & CONEXÃO",
     image: "/images/experiences/boudoir.jpg",
     progress: 65,
     remaining: 4,
     total: 10
   },
   {
-    title: "Degustação de Vinhos à Luz de Velas",
-    badge: "NOITE ROMÂNTICA",
+    title: "Noite de Cinema Temático + Sessão de Cosplay & Cuddle",
+    badge: "DIVERSÃO INTIMISTA",
     image: "/images/experiences/wine.jpg", 
-    progress: 95,
-    remaining: 1,
-    total: 10
+    progress: 85,
+    remaining: 2,
+    total: 12
   },
   {
-    title: "Sessão de Perguntas e Respostas Íntima",
-    badge: "CONHEÇA A MODELO",
+    title: "Passeio Selvagem + Chá da Tarde + Mini Show de Canção",
+    badge: "AVENTURA & ROMANCE",
     image: "/images/experiences/qa.jpg", 
-    progress: 50,
+    progress: 60,
     remaining: 5,
-    total: 10
-  },
-  {
-    title: "Festa Temática Anos 20",
-    badge: "VAGAS LIMITADAS",
-    image: "/images/experiences/gatsby.jpg", 
-    progress: 70,
-    remaining: 3,
-    total: 10
-  },
-  {
-    title: "Jogo de Poker Privado",
-    badge: "APENAS CONVIDADOS",
-    image: "/images/experiences/poker.jpg", 
-    progress: 40,
-    remaining: 6,
-    total: 10
-  },
-  {
-    title: "Noite de Mistério: Escape Room Sensorial", 
-    badge: "DESVENDE OS SEGREDOS",
-    image: "/images/experiences/escape.jpg", 
-    progress: 55,
-    remaining: 4,
-    total: 8 
+    total: 12
   }
 ]
 </script>

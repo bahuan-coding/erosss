@@ -375,11 +375,11 @@
                 ring: 'ring-1 ring-gray-200 dark:ring-gray-700',
                 shadow: 'shadow-lg hover:shadow-primary-500/20'
               }"
-              @click="navigateTo.push(`/experiencias/${['yacht-party', 'beach-photoshoot', 'fashion-week'][index-1]}`)"
+              @click="navigateTo.push(`/experiencias/${['standup-roleplay', 'concerto-workshop', 'cinema-cosplay'][index-1]}`)"
             >
               <div class="relative">
                 <img 
-                  :src="`/images/experiences/${['escape', 'boudoir', 'gatsby'][index-1]}.jpg`" 
+                  :src="`/images/experiences/${['cocktail', 'boudoir', 'wine'][index-1]}.jpg`" 
                   alt="Experience" 
                   class="w-full h-48 object-cover"
                 >
@@ -388,9 +388,9 @@
               
               <div class="p-5 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 class="text-lg font-bold mb-2">{{ ['Festa em Iate', 'Ensaio na Praia', 'Semana de Moda'][index-1] }}</h3>
+                  <h3 class="text-lg font-bold mb-2">{{ ['Show Stand-Up & Role-Play', 'Concerto e Workshop', 'Cinema e Cosplay'][index-1] }}</h3>
                   <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                    {{ ['Navegue com Juliana Costa', 'Um dia exclusivo com Mariana Santos', 'Backstage com Camila Oliveira'][index-1] }}
+                    {{ ['Uma noite de humor e romance', 'Música e conexão física', 'Diversão e momentos íntimos'][index-1] }}
                   </p>
                 </div>
                 

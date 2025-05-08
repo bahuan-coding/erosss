@@ -2,6 +2,7 @@
   <div>
     <SorteiosHero />
     <ExperienciasDestaques />
+    <TrendingExperiences />
     <SorteiosValues />
     <SorteiosExperiences />
 
@@ -16,6 +17,7 @@
 
 <script setup>
 import ExperienciasDestaques from '@/components/ExperienciasDestaques.vue'
+import TrendingExperiences from '@/components/TrendingExperiences.vue'
 // No script needed now as content fetching/logic moved to components or layout
 </script>
 

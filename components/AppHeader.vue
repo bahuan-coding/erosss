@@ -16,6 +16,9 @@
             <NuxtLink to="/experiencias" class="nav-link">Experiências</NuxtLink>
           </li>
           <li class="nav-item">
+            <NuxtLink to="/trending" class="nav-link">Tendências</NuxtLink>
+          </li>
+          <li class="nav-item">
             <NuxtLink to="/modelo" class="nav-link">Perfil</NuxtLink>
           </li>
         </ul>

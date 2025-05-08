@@ -75,7 +75,7 @@ const experiences = [
 
 <style scoped>
 .text-gradient {
-  @apply bg-gradient-to-r from-custom-purple to-custom-pink bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent;
 }
 
 .experiences-section {

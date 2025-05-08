@@ -16,7 +16,7 @@
           限量版 • Edições Limitadas
         </UBadge>
         
-        <h1 class="text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-custom-purple to-custom-pink bg-clip-text text-transparent">
+        <h1 class="text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">
           Experiências Exclusivas
         </h1>
         
@@ -98,7 +98,7 @@
                   base: 'relative overflow-hidden w-full rounded-full',
                   track: { background: 'bg-gray-200 dark:bg-gray-700' },
                   progress: { 
-                    background: 'bg-gradient-to-r from-custom-purple to-custom-pink',
+                    background: 'bg-gradient-to-r from-purple-600 to-pink-500',
                     transition: 'width 0.5s ease-in-out'
                   }
                 }"

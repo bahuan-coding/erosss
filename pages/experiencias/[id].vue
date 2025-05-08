@@ -434,25 +434,25 @@ const otherExperiences = [
     id: 'trilha-jaragua',
     title: 'Trilha no Pico do Jaraguá',
     description: 'Aventura e intimidade com vista privilegiada',
-    image: '/images/sorteios/jaragua.jpg'
+    image: '/images/sorteios/jaragua-sunset.jpg'
   },
   {
     id: 'drive-in-sensual',
     title: 'Drive-in Sensual',
     description: 'Privacidade com clima de filme proibido',
-    image: '/images/sorteios/drive-in.jpg'
+    image: '/images/sorteios/drive-in-vintage.jpg'
   },
   {
     id: 'workshop-afrodisiaco',
     title: 'Workshop de Comidas Afrodisíacas',
     description: 'Descoberta do prazer através dos sentidos',
-    image: '/images/sorteios/chef.jpg'
+    image: '/images/sorteios/workshop-gourmet.jpg'
   },
   {
     id: 'fofoca-seducao',
     title: 'Fofoca & Sedução',
     description: 'Segredos, desejos e provocações',
-    image: '/images/sorteios/fofoca.jpg'
+    image: '/images/sorteios/fofoca-vintage.jpg'
   }
 ];
 

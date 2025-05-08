@@ -111,28 +111,28 @@ const sorteios = [
     vagas: 8,
     status: "disponível",
     days: "",
-    image: "/images/sorteios/jaragua.jpg"
+    image: "/images/sorteios/jaragua-vista.jpg"
   },
   {
     title: "Drive-in Sensual + Suíte Cinema",
     vagas: 0,
     status: "esgotado",
     days: "",
-    image: "/images/sorteios/drive-in.jpg"
+    image: "/images/sorteios/drive-in-night.jpg"
   },
   {
     title: "Workshop de Comidas Afrodisíacas",
     vagas: -1,
     status: "2 dias restantes",
     days: "2 dias restantes",
-    image: "/images/sorteios/chef.jpg"
+    image: "/images/sorteios/workshop-luxo.jpg"
   },
   {
     title: "Encontro de Fofoca & Sedução",
     vagas: 5,
     status: "disponível",
     days: "",
-    image: "/images/sorteios/fofoca.jpg"
+    image: "/images/sorteios/fofoca-elegante.jpg"
   }
 ]
 

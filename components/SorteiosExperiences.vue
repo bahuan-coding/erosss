@@ -41,7 +41,7 @@ const experiences = [
   {
     title: "Trilha Íntima no Pico do Jaraguá + Chá da Tarde Proibido",
     badge: "AVENTURA EXCLUSIVA",
-    image: "/images/sorteios/jaragua.jpg", 
+    image: "/images/sorteios/jaragua-sunset.jpg", 
     progress: 75,
     remaining: 3,
     total: 12
@@ -49,7 +49,7 @@ const experiences = [
   {
     title: "Drive-in Sensual + Suíte Cinema Paradiso",
     badge: "CINEMA VINTAGE",
-    image: "/images/sorteios/drive-in.jpg",
+    image: "/images/sorteios/drive-in-vintage.jpg",
     progress: 65,
     remaining: 4,
     total: 10
@@ -57,7 +57,7 @@ const experiences = [
   {
     title: "Workshop de Comidas Afrodisíacas + Encontro na Suíte",
     badge: "EXPERIÊNCIA SENSORIAL",
-    image: "/images/sorteios/chef.jpg", 
+    image: "/images/sorteios/workshop-gourmet.jpg", 
     progress: 85,
     remaining: 2,
     total: 12
@@ -65,7 +65,7 @@ const experiences = [
   {
     title: "Encontro de Fofoca & Sedução",
     badge: "CONFIDÊNCIAS ÍNTIMAS",
-    image: "/images/sorteios/fofoca.jpg", 
+    image: "/images/sorteios/fofoca-vintage.jpg", 
     progress: 60,
     remaining: 5,
     total: 12

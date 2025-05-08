@@ -46,5 +46,6 @@ export default defineNuxtConfig({
   // Experimental features (aligned with latest best practices)
 
 
-  compatibilityDate: '2025-04-30'
+  // Set compatibility date to a current value
+  compatibilityDate: '2023-11-04'
 })

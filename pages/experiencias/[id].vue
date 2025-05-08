@@ -102,98 +102,447 @@
                 base: 'font-bold uppercase tracking-wider'
               }"
             >
-              Conteúdo Exclusivo
+              Conheça Sua Acompanhante
             </UBadge>
             
             <h2 class="text-3xl md:text-4xl font-bold mb-4" style="background: linear-gradient(90deg, #9333ea, #ec4899); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
-              Conheça {{ experience.modelName }}
+              {{ experience.modelName }}
             </h2>
             
             <p class="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
-              Descubra o conteúdo exclusivo e experiências premium criadas especialmente para você.
+              Descubra quem irá te acompanhar nesta experiência exclusiva
             </p>
           </div>
           
-          <div class="max-w-4xl mx-auto space-y-12">
-            <!-- Model Profile -->
-            <UCard
-              :ui="{
-                base: 'overflow-hidden',
-                body: { padding: 'p-0' },
-                ring: '',
-                divide: 'divide-y divide-gray-100 dark:divide-gray-800'
-              }"
-            >
-              <div class="flex flex-col md:flex-row">
-                <div class="md:w-1/3 relative overflow-hidden">
-                  <img 
-                    :src="experience.modelProfileImage" 
-                    :alt="experience.modelName" 
-                    class="w-full h-full md:h-full object-cover aspect-[4/3] md:aspect-auto"
-                  >
+          <div class="max-w-6xl mx-auto">
+            <!-- Model Profile Card - Enhanced Version -->
+            <div class="mb-16 bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl">
+              <div class="grid grid-cols-1 md:grid-cols-12">
+                <!-- Left Column - Image & Quick Stats -->
+                <div class="md:col-span-5 lg:col-span-4 relative">
+                  <div class="h-full">
+                    <img 
+                      :src="experience.modelProfileImage" 
+                      :alt="experience.modelName" 
+                      class="w-full h-full object-cover"
+                    >
+                    <!-- Floating Stats Card -->
+                    <div class="absolute bottom-4 left-4 right-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md rounded-xl p-4 shadow-lg">
+                      <div class="flex justify-between items-center">
+                        <div class="text-center">
+                          <p class="text-xl font-bold text-primary-600 dark:text-primary-400">12</p>
+                          <p class="text-xs text-gray-600 dark:text-gray-400">Experiências</p>
+                        </div>
+                        <div class="text-center">
+                          <p class="text-xl font-bold text-primary-600 dark:text-primary-400">98%</p>
+                          <p class="text-xs text-gray-600 dark:text-gray-400">Avaliação</p>
+                        </div>
+                        <div class="text-center">
+                          <p class="text-xl font-bold text-primary-600 dark:text-primary-400">5.2k</p>
+                          <p class="text-xs text-gray-600 dark:text-gray-400">Seguidores</p>
+                        </div>
+                      </div>
+                      <UButton
+                        color="primary"
+                        variant="solid"
+                        class="w-full mt-3"
+                        size="sm"
+                        icon="i-heroicons-heart"
+                        :ui="{
+                          rounded: 'rounded-full',
+                        }"
+                      >
+                        Seguir
+                      </UButton>
+                    </div>
+                  </div>
                 </div>
-                <div class="p-6 md:p-8 md:w-2/3 flex flex-col justify-center">
-                  <h3 class="text-2xl font-bold mb-3 text-primary-600 dark:text-primary-400">
-                    {{ experience.modelName }}
-                  </h3>
-                  <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                
+                <!-- Right Column - Model Details -->
+                <div class="md:col-span-7 lg:col-span-8 p-6 md:p-8">
+                  <div class="flex justify-between items-start mb-4">
+                    <div>
+                      <h3 class="text-2xl font-bold text-gray-900 dark:text-white">{{ experience.modelName }}</h3>
+                      <p class="text-sm text-primary-600 dark:text-primary-400">Especialista em {{ experience.badge.toLowerCase() }}</p>
+                    </div>
+                    <UBadge 
+                      color="primary" 
+                      variant="soft" 
+                      size="lg"
+                      :ui="{ 
+                        base: 'font-bold uppercase',
+                      }"
+                    >
+                      <span class="flex items-center gap-1">
+                        <UIcon name="i-heroicons-check-badge" class="w-4 h-4" />
+                        Verificada
+                      </span>
+                    </UBadge>
+                  </div>
+                  
+                  <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
                     {{ experience.modelDescription }}
                   </p>
                   
-                  <div class="flex gap-4 mt-6">
+                  <div class="mb-6">
+                    <h4 class="text-lg font-bold mb-3 text-gray-900 dark:text-white">Especialidades</h4>
+                    <div class="flex flex-wrap gap-2">
+                      <UBadge 
+                        v-for="(skill, idx) in modelSkills" 
+                        :key="idx"
+                        color="gray" 
+                        variant="soft" 
+                        size="sm"
+                      >
+                        {{ skill }}
+                      </UBadge>
+                    </div>
+                  </div>
+                  
+                  <div class="mb-6">
+                    <h4 class="text-lg font-bold mb-3 text-gray-900 dark:text-white">Disponibilidade</h4>
+                    <p class="text-gray-700 dark:text-gray-300">
+                      Disponível para esta experiência exclusiva através de sorteio. Participe agora para ter a chance de vivenciar momentos únicos com {{ experience.modelName }}.
+                    </p>
+                  </div>
+                  
+                  <div class="flex gap-4">
                     <UButton
-                      color="gray"
-                      variant="ghost"
-                      icon="i-heroicons-user"
-                      size="sm"
+                      color="primary"
+                      variant="solid"
+                      icon="i-heroicons-ticket"
                       :ui="{
-                        rounded: 'rounded-full'
+                        rounded: 'rounded-full',
                       }"
                     >
-                      Ver Perfil
+                      Participar do Sorteio
                     </UButton>
                     
                     <UButton
-                      color="primary"
+                      color="gray"
                       variant="ghost"
-                      icon="i-heroicons-heart"
-                      size="sm"
+                      icon="i-heroicons-chat-bubble-left-ellipsis"
                       :ui="{
-                        rounded: 'rounded-full'
+                        rounded: 'rounded-full',
                       }"
                     >
-                      Seguir
+                      Enviar Mensagem
                     </UButton>
                   </div>
                 </div>
               </div>
-            </UCard>
+            </div>
             
-            <!-- Content Previews Grid -->
-            <div>
-              <h3 class="text-xl font-bold mb-6 text-gray-900 dark:text-white">
-                Prévia do Conteúdo
+            <!-- Model Media Gallery -->
+            <div class="mb-16">
+              <h3 class="text-xl font-bold mb-6 text-gray-900 dark:text-white flex items-center">
+                <UIcon name="i-heroicons-photo" class="w-5 h-5 mr-2" />
+                Galeria de Fotos
               </h3>
               
-              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <!-- Photos Grid -->
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div 
-                  v-for="(item, index) in experience.contentPreviews" 
-                  :key="index" 
-                  class="content-preview-card group"
+                  v-for="(photo, idx) in modelPhotos" 
+                  :key="idx" 
+                  class="relative aspect-[3/4] overflow-hidden rounded-xl group cursor-pointer"
                 >
-                  <div class="relative aspect-[3/4] overflow-hidden rounded-xl">
+                  <img 
+                    :src="photo.url" 
+                    :alt="`Foto de ${experience.modelName} ${idx + 1}`" 
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  >
+                  <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4">
+                    <p class="text-white text-sm">{{ photo.caption }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Model Video Showcase -->
+            <div class="mb-16">
+              <h3 class="text-xl font-bold mb-6 text-gray-900 dark:text-white flex items-center">
+                <UIcon name="i-heroicons-film" class="w-5 h-5 mr-2" />
+                Conheça Melhor {{ experience.modelName }}
+              </h3>
+              
+              <div class="aspect-video bg-gray-200 dark:bg-gray-700 rounded-xl overflow-hidden relative">
+                <!-- Video Placeholder -->
+                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                  <UIcon name="i-heroicons-play-circle" class="w-20 h-20 text-primary-600/80 dark:text-primary-400/80 mb-4" />
+                  <p class="text-gray-700 dark:text-gray-300 text-center max-w-md px-4">
+                    Assista ao vídeo de apresentação de {{ experience.modelName }} e descubra mais sobre esta experiência exclusiva
+                  </p>
+                  <UButton
+                    color="primary"
+                    variant="solid"
+                    class="mt-6"
+                    icon="i-heroicons-lock-closed"
+                    :ui="{
+                      rounded: 'rounded-full',
+                    }"
+                  >
+                    Desbloquear Conteúdo Premium
+                  </UButton>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Testimonials -->
+            <div class="mb-16">
+              <h3 class="text-xl font-bold mb-6 text-gray-900 dark:text-white flex items-center">
+                <UIcon name="i-heroicons-chat-bubble-left-right" class="w-5 h-5 mr-2" />
+                Depoimentos
+              </h3>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div 
+                  v-for="(testimonial, idx) in modelTestimonials" 
+                  :key="idx" 
+                  class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm"
+                >
+                  <div class="flex items-start gap-4 mb-4">
                     <img 
-                      :src="item.thumbnail" 
-                      :alt="item.title" 
-                      class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      :src="testimonial.avatar" 
+                      :alt="testimonial.name" 
+                      class="w-12 h-12 rounded-full object-cover"
                     >
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-                    <div class="absolute bottom-0 left-0 right-0 p-4">
-                      <p class="text-white font-medium">{{ item.title }}</p>
+                    <div>
+                      <p class="font-bold text-gray-900 dark:text-white">{{ testimonial.name }}</p>
+                      <div class="flex text-yellow-400">
+                        <UIcon 
+                          v-for="star in 5" 
+                          :key="star" 
+                          :name="star <= testimonial.rating ? 'i-heroicons-star-solid' : 'i-heroicons-star'" 
+                          class="w-4 h-4" 
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-gray-700 dark:text-gray-300 text-sm italic">{{ testimonial.content }}</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- FAQ About the Model -->
+            <div class="mb-8">
+              <h3 class="text-xl font-bold mb-6 text-gray-900 dark:text-white flex items-center">
+                <UIcon name="i-heroicons-question-mark-circle" class="w-5 h-5 mr-2" />
+                Perguntas Frequentes
+              </h3>
+              
+              <UAccordion :items="modelFAQs" :ui="{ 
+                wrapper: 'divide-y divide-gray-200 dark:divide-gray-700 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden'
+              }" />
+            </div>
+          </div>
+        </UContainer>
+      </section>
+
+      <!-- Signature Moments - Apple Style Design -->
+      <section class="py-24 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950 overflow-hidden">
+        <UContainer>
+          <div class="text-center mb-20">
+            <p class="text-sm font-semibold text-primary-600 dark:text-primary-400 uppercase tracking-wider mb-3">
+              Área da Modelo
+            </p>
+            <h2 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+              <span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600">
+                Model Creativity Program
+              </span>
+            </h2>
+            <p class="text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              Conheça o universo criativo de {{ experience.modelName }} 
+              e seus talentos exclusivos para esta experiência
+            </p>
+          </div>
+          
+          <!-- Apple-style "Tabs" (actually buttons that change content) -->
+          <div class="flex justify-center mb-16 space-x-2 md:space-x-4">
+            <button 
+              class="px-6 py-3 rounded-full text-sm font-medium bg-primary-100 text-primary-700 dark:bg-primary-900/50 dark:text-primary-300"
+            >
+              Visão Geral
+            </button>
+            <button 
+              class="px-6 py-3 rounded-full text-sm font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800/50"
+            >
+              Fotos
+            </button>
+            <button 
+              class="px-6 py-3 rounded-full text-sm font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800/50"
+            >
+              Vídeos
+            </button>
+            <button 
+              class="px-6 py-3 rounded-full text-sm font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800/50"
+            >
+              Conteúdo Exclusivo
+            </button>
+          </div>
+          
+          <!-- Content Showcase - Apple Style Layout -->
+          <div class="max-w-7xl mx-auto">
+            <!-- First Row - Hero Showcase -->
+            <div class="grid grid-cols-10 gap-6 mb-10">
+              <!-- Main Feature - 60% width -->
+              <div class="col-span-10 md:col-span-6 relative rounded-3xl overflow-hidden group">
+                <img 
+                  :src="experience.heroImage" 
+                  :alt="experience.title" 
+                  class="w-full h-[500px] object-cover transition-transform duration-1000 group-hover:scale-105"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-8">
+                  <h3 class="text-white text-2xl font-bold mb-2">{{ experience.title }}</h3>
+                  <p class="text-white/80 mb-4">Criado por {{ experience.modelName }}</p>
+                  <UButton
+                    color="white"
+                    variant="solid"
+                    size="sm"
+                    icon="i-heroicons-arrow-right"
+                    trailing
+                    :ui="{
+                      rounded: 'rounded-full',
+                    }"
+                  >
+                    Explorar
+                  </UButton>
+                </div>
+              </div>
+              
+              <!-- Side Content - Stats and Info - 40% width -->
+              <div class="col-span-10 md:col-span-4 grid grid-rows-2 gap-6">
+                <!-- Stats Card -->
+                <div class="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-lg">
+                  <h3 class="font-semibold text-lg mb-4 text-gray-900 dark:text-white">Dados da Experiência</h3>
+                  <div class="space-y-4">
+                    <div class="flex justify-between items-center">
+                      <span class="text-gray-600 dark:text-gray-400">Satisfação</span>
+                      <div class="flex items-center">
+                        <span class="text-primary-600 dark:text-primary-400 font-bold mr-2">98%</span>
+                        <div class="h-2 w-24 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                          <div class="h-full w-[98%] bg-gradient-to-r from-primary-500 to-pink-500 rounded-full"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <span class="text-gray-600 dark:text-gray-400">Participantes</span>
+                      <div class="flex items-center">
+                        <span class="text-primary-600 dark:text-primary-400 font-bold mr-2">30+</span>
+                        <div class="h-2 w-24 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                          <div class="h-full w-[75%] bg-gradient-to-r from-primary-500 to-pink-500 rounded-full"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <span class="text-gray-600 dark:text-gray-400">Exclusividade</span>
+                      <div class="flex items-center">
+                        <span class="text-primary-600 dark:text-primary-400 font-bold mr-2">100%</span>
+                        <div class="h-2 w-24 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                          <div class="h-full w-full bg-gradient-to-r from-primary-500 to-pink-500 rounded-full"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Quote Card -->
+                <div class="bg-gradient-to-br from-primary-500/90 to-pink-500/90 rounded-3xl p-6 text-white flex flex-col justify-between shadow-lg">
+                  <UIcon name="i-heroicons-quotation-mark" class="w-10 h-10 text-white/30 mb-2" />
+                  <p class="font-medium mb-4 leading-relaxed">
+                    "Cada momento desta experiência foi planejado para criar memórias que durarão para sempre. É meu compromisso pessoal."
+                  </p>
+                  <div class="flex items-center">
+                    <img 
+                      :src="experience.modelProfileImage" 
+                      :alt="experience.modelName" 
+                      class="w-10 h-10 rounded-full object-cover mr-3 border-2 border-white"
+                    >
+                    <div>
+                      <p class="font-semibold">{{ experience.modelName }}</p>
+                      <p class="text-sm text-white/80">Criadora da Experiência</p>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
+            
+            <!-- Content Grid - Apple Style -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+              <div 
+                v-for="(photo, idx) in modelPhotos.slice(0, 3)" 
+                :key="idx" 
+                class="relative group overflow-hidden rounded-2xl"
+              >
+                <img 
+                  :src="photo.url" 
+                  :alt="photo.caption" 
+                  class="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-105"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                  <p class="text-white text-sm font-medium">{{ photo.caption }}</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Video Showcase (Placeholder) -->
+            <div class="rounded-3xl overflow-hidden bg-gray-100 dark:bg-gray-800 mb-16 relative group shadow-xl">
+              <div class="aspect-video relative overflow-hidden">
+                <!-- Video Placeholder - Will be replaced with actual video iframe -->
+                <div class="absolute inset-0 bg-gradient-to-br from-primary-600/20 to-pink-600/20 flex items-center justify-center">
+                  <div class="text-center p-8">
+                    <div class="w-20 h-20 rounded-full bg-white flex items-center justify-center mx-auto mb-6 shadow-xl group-hover:scale-110 transition-transform duration-300">
+                      <UIcon name="i-heroicons-play" class="w-10 h-10 text-primary-600 ml-1" />
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                      Conheça {{ experience.modelName }} em Ação
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-400 max-w-lg mx-auto">
+                      Veja um preview desta experiência única e descubra o que faz dela tão especial
+                    </p>
+                    <div class="mt-6">
+                      <UButton
+                        color="primary"
+                        variant="solid"
+                        size="lg"
+                        icon="i-heroicons-lock-closed"
+                        :ui="{
+                          rounded: 'rounded-full',
+                        }"
+                      >
+                        Desbloquear Conteúdo Premium
+                      </UButton>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Apple-style "Learn More" section -->
+          <div class="text-center mt-16">
+            <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+              Quero Esta Experiência Agora
+            </h3>
+            <div class="flex flex-col items-center justify-center space-y-4">
+              <UButton
+                color="primary"
+                variant="solid"
+                size="xl"
+                icon="i-heroicons-ticket"
+                :ui="{
+                  rounded: 'rounded-full',
+                  padding: 'px-8 py-4',
+                  shadow: 'shadow-xl',
+                  base: 'transform transition-all duration-300 hover:-translate-y-1'
+                }"
+              >
+                Participar do Sorteio • R$ 19
+              </UButton>
+              <p class="text-gray-500 dark:text-gray-400 text-sm">
+                Use o código <span class="font-semibold text-primary-600 dark:text-primary-400">MCP10</span> 
+                para 10% de desconto na compra de 3 ou mais bilhetes
+              </p>
             </div>
           </div>
         </UContainer>
@@ -299,7 +648,7 @@
               <ExperienceCalendar
                 v-model:selected-tickets="selectedTickets"
                 :sold-tickets="soldTickets"
-                :ticket-orice="ticketPrice"
+                :ticket-price="ticketPrice"
               />
             </div>
           </div>
@@ -375,7 +724,7 @@
                 ring: 'ring-1 ring-gray-200 dark:ring-gray-700',
                 shadow: 'shadow-lg hover:shadow-primary-500/20'
               }"
-              @click="navigateTo.push(`/experiencias/${relatedExp.id}`)"
+              @click="navigateTo(`/experiencias/${relatedExp.id}`)"
             >
               <div class="relative">
                 <img 
@@ -455,6 +804,202 @@ const otherExperiences = [
     image: '/images/sorteios/fofoca-vintage.jpg'
   }
 ];
+
+// MCP Architecture - Model-related data
+// Model Skills based on experience type
+const modelSkillsMap = {
+  'trilha-jaragua': ['Trilhas', 'Fotografia', 'Aventuras ao ar livre', 'Conhecimento em botânica', 'Primeiros socorros'],
+  'drive-in-sensual': ['Cinema clássico', 'Vintage style', 'Mixologia', 'Storytelling', 'Photogenic'],
+  'workshop-afrodisiaco': ['Gastronomia', 'Aromas', 'Experiências sensoriais', 'Vinhos', 'Fine dining'],
+  'fofoca-seducao': ['Conversação', 'Confidências', 'Psicologia', 'Criação de ambiente', 'Empatia']
+};
+
+// Model Photos based on experience type
+const modelPhotosMap = {
+  'trilha-jaragua': [
+    { url: '/images/sorteios/aventureira-profile.jpg', caption: 'No topo do Pico do Jaraguá' },
+    { url: '/images/sorteios/jaragua-vista.jpg', caption: 'Apreciando o visual panorâmico' },
+    { url: '/images/sorteios/jaragua-trilha.jpg', caption: 'Explorando trilhas secretas' },
+    { url: '/images/sorteios/vista-panoramica.jpg', caption: 'Guiando para vistas exclusivas' }
+  ],
+  'drive-in-sensual': [
+    { url: '/images/sorteios/cinema-modelo.jpg', caption: 'Com roupa inspirada em filmes clássicos' },
+    { url: '/images/sorteios/drive-in-screen.jpg', caption: 'Preparando a experiência cinematic' },
+    { url: '/images/sorteios/drive-in-vintage.jpg', caption: 'Ambientação com estilo vintage' },
+    { url: '/images/sorteios/cinema-suite.jpg', caption: 'Arranjo especial na suíte Cinema Paradiso' }
+  ],
+  'workshop-afrodisiaco': [
+    { url: '/images/sorteios/chef-modelo.jpg', caption: 'Preparando ingredientes especiais' },
+    { url: '/images/sorteios/chef-cooking.jpg', caption: 'Demonstrando técnicas culinárias' },
+    { url: '/images/sorteios/workshop-gourmet.jpg', caption: 'Na cozinha gourmet' },
+    { url: '/images/sorteios/degustacao-casal.jpg', caption: 'Guiando uma experiência de degustação' }
+  ],
+  'fofoca-seducao': [
+    { url: '/images/sorteios/fofoca-modelo.jpg', caption: 'Criando ambiente de confidências' },
+    { url: '/images/sorteios/fofoca-elegante.jpg', caption: 'No salão de conversas exclusivo' },
+    { url: '/images/sorteios/fofoca-vintage.jpg', caption: 'Preparando o ambiente com estilo' },
+    { url: '/images/sorteios/bar-lounge.jpg', caption: 'Conversas no lounge privativo' }
+  ]
+};
+
+// Model Testimonials based on experience type
+const modelTestimonialsMap = {
+  'trilha-jaragua': [
+    { 
+      name: 'Ricardo M.', 
+      avatar: '/images/avatars/avatar-1.jpg', 
+      rating: 5, 
+      content: 'Uma experiência inesquecível! A guia conhecia trilhas que eu jamais encontraria sozinho, com vistas de tirar o fôlego. O chá da tarde no ponto mais alto foi um toque especial que tornou o momento ainda mais mágico.' 
+    },
+    { 
+      name: 'Marcela L.', 
+      avatar: '/images/avatars/avatar-2.jpg', 
+      rating: 5, 
+      content: 'Ganhei esse sorteio e fui com meu namorado. A aventureira nos guiou com muita segurança e conhecimento, além de criar momentos perfeitos para fotos românticas. Recomendo muito essa experiência para casais!' 
+    }
+  ],
+  'drive-in-sensual': [
+    { 
+      name: 'Fernando C.', 
+      avatar: '/images/avatars/avatar-3.jpg', 
+      rating: 5, 
+      content: 'A atmosfera criada pela hostess foi incrível! Ela conhecia cada detalhe dos filmes clássicos e transformou a noite em algo saído diretamente de Hollywood. A suíte temática superou todas as expectativas.' 
+    },
+    { 
+      name: 'Patrícia S.', 
+      avatar: '/images/avatars/avatar-4.jpg', 
+      rating: 4, 
+      content: 'Uma viagem no tempo! A atenção aos detalhes vintage e a seleção de filmes foi perfeita. A hostess sabe realmente como criar um ambiente romântico e nostálgico.' 
+    }
+  ],
+  'workshop-afrodisiaco': [
+    { 
+      name: 'Guilherme N.', 
+      avatar: '/images/avatars/avatar-5.jpg', 
+      rating: 5, 
+      content: 'A Chef Sensorial criou uma experiência gastronômica inesquecível. Aprendi muito sobre ingredientes que nem sabia que existiam, e a forma como ela conduziu a experiência foi extremamente profissional e encantadora.' 
+    },
+    { 
+      name: 'Beatriz A.', 
+      avatar: '/images/avatars/avatar-6.jpg', 
+      rating: 5, 
+      content: 'Participei com meu marido e foi uma das experiências mais íntimas e divertidas que já tivemos. A chef tem um conhecimento impressionante sobre gastronomia afrodisíaca e nos fez sentir completamente à vontade durante todo o workshop.' 
+    }
+  ],
+  'fofoca-seducao': [
+    { 
+      name: 'Gabriela M.', 
+      avatar: '/images/avatars/avatar-7.jpg', 
+      rating: 5, 
+      content: 'Nunca pensei que me sentiria tão confortável para compartilhar histórias íntimas com minhas amigas. A Confidente criou um ambiente mágico de cumplicidade que nos permitiu abrir o coração com muitas risadas e alguns segredos revelados.' 
+    },
+    { 
+      name: 'Carolina T.', 
+      avatar: '/images/avatars/avatar-8.jpg', 
+      rating: 4, 
+      content: 'Os jogos de revelações foram sensacionais e a condução da experiência pela Confidente foi impecável. Saímos de lá mais unidas do que nunca, com histórias que só nós conhecemos. Vale cada centavo!' 
+    }
+  ]
+};
+
+// Model FAQs based on experience type
+const modelFAQsMap = {
+  'trilha-jaragua': [
+    { 
+      title: 'Qual é o nível de dificuldade da trilha?', 
+      content: 'Nossa Guia Aventureira adapta o percurso de acordo com a experiência e condicionamento físico dos participantes. Existem trilhas para todos os níveis, sempre garantindo vistas espetaculares e momentos especiais.' 
+    },
+    { 
+      title: 'Preciso levar equipamentos específicos?', 
+      content: 'Não é necessário. Todo equipamento especializado será fornecido pela guia. Recomendamos apenas roupas confortáveis, protetor solar e uma câmera para registrar os momentos.'
+    },
+    { 
+      title: 'Posso escolher o horário da trilha?', 
+      content: 'A experiência é planejada para aproveitar o melhor horário do pôr do sol, mas a guia entrará em contato previamente para ajustar detalhes conforme sua disponibilidade.'
+    }
+  ],
+  'drive-in-sensual': [
+    { 
+      title: 'Os filmes exibidos podem ser escolhidos pelo participante?', 
+      content: 'Sim, a hostess oferece uma curadoria de filmes clássicos, mas você pode solicitar previamente títulos específicos que gostaria de assistir durante a experiência.'
+    },
+    { 
+      title: 'É permitido levar acompanhante para a experiência?', 
+      content: 'Sim, a experiência é projetada para casais. O vencedor do sorteio pode trazer um(a) acompanhante para desfrutar da experiência completa.'
+    },
+    { 
+      title: 'Como funciona a hospedagem na suíte temática?', 
+      content: 'A suíte Cinema Paradiso está completamente ambientada com referências cinematográficas vintage. A pernoite inclui todo o conforto de um hotel boutique premium, com serviços extras inspirados no cinema clássico.'
+    }
+  ],
+  'workshop-afrodisiaco': [
+    { 
+      title: 'Preciso ter conhecimentos prévios de culinária?', 
+      content: 'Não é necessário nenhum conhecimento prévio. A Chef Sensorial conduz o workshop de forma didática e acessível para todos os níveis, desde iniciantes até entusiastas da gastronomia.'
+    },
+    { 
+      title: 'Existem opções para pessoas com restrições alimentares?', 
+      content: 'Sim, a chef adapta o menu conforme necessidades específicas. Restrições alimentares devem ser informadas com antecedência para que a experiência seja personalizada.'
+    },
+    { 
+      title: 'O que acontece após o workshop culinário?', 
+      content: 'Após o workshop, o casal desfruta de um jantar privativo com os pratos preparados, seguido de uma noite na Suíte dos Desejos, especialmente decorada para complementar a experiência sensorial iniciada na cozinha.'
+    }
+  ],
+  'fofoca-seducao': [
+    { 
+      title: 'Como funciona a dinâmica de conversas e jogos?', 
+      content: 'A Confidente conduz jogos de revelações e dinâmicas de conversas de forma gradual, respeitando o nível de conforto das participantes. Tudo acontece de forma natural e divertida, sem pressões.'
+    },
+    { 
+      title: 'Quantas amigas posso levar para a experiência?', 
+      content: 'A experiência está estruturada para até 4 participantes (a ganhadora do sorteio mais 3 amigas convidadas) para manter a intimidade e qualidade das interações.'
+    },
+    { 
+      title: 'Há consumo de bebidas alcoólicas durante a experiência?', 
+      content: 'Sim, a experiência inclui um bar de drinks premium com bartender especializado, mas o consumo é opcional e sempre incentivamos a moderação para aproveitar plenamente as dinâmicas de conversação.'
+    }
+  ]
+};
+
+// MCP Architecture - Computed properties (Presenter layer)
+const modelSkills = computed(() => modelSkillsMap[experienceId] || []);
+const modelPhotos = computed(() => modelPhotosMap[experienceId] || []);
+const modelTestimonials = computed(() => modelTestimonialsMap[experienceId] || []);
+const modelFAQs = computed(() => 
+  modelFAQsMap[experienceId]?.map(faq => ({
+    label: faq.title,
+    icon: 'i-heroicons-question-mark-circle',
+    content: faq.content
+  })) || []
+);
+
+// Model signature moments - Special experiences that create memorable moments
+const _modelSignatureMoments = computed(() => {
+  if (!experience.value) return [];
+  
+  // Default signature moments if not specified in the experience
+  return [
+    {
+      title: 'Momento Surpresa',
+      timing: 'Durante a experiência',
+      description: 'Um momento especial e inesperado personalizado pela modelo para criar uma memória inesquecível.',
+      icon: 'i-heroicons-sparkles'
+    },
+    {
+      title: 'Lembrança Exclusiva',
+      timing: 'Ao final da experiência',
+      description: 'Um item físico exclusivo para recordar os momentos vividos nesta experiência única.',
+      icon: 'i-heroicons-gift'
+    },
+    {
+      title: 'Mensagem Personalizada',
+      timing: '3 dias após a experiência',
+      description: 'Uma mensagem especial enviada pela modelo alguns dias depois, relembrando os melhores momentos.',
+      icon: 'i-heroicons-envelope'
+    }
+  ];
+});
 
 onMounted(async () => {
   try {

@@ -85,10 +85,10 @@ defineProps({
 
 function getExperienceId(title) {
   const experienceIds = {
-    'Show de Stand-Up e Role-Play Romântico': 'standup-roleplay',
-    'Concerto Intimista + Workshop de Dança ou Culinária': 'concerto-workshop',
-    'Noite de Cinema Temático + Sessão de Cosplay & Cuddle': 'cinema-cosplay',
-    'Passeio Selvagem + Chá da Tarde + Mini Show de Canção': 'passeio-cha-show'
+    'Trilha Íntima no Pico do Jaraguá + Chá da Tarde Proibido': 'trilha-jaragua',
+    'Drive-in Sensual + Suíte Cinema Paradiso': 'drive-in-sensual',
+    'Workshop de Comidas Afrodisíacas + Encontro na Suíte': 'workshop-afrodisiaco',
+    'Encontro de Fofoca & Sedução': 'fofoca-seducao'
   }
   
   return experienceIds[title] || 'experiencia-1'

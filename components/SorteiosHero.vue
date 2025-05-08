@@ -107,32 +107,32 @@
 <script setup>
 const sorteios = [
   {
-    title: "Show de Stand-Up e Role-Play Romântico",
+    title: "Trilha Íntima no Pico do Jaraguá",
     vagas: 8,
     status: "disponível",
     days: "",
-    image: "/images/sorteios/standup.jpg"
+    image: "/images/sorteios/jaragua.jpg"
   },
   {
-    title: "Concerto Intimista + Workshop",
+    title: "Drive-in Sensual + Suíte Cinema",
     vagas: 0,
     status: "esgotado",
     days: "",
-    image: "/images/sorteios/concerto.jpg"
+    image: "/images/sorteios/drive-in.jpg"
   },
   {
-    title: "Cinema Temático + Cosplay",
+    title: "Workshop de Comidas Afrodisíacas",
     vagas: -1,
     status: "2 dias restantes",
     days: "2 dias restantes",
-    image: "/images/sorteios/cinema.jpg"
+    image: "/images/sorteios/chef.jpg"
   },
   {
-    title: "Passeio Selvagem + Chá da Tarde",
+    title: "Encontro de Fofoca & Sedução",
     vagas: 5,
     status: "disponível",
     days: "",
-    image: "/images/sorteios/passeio.jpg"
+    image: "/images/sorteios/fofoca.jpg"
   }
 ]
 
@@ -185,10 +185,10 @@ async function navigateToModelo() {
 // Map from sorteio title to experience id
 function sorteioToExperienceId(title) {
   const mapping = {
-    "Show de Stand-Up e Role-Play Romântico": 'standup-roleplay',
-    "Concerto Intimista + Workshop": 'concerto-workshop',
-    "Cinema Temático + Cosplay": 'cinema-cosplay',
-    "Passeio Selvagem + Chá da Tarde": 'passeio-cha-show'
+    "Trilha Íntima no Pico do Jaraguá": 'trilha-jaragua',
+    "Drive-in Sensual + Suíte Cinema": 'drive-in-sensual',
+    "Workshop de Comidas Afrodisíacas": 'workshop-afrodisiaco',
+    "Encontro de Fofoca & Sedução": 'fofoca-seducao'
   }
   
   return mapping[title] || 'experiencia-1'

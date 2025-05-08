@@ -39,33 +39,33 @@ import ExperienciaCard from '@/components/ExperienciaCard.vue'
 
 const experiences = [
   {
-    title: "Show de Stand-Up e Role-Play Romântico",
-    badge: "EXPERIÊNCIA EXCLUSIVA",
-    image: "/images/sorteios/standup.jpg", 
+    title: "Trilha Íntima no Pico do Jaraguá + Chá da Tarde Proibido",
+    badge: "AVENTURA EXCLUSIVA",
+    image: "/images/sorteios/jaragua.jpg", 
     progress: 75,
     remaining: 3,
     total: 12
   },
   {
-    title: "Concerto Intimista + Workshop de Dança ou Culinária",
-    badge: "ARTE & CONEXÃO",
-    image: "/images/sorteios/concerto.jpg",
+    title: "Drive-in Sensual + Suíte Cinema Paradiso",
+    badge: "CINEMA VINTAGE",
+    image: "/images/sorteios/drive-in.jpg",
     progress: 65,
     remaining: 4,
     total: 10
   },
   {
-    title: "Noite de Cinema Temático + Sessão de Cosplay & Cuddle",
-    badge: "DIVERSÃO INTIMISTA",
-    image: "/images/sorteios/cinema.jpg", 
+    title: "Workshop de Comidas Afrodisíacas + Encontro na Suíte",
+    badge: "EXPERIÊNCIA SENSORIAL",
+    image: "/images/sorteios/chef.jpg", 
     progress: 85,
     remaining: 2,
     total: 12
   },
   {
-    title: "Passeio Selvagem + Chá da Tarde + Mini Show de Canção",
-    badge: "AVENTURA & ROMANCE",
-    image: "/images/sorteios/passeio.jpg", 
+    title: "Encontro de Fofoca & Sedução",
+    badge: "CONFIDÊNCIAS ÍNTIMAS",
+    image: "/images/sorteios/fofoca.jpg", 
     progress: 60,
     remaining: 5,
     total: 12

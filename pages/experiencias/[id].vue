@@ -431,22 +431,28 @@ const soldTickets = ref([12, 15, 23, 37, 45, 56, 67, 72, 81, 88, 93]); // Mock s
 // Related experiences data
 const otherExperiences = [
   {
-    id: 'standup-roleplay',
-    title: 'Show Stand-Up & Role-Play',
-    description: 'Uma noite de humor e romance',
-    image: '/images/sorteios/standup.jpg'
+    id: 'trilha-jaragua',
+    title: 'Trilha no Pico do Jaraguá',
+    description: 'Aventura e intimidade com vista privilegiada',
+    image: '/images/sorteios/jaragua.jpg'
   },
   {
-    id: 'concerto-workshop',
-    title: 'Concerto e Workshop',
-    description: 'Música e conexão física',
-    image: '/images/sorteios/concerto.jpg'
+    id: 'drive-in-sensual',
+    title: 'Drive-in Sensual',
+    description: 'Privacidade com clima de filme proibido',
+    image: '/images/sorteios/drive-in.jpg'
   },
   {
-    id: 'cinema-cosplay',
-    title: 'Cinema e Cosplay',
-    description: 'Diversão e momentos íntimos',
-    image: '/images/sorteios/cinema.jpg'
+    id: 'workshop-afrodisiaco',
+    title: 'Workshop de Comidas Afrodisíacas',
+    description: 'Descoberta do prazer através dos sentidos',
+    image: '/images/sorteios/chef.jpg'
+  },
+  {
+    id: 'fofoca-seducao',
+    title: 'Fofoca & Sedução',
+    description: 'Segredos, desejos e provocações',
+    image: '/images/sorteios/fofoca.jpg'
   }
 ];
 

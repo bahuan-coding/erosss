@@ -105,7 +105,7 @@
               Conteúdo Exclusivo
             </UBadge>
             
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4" style="background: linear-gradient(90deg, #9333ea, #ec4899); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
               Conheça {{ experience.modelName }}
             </h2>
             
@@ -217,7 +217,7 @@
               Sorteio Exclusivo
             </UBadge>
             
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4" style="background: linear-gradient(90deg, #9333ea, #ec4899); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
               Participe do Sorteio
             </h2>
             
@@ -320,7 +320,7 @@
                   shadow: 'shadow-2xl'
                 }"
               >
-                <h2 class="text-3xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">Uma Experiência Única</h2>
+                <h2 class="text-3xl font-bold mb-6" style="background: linear-gradient(90deg, #9333ea, #ec4899); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Uma Experiência Única</h2>
                 <p class="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
                   {{ experience.longDescription }}
                 </p>
@@ -357,7 +357,7 @@
       <section class="py-20 bg-gray-50 dark:bg-gray-900">
         <UContainer>
           <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">Outras Experiências</h2>
+            <h2 class="text-3xl font-bold mb-4" style="background: linear-gradient(90deg, #9333ea, #ec4899); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Outras Experiências</h2>
             <p class="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
               Você também pode se interessar por estas experiências exclusivas
             </p>

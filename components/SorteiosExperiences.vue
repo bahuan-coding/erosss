@@ -75,7 +75,10 @@ const experiences = [
 
 <style scoped>
 .text-gradient {
-  @apply bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent;
+  background: linear-gradient(90deg, #9333ea, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .experiences-section {

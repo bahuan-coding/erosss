@@ -19,7 +19,7 @@
                 rounded: 'rounded-xl',
                 padding: 'py-4 px-8',
                 size: { xl: 'text-lg' },
-                variant: { solid: 'bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 shadow-lg shadow-purple-500/30 transform transition-all duration-300 hover:-translate-y-1' }
+                variant: { solid: 'bg-primary-500 hover:bg-primary-600 shadow-lg shadow-primary-500/30 transform transition-all duration-300 hover:-translate-y-1' }
               }"
               @click="navigateToModelo"
             >

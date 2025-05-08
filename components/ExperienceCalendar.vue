@@ -20,7 +20,7 @@
           :key="n" 
           :class="[
             'ticket-number',
-            selectedTickets.includes(n) ? 'bg-gradient-to-r from-purple-600 to-pink-500 text-white' : '',
+            selectedTickets.includes(n) ? 'bg-primary-500 text-white' : '',
             soldTickets.includes(n) ? 'bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed' : ''
           ]"
           :disabled="soldTickets.includes(n)"
@@ -56,7 +56,7 @@
             rounded: 'rounded-full',
             padding: 'px-6 py-2',
             variant: { 
-              solid: 'bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600'
+              solid: 'bg-primary-500 hover:bg-primary-600'
             }
           }"
         >

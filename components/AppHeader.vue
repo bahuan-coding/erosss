@@ -29,7 +29,7 @@
           :ui="{
             rounded: 'rounded-full',
             variant: { 
-              solid: 'bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600'
+              solid: 'bg-primary-500 hover:bg-primary-600'
             }
           }"
         >

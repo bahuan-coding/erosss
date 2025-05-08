@@ -46,7 +46,7 @@
         :ui="{
           base: 'relative h-1.5 overflow-hidden rounded-full',
           track: { background: 'bg-gray-700 dark:bg-gray-800' },
-          progress: { background: 'bg-gradient-to-r from-purple-600 to-pink-500' }
+          progress: { background: 'bg-primary-500' }
         }"
       />
       

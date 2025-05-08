@@ -4,7 +4,7 @@
       <div class="max-w-4xl mx-auto">
         <!-- Page Header -->
         <div class="text-center mb-12">
-          <h1 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">
+          <h1 class="text-4xl md:text-5xl font-bold mb-4" style="background: linear-gradient(90deg, #9333ea, #ec4899); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
             Cadastro de Modelo
           </h1>
           <p class="text-lg text-gray-600 dark:text-gray-400">
@@ -413,7 +413,7 @@
                 color="primary" 
                 :loading="loading"
                 :ui="{
-                  variant: { solid: 'bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 shadow-md hover:shadow-lg transition-all duration-200' }
+                  variant: { solid: 'bg-primary-500 hover:bg-primary-600 shadow-md hover:shadow-lg transition-all duration-200' }
                 }"
                 size="lg"
                 icon="i-heroicons-sparkles"

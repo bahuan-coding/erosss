@@ -46,43 +46,23 @@
         
         <!-- Sorteios Slider Cards -->
         <div class="mt-16">
-          <h2 class="text-xl font-semibold mb-6 text-center text-primary-600 dark:text-primary-400">
+          <h2 class="text-xl font-semibold mb-8 text-center text-purple-600 dark:text-purple-400">
             Experiências exclusivas esperando por você
           </h2>
           
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <UCard 
-              v-for="(sorteio, index) in sorteios" 
-              :key="index" 
-              class="sorteio-card"
-              :ui="{
-                base: 'overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1',
-                body: { base: 'p-0' },
-                ring: 'ring-1 ring-primary-100 dark:ring-primary-800',
-                rounded: 'rounded-xl'
-              }"
-            >
-              <LazyImage 
-                :src="sorteio.image" 
-                :alt="sorteio.title"
-                height="12rem"
-                class="w-full"
-              />
-              
-              <div class="p-5">
-                <div class="flex justify-between items-center mb-3">
-                  <h3 class="font-bold text-lg">{{ sorteio.title }}</h3>
-                  <UBadge 
-                    :color="sorteio.vagas === 0 ? 'red' : sorteio.vagas < 0 ? 'orange' : 'green'" 
-                    size="sm"
-                    :ui="{ 
-                      base: 'font-medium',
-                      variant: { solid: 'shadow-sm' }
-                    }"
-                  >
-                    {{ sorteio.vagas > 0 ? `${sorteio.vagas} vagas` : sorteio.status }}
-                  </UBadge>
+            <div v-for="(sorteio, index) in sorteios" :key="index" class="bg-gray-900 rounded-xl overflow-hidden shadow-lg">
+              <div class="relative">
+                <img :src="sorteio.image" :alt="sorteio.title" class="w-full h-32 object-cover" />
+                <div class="absolute top-0 right-0 m-2">
+                  <span v-if="sorteio.vagas === 0" class="bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded">esgotado</span>
+                  <span v-else-if="sorteio.vagas < 0" class="bg-orange-500 text-white text-xs font-semibold px-2 py-1 rounded">{{ sorteio.days }}</span>
+                  <span v-else class="bg-green-600 text-white text-xs font-semibold px-2 py-1 rounded">{{ sorteio.vagas }} vagas</span>
                 </div>
+              </div>
+              
+              <div class="p-4">
+                <h3 class="text-white font-bold mb-2">{{ sorteio.title }}</h3>
                 
                 <UProgress 
                   :value="sorteio.vagas === 0 ? 100 : sorteio.vagas < 0 ? 80 : 40" 
@@ -90,21 +70,21 @@
                   class="mb-3"
                   :ui="{
                     base: 'relative overflow-hidden rounded-full',
-                    track: { background: 'bg-gray-100 dark:bg-gray-800' },
+                    track: { background: 'bg-gray-700' },
                     progress: { background: 'bg-gradient-to-r from-{color}-500 to-{color}-400' }
                   }"
                 />
                 
                 <div class="flex justify-between items-center">
-                  <span class="text-sm text-gray-600 dark:text-gray-400">
+                  <span class="text-sm text-gray-400">
                     {{ sorteio.vagas > 0 ? 'Disponível agora' : sorteio.vagas === 0 ? 'Esgotado' : sorteio.status }}
                   </span>
                   <UButton 
                     size="sm" 
                     color="primary" 
                     :disabled="sorteio.vagas === 0"
-                    icon="i-heroicons-arrow-right-circle"
                     variant="soft"
+                    :to="`/experiencias/${sorteioToExperienceId(sorteio.title)}`"
                     :ui="{
                       base: 'font-medium',
                       rounded: 'rounded-full',
@@ -116,7 +96,7 @@
                   </UButton>
                 </div>
               </div>
-            </UCard>
+            </div>
           </div>
         </div>
       </div>
@@ -127,22 +107,32 @@
 <script setup>
 const sorteios = [
   {
-    title: "Jantar Italiano",
+    title: "Show de Stand-Up e Role-Play Romântico",
     vagas: 8,
     status: "disponível",
-    image: "/images/sorteios/dinner.jpg"
+    days: "",
+    image: "/images/sorteios/standup.jpg"
   },
   {
-    title: "Piquenique Virtual",
+    title: "Concerto Intimista + Workshop",
     vagas: 0,
     status: "esgotado",
-    image: "/images/sorteios/picnic.jpg"
+    days: "",
+    image: "/images/sorteios/concerto.jpg"
   },
   {
-    title: "Encontro Retro",
+    title: "Cinema Temático + Cosplay",
     vagas: -1,
     status: "2 dias restantes",
-    image: "/images/sorteios/retro.jpg"
+    days: "2 dias restantes",
+    image: "/images/sorteios/cinema.jpg"
+  },
+  {
+    title: "Passeio Selvagem + Chá da Tarde",
+    vagas: 5,
+    status: "disponível",
+    days: "",
+    image: "/images/sorteios/passeio.jpg"
   }
 ]
 
@@ -190,6 +180,18 @@ function typeWriter() {
 // Navigate to modelo page
 async function navigateToModelo() {
   await navigateTo('/modelo')
+}
+
+// Map from sorteio title to experience id
+function sorteioToExperienceId(title) {
+  const mapping = {
+    "Show de Stand-Up e Role-Play Romântico": 'standup-roleplay',
+    "Concerto Intimista + Workshop": 'concerto-workshop',
+    "Cinema Temático + Cosplay": 'cinema-cosplay',
+    "Passeio Selvagem + Chá da Tarde": 'passeio-cha-show'
+  }
+  
+  return mapping[title] || 'experiencia-1'
 }
 </script>
 

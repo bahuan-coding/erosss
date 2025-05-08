@@ -365,7 +365,7 @@
           
           <div class="flex gap-6 pb-4 overflow-x-auto custom-scrollbar">
             <UCard 
-              v-for="index in 3" 
+              v-for="(relatedExp, index) in otherExperiences" 
               :key="index"
               class="experience-card min-w-[280px] md:min-w-[320px] flex-shrink-0"
               :ui="{
@@ -375,12 +375,12 @@
                 ring: 'ring-1 ring-gray-200 dark:ring-gray-700',
                 shadow: 'shadow-lg hover:shadow-primary-500/20'
               }"
-              @click="navigateTo.push(`/experiencias/${['standup-roleplay', 'concerto-workshop', 'cinema-cosplay'][index-1]}`)"
+              @click="navigateTo.push(`/experiencias/${relatedExp.id}`)"
             >
               <div class="relative">
                 <img 
-                  :src="`/images/experiences/${['cocktail', 'boudoir', 'wine'][index-1]}.jpg`" 
-                  alt="Experience" 
+                  :src="relatedExp.image" 
+                  :alt="relatedExp.title" 
                   class="w-full h-48 object-cover"
                 >
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -388,9 +388,9 @@
               
               <div class="p-5 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 class="text-lg font-bold mb-2">{{ ['Show Stand-Up & Role-Play', 'Concerto e Workshop', 'Cinema e Cosplay'][index-1] }}</h3>
+                  <h3 class="text-lg font-bold mb-2">{{ relatedExp.title }}</h3>
                   <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                    {{ ['Uma noite de humor e romance', 'Música e conexão física', 'Diversão e momentos íntimos'][index-1] }}
+                    {{ relatedExp.description }}
                   </p>
                 </div>
                 
@@ -427,6 +427,28 @@ const error = ref(null);
 const ticketPrice = 25; // Price per ticket
 const selectedTickets = ref([]);
 const soldTickets = ref([12, 15, 23, 37, 45, 56, 67, 72, 81, 88, 93]); // Mock sold tickets
+
+// Related experiences data
+const otherExperiences = [
+  {
+    id: 'standup-roleplay',
+    title: 'Show Stand-Up & Role-Play',
+    description: 'Uma noite de humor e romance',
+    image: '/images/sorteios/standup.jpg'
+  },
+  {
+    id: 'concerto-workshop',
+    title: 'Concerto e Workshop',
+    description: 'Música e conexão física',
+    image: '/images/sorteios/concerto.jpg'
+  },
+  {
+    id: 'cinema-cosplay',
+    title: 'Cinema e Cosplay',
+    description: 'Diversão e momentos íntimos',
+    image: '/images/sorteios/cinema.jpg'
+  }
+];
 
 onMounted(async () => {
   try {

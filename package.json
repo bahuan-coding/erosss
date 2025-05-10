@@ -7,9 +7,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "build:netlify": "nuxt build",
-    "deploy:netlify": "nuxt build && netlify deploy --prod"
+    "postinstall": "nuxt prepare"
   },
   "dependencies": {
     "@builder.io/sdk-vue": "^4.1.3",

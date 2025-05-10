@@ -10,7 +10,7 @@ export function initializeGoogleSheets() {
     try {
       // Caminho para o arquivo de credenciais
       const CREDENTIALS_PATH = resolve(process.cwd(), 'server/config/google-credentials.json')
-      
+
       console.log('📁 Caminho das credenciais:', CREDENTIALS_PATH);
 
       // Carrega as credenciais do arquivo ou de variáveis de ambiente
@@ -28,29 +28,29 @@ export function initializeGoogleSheets() {
             console.error('❌ Erro ao processar credenciais das variáveis de ambiente:', parseError.message);
             throw new Error('Falha ao processar credenciais do Google das variáveis de ambiente: ' + parseError.message);
           }
-        } 
+        }
         // Se não houver variáveis de ambiente, tenta carregar do arquivo
         else {
           console.log('📄 Carregando credenciais do arquivo local');
           const credentialsContent = readFileSync(CREDENTIALS_PATH, 'utf8')
           console.log('📄 Arquivo de credenciais encontrado');
-          
+
           credentials = JSON.parse(credentialsContent)
         }
-        
+
         // Verifica se as credenciais contêm as propriedades necessárias
         if (!credentials.client_email || !credentials.private_key) {
           console.error('❌ Arquivo de credenciais não contém client_email ou private_key');
           throw new Error('Credenciais inválidas - campos essenciais ausentes');
         }
-        
+
         // Corrigir um problema comum com a chave privada vinda de variáveis de ambiente
         // As quebras de linha podem ser codificadas como "\n" literal em vez de quebras reais
         if (credentials.private_key.includes('\\n') && !credentials.private_key.includes('\n')) {
           credentials.private_key = credentials.private_key.replace(/\\n/g, '\n');
           console.log('🔧 Formatação da chave privada corrigida (substituindo \\n)');
         }
-        
+
         // Garantir que a chave privada tenha o formato correto, mesmo se já tiver \n
         // Este é um problema comum com aspas no Windows, formatação do arquivo etc.
         credentials.private_key = credentials.private_key
@@ -58,23 +58,23 @@ export function initializeGoogleSheets() {
           .replace(/\s+(?=-----END)/g, '\n');    // Garantir quebra antes do END
 
         console.log('🔧 Chave privada processada para garantir formato correto');
-        
+
         // Verificar integridade básica da chave
         const keyStart = credentials.private_key.trim().startsWith('-----BEGIN PRIVATE KEY-----');
         const keyEnd = credentials.private_key.trim().endsWith('-----END PRIVATE KEY-----');
-        
+
         if (!keyStart || !keyEnd) {
           console.error('❌ Formato da chave privada parece inválido!');
           console.error('❌ Início correto:', keyStart, 'Final correto:', keyEnd);
           throw new Error('Credenciais inválidas - chave privada com formato inválido');
         }
-        
+
         // Mostrar um fingerprint seguro da chave (apenas primeiros e últimos caracteres)
         const keyLength = credentials.private_key.length;
         const firstChars = credentials.private_key.slice(0, 30);
         const lastChars = credentials.private_key.slice(-30);
         console.log(`🔑 Fingerprint da chave (${keyLength} caracteres): ${firstChars}...${lastChars}`);
-        
+
       } catch (fileError) {
         console.error('❌ Erro ao ler ou analisar o arquivo de credenciais:', fileError);
         throw new Error('Falha ao carregar credenciais do Google: ' + fileError.message);
@@ -93,11 +93,11 @@ export function initializeGoogleSheets() {
           'https://www.googleapis.com/auth/drive.file'
         ]
       );
-      
+
       // Cria a instância da API do Google Sheets
       const sheets = google.sheets({ version: 'v4', auth });
       console.log('✅ Google Sheets API inicializada');
-      
+
       // Adiciona teste de conexão de forma assíncrona
       const testConnection = async () => {
         try {
@@ -106,19 +106,19 @@ export function initializeGoogleSheets() {
           console.log('🔍 ID da planilha:', spreadsheetId);
           console.log('🔍 Projeto do Google Cloud:', credentials.project_id);
           console.log('🔍 Client ID:', credentials.client_id);
-          
+
           const testResponse = await sheets.spreadsheets.get({
             spreadsheetId: spreadsheetId
           });
-          
+
           console.log('✅ Teste de conexão bem-sucedido! Título da planilha:', testResponse.data.properties.title);
-          
+
           // Verificar se a aba "Sheet1" existe
           console.log('🔍 Verificando se a aba "Sheet1" existe...');
           const sheetExists = testResponse.data.sheets.some(
             sheet => sheet.properties.title === 'Sheet1'
           );
-          
+
           if (sheetExists) {
             console.log('✅ Aba "Sheet1" encontrada com sucesso!');
           } else {
@@ -126,7 +126,7 @@ export function initializeGoogleSheets() {
             testResponse.data.sheets.forEach(sheet => {
               console.log(`- ${sheet.properties.title}`);
             });
-            
+
             // Tentar criar a aba automaticamente
             console.log('🔧 Tentando criar a aba "Sheet1" automaticamente...');
             try {
@@ -148,13 +148,13 @@ export function initializeGoogleSheets() {
                   ]
                 }
               });
-              
+
               // Adicionar cabeçalhos
               const headers = [
-                'Timestamp', 
-                'Anti-Stress', 
-                'Anti-Stress (Outro)', 
-                'Descontração', 
+                'Timestamp',
+                'Anti-Stress',
+                'Anti-Stress (Outro)',
+                'Descontração',
                 'Descontração (Outro)',
                 'Dinâmica',
                 'Dinâmica (Outro)',
@@ -172,7 +172,7 @@ export function initializeGoogleSheets() {
                 'Instagram',
                 'Cidade'
               ];
-              
+
               await sheets.spreadsheets.values.update({
                 spreadsheetId: spreadsheetId,
                 range: 'Sheet1!A1:T1',
@@ -181,13 +181,13 @@ export function initializeGoogleSheets() {
                   values: [headers]
                 }
               });
-              
+
               console.log('✅ Aba "Sheet1" criada com sucesso!');
             } catch (createError) {
               console.error('❌ Erro ao criar aba:', createError.message);
             }
           }
-          
+
           // Testar inserção de dados
           console.log('🔍 Testando inserção de dados...');
           try {
@@ -219,10 +219,10 @@ export function initializeGoogleSheets() {
           console.error(`⚠️ Email: ${credentials.client_email}`);
         }
       };
-      
+
       // Executa o teste de conexão
       testConnection();
-      
+
       return {
         sheets,
         SPREADSHEET_ID: process.env.GOOGLE_SPREADSHEET_ID || process.env.MODELO_SPREADSHEET_ID || '1czk_7v1yw-z4DDn79XoXAEJ4wkTT6hNxhfZOh053gZk',
@@ -230,17 +230,17 @@ export function initializeGoogleSheets() {
       }
     } catch (error) {
       console.error('❌ Erro ao inicializar Google Sheets:', error);
-      
+
       // Retorna um objeto mock que irá falhar graciosamente ao ser usado
       return {
-        sheets: { 
-          spreadsheets: { 
-            values: { 
+        sheets: {
+          spreadsheets: {
+            values: {
               append: async () => {
                 throw new Error('Falha na configuração do Google Sheets: ' + error.message);
-              } 
-            } 
-          } 
+              }
+            }
+          }
         },
         SPREADSHEET_ID: process.env.GOOGLE_SPREADSHEET_ID || process.env.MODELO_SPREADSHEET_ID || '1czk_7v1yw-z4DDn79XoXAEJ4wkTT6hNxhfZOh053gZk',
         SHEET_NAME: 'Sheet1'
@@ -255,4 +255,4 @@ export function initializeGoogleSheets() {
       SHEET_NAME: 'Sheet1'
     }
   }
-} 
+}

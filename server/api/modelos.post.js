@@ -15,12 +15,12 @@ function saveLocalBackup(data) {
     const timestamp = new Date().toISOString().replace(/:/g, '-');
     const backupDir = resolve(process.cwd(), 'server/data');
     const backupFile = resolve(backupDir, `form-data-${timestamp}.json`);
-    
+
     // Garante que o diretório existe
     if (!existsSync(backupDir)) {
       mkdirSync(backupDir, { recursive: true });
     }
-    
+
     // Escreve os dados no arquivo
     appendFileSync(backupFile, JSON.stringify(data, null, 2));
     console.log(`✅ Backup salvo em: ${backupFile}`);
@@ -35,24 +35,24 @@ export default defineEventHandler(async (event) => {
   try {
     // Obter dados do corpo da requisição
     const formData = await readBody(event);
-    
+
     // Formatar os dados para inserção na planilha
     const formattedData = formatFormData(formData);
-    
+
     // Adicionar timestamp
     formattedData.unshift(new Date().toISOString());
-    
+
     if (DEBUG_MODE) {
       console.log('🔍 MODO DEBUG: Tentando salvar na planilha com os seguintes dados:');
       console.log('Timestamp:', formattedData[0]);
       console.log('Dados do formulário:', formData);
       console.log('Dados formatados:', formattedData);
     }
-    
+
     try {
       // Inicializar Google Sheets API
       const { sheets } = initializeGoogleSheets();
-      
+
       // Inserir dados na planilha
       console.log('🔍 Tentando inserir dados na planilha:', SPREADSHEET_ID, 'aba:', SHEET_NAME);
       const response = await sheets.spreadsheets.values.append({
@@ -64,14 +64,14 @@ export default defineEventHandler(async (event) => {
           values: [formattedData]
         }
       });
-      
+
       console.log('✅ Dados salvos com sucesso na planilha!');
       if (response && response.data) {
         console.log('✅ Detalhes da resposta:', JSON.stringify(response.data, null, 2));
         console.log('✅ Linhas atualizadas:', response.data.updates?.updatedRows || 0);
         console.log('✅ Células atualizadas:', response.data.updates?.updatedCells || 0);
       }
-      
+
       return {
         success: true,
         message: 'Dados salvos com sucesso na planilha!',
@@ -81,7 +81,7 @@ export default defineEventHandler(async (event) => {
       console.error('❌ Erro ao salvar no Google Sheets:', googleError.message);
       console.error('❌ Status:', googleError.status);
       console.error('❌ Detalhes completos:', JSON.stringify(googleError, null, 2));
-      
+
       // Em caso de erro com Google Sheets, vamos salvar em um arquivo local
       const backupData = {
         timestamp: formattedData[0],
@@ -93,14 +93,14 @@ export default defineEventHandler(async (event) => {
           status: googleError.status
         }
       };
-      
+
       const backupSuccess = saveLocalBackup(backupData);
-      
+
       // Return success anyway to not block the user experience
       return {
         success: true,
-        message: backupSuccess 
-          ? 'Dados registrados localmente para processamento posterior (Google Sheets indisponível)' 
+        message: backupSuccess
+          ? 'Dados registrados localmente para processamento posterior (Google Sheets indisponível)'
           : 'Dados recebidos, mas houve um problema ao salvá-los',
         fallback: true,
         localBackup: backupSuccess,
@@ -114,7 +114,7 @@ export default defineEventHandler(async (event) => {
     }
   } catch (error) {
     console.error('Erro ao processar dados:', error);
-    
+
     // Retornar erro 500 com mensagem amigável
     throw createError({
       statusCode: 500,
@@ -135,22 +135,22 @@ function formatFormData(formData) {
     formData.antiStressOutro || '',
     formData.descontracao || '',
     formData.descontracaoOutro || '',
-    
+
     // Seção 2
     formData.dinamica || '',
     formData.dinamicaOutro || '',
     formData.surpresa || '',
     formData.surpresaDescricao || '',
-    
+
     // Seção 3
     formData.ponte || '',
     formData.ponteDescricao || '',
-    
+
     // Seção 4
     formData.lembranca || '',
     formData.lembrancaDescricao || '',
     Array.isArray(formData.extras) ? formData.extras.join(', ') : '',
-    
+
     // Contato
     formData.nome || '',
     formData.nomeArtistico || '',
@@ -159,4 +159,4 @@ function formatFormData(formData) {
     formData.instagram || '',
     formData.cidade || ''
   ];
-} 
+}

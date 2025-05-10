@@ -85,4 +85,4 @@ export default defineEventHandler(() => {
       image: "/images/trending/clock.jpg"
     }
   ];
-}); 
+});

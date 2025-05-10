@@ -1,14 +1,6 @@
-[build]
-  command = "npm run build:netlify"
-  publish = "dist"
-  
 [build.environment]
-  NODE_VERSION = "20.5.1"
-  
-[dev]
-  command = "npm run dev"
-  
-# Redirecionamento para SPA
+  NODE_VERSION = "20.19.1"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
@@ -21,4 +13,4 @@
     max-age=0,
     no-cache,
     no-store,
-    must-revalidate''' 
+    must-revalidate'''

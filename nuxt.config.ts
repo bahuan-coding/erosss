@@ -15,11 +15,6 @@ export default defineNuxtConfig({
       builderApiKey: process.env.BUILDER_PUBLIC_KEY
     }
   },
-  nitro: {
-    output: {
-      publicDir: '.output/public',
-    }
-  },
   typescript: {
     strict: true,
     typeCheck: false

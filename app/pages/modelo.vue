@@ -11,7 +11,7 @@
             Crie experiências que unam bem-estar, diversão e intimidade
           </p>
         </div>
-        
+
         <!-- Form Content -->
         <UCard class="mb-8">
           <template #header>
@@ -34,7 +34,7 @@
               <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 italic">
                 (Escolha ou descreva atividades que relaxem e aproximem)
               </p>
-              
+
               <div class="mb-6">
                 <label class="font-medium mb-2 block">
                   Qual atividade anti-stress você acha ideal para começar?
@@ -42,23 +42,23 @@
                   <span class="help-tooltip" data-tooltip="Escolha no mínimo uma opção - isso ajuda a personalizar a experiência">?</span>
                 </label>
                 <div class="pl-2" :class="{'has-error': formErrors.antiStress, 'field-success': formData.antiStress.length > 0}">
-                  <UCheckbox 
+                  <UCheckbox
                     :model-value="formData.antiStress.includes('standup')"
-                    name="antiStress" 
+                    name="antiStress"
                     label="Stand-up intimista (sessão de risos personalizados)"
                     :ui="{ wrapper: 'flex items-center gap-2' }"
                     @update:model-value="val => updateCheckboxArray('antiStress', 'standup', val)"
                   />
-                  <UCheckbox 
+                  <UCheckbox
                     :model-value="formData.antiStress.includes('respiracao')"
-                    name="antiStress" 
+                    name="antiStress"
                     label="Respiração guiada + toques sutis (desacelerar antes da conexão)"
                     :ui="{ wrapper: 'flex items-center gap-2' }"
                     @update:model-value="val => updateCheckboxArray('antiStress', 'respiracao', val)"
                   />
-                  <UCheckbox 
+                  <UCheckbox
                     :model-value="formData.antiStress.includes('jogo')"
-                    name="antiStress" 
+                    name="antiStress"
                     label="Jogo leve de perguntas + desafios corporais (ex.: &quot;Verdade ou Toque?&quot;)"
                     :ui="{ wrapper: 'flex items-center gap-2' }"
                     @update:model-value="val => updateCheckboxArray('antiStress', 'jogo', val)"
@@ -66,13 +66,13 @@
                 </div>
                 <div class="mt-3">
                   <label class="text-sm mb-1 block">Outra ideia:</label>
-                  <UInput 
-                    v-model="formData.antiStressOutro" 
+                  <UInput
+                    v-model="formData.antiStressOutro"
                     placeholder="Descreva sua ideia..."
                   />
                 </div>
               </div>
-              
+
               <div>
                 <label class="font-medium mb-2 block">
                   Se fosse criar um momento de descontração exclusivo, qual seria?
@@ -80,33 +80,34 @@
                   <span class="help-tooltip" data-tooltip="Escolha uma das opções ou descreva sua própria ideia no campo abaixo">?</span>
                 </label>
                 <div class="pl-2" :class="{'has-error': formErrors.descontracao, 'field-success': formData.descontracao || formData.descontracaoOutro}">
-                  <URadio 
-                    v-model="formData.descontracao" 
-                    value="massagem"
-                    name="descontracao" 
-                    label="Uma massagem relaxante... mas com apostas sensoriais"
-                    :ui="{ wrapper: 'flex items-center gap-2' }"
-                  />
-                  <URadio 
-                    v-model="formData.descontracao" 
-                    value="adivinhacao"
-                    name="descontracao" 
-                    label="Um jogo de adivinhação com estímulos progressivos"
-                    :ui="{ wrapper: 'flex items-center gap-2' }"
+                  <URadioGroup
+                    v-model="formData.descontracao"
+                    name="descontracao"
+                    :ui="{ wrapper: 'flex flex-col gap-2' }"
+                    :items="[
+                      {
+                        label: 'Uma massagem relaxante... mas com apostas sensoriais',
+                        value: 'massagem'
+                      },
+                      {
+                        label: 'Um jogo de adivinhação com estímulos progressivos',
+                        value: 'adivinhacao'
+                      }
+                    ]"
                   />
                 </div>
                 <div class="mt-3">
                   <label class="text-sm mb-1 block">Sua versão:</label>
-                  <UTextarea 
-                    v-model="formData.descontracaoOutro" 
-                    rows="2"
+                  <UTextarea
+                    v-model="formData.descontracaoOutro"
+                    :rows="2"
                     placeholder="Descreva sua versão de um momento de descontração exclusivo..."
                     :ui="{ base: 'w-full' }"
                   />
                 </div>
               </div>
             </div>
-            
+
             <!-- Seção 2: Construindo Confiança -->
             <div class="bg-pink-50 dark:bg-pink-900/30 p-6 rounded-xl">
               <h4 class="text-xl font-bold text-primary-600 dark:text-primary-400 mb-4">
@@ -115,7 +116,7 @@
               <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 italic">
                 (O que faria para estabelecer uma ligação real antes da intimidade?)
               </p>
-              
+
               <div class="mb-6">
                 <label class="font-medium mb-2 block">
                   Qual dinâmica lúdica usaria para quebrar o gelo?
@@ -123,39 +124,37 @@
                   <span class="help-tooltip" data-tooltip="Escolha uma das opções ou descreva sua própria ideia no campo abaixo">?</span>
                 </label>
                 <div class="pl-2" :class="{'has-error': formErrors.dinamica, 'field-success': formData.dinamica || formData.dinamicaOutro}">
-                  <URadio 
-                    v-model="formData.dinamica" 
-                    value="segredoToque"
-                    name="dinamica" 
-                    label="&quot;O Segredo do Toque&quot; (descobrir preferências sem palavras)"
-                    :ui="{ wrapper: 'flex items-center gap-2' }"
-                  />
-                  <URadio 
-                    v-model="formData.dinamica" 
-                    value="jogoPulsacoes"
-                    name="dinamica" 
-                    label="&quot;Jogo das Pulsações&quot; (controlar um vibrador pelo ritmo cardíaco)"
-                    :ui="{ wrapper: 'flex items-center gap-2' }"
-                  />
-                  <URadio 
-                    v-model="formData.dinamica" 
-                    value="desafioSentidos"
-                    name="dinamica" 
-                    label="&quot;Desafio dos Sentidos&quot; (vendar e explorar texturas antes do contato)"
-                    :ui="{ wrapper: 'flex items-center gap-2' }"
+                  <URadioGroup
+                    v-model="formData.dinamica"
+                    name="dinamica"
+                    :ui="{ wrapper: 'flex flex-col gap-2' }"
+                    :items="[
+                      {
+                        label: '&quot;O Segredo do Toque&quot; (descobrir preferências sem palavras)',
+                        value: 'segredoToque'
+                      },
+                      {
+                        label: '&quot;Jogo das Pulsações&quot; (controlar um vibrador pelo ritmo cardíaco)',
+                        value: 'jogoPulsacoes'
+                      },
+                      {
+                        label: '&quot;Desafio dos Sentidos&quot; (vendar e explorar texturas antes do contato)',
+                        value: 'desafioSentidos'
+                      }
+                    ]"
                   />
                 </div>
                 <div class="mt-3">
                   <label class="text-sm mb-1 block">Sua dinâmica personalizada:</label>
-                  <UTextarea 
-                    v-model="formData.dinamicaOutro" 
-                    rows="2"
+                  <UTextarea
+                    v-model="formData.dinamicaOutro"
+                    :rows="2"
                     placeholder="Descreva sua própria dinâmica para quebrar o gelo..."
                     :ui="{ base: 'w-full' }"
                   />
                 </div>
               </div>
-              
+
               <div>
                 <label class="font-medium mb-2 block">
                   Qual elemento surpresa deixaria o momento único?
@@ -163,40 +162,38 @@
                   <span class="help-tooltip" data-tooltip="Escolha uma das opções ou descreva seu elemento surpresa no campo abaixo">?</span>
                 </label>
                 <div class="pl-2" :class="{'has-error': formErrors.surpresa, 'field-success': formData.surpresa || formData.surpresaDescricao}">
-                  <URadio 
-                    v-model="formData.surpresa" 
-                    value="presente"
-                    name="surpresa" 
-                    label="Um presente inesperado (ex.: um objeto para provocar curiosidade)"
-                    :ui="{ wrapper: 'flex items-center gap-2' }"
-                  />
-                  <URadio 
-                    v-model="formData.surpresa" 
-                    value="jogo"
-                    name="surpresa" 
-                    label="Um jogo com final aberto (ex.: o cliente escolhe o próximo passo)"
-                    :ui="{ wrapper: 'flex items-center gap-2' }"
-                  />
-                  <URadio 
-                    v-model="formData.surpresa" 
-                    value="experiencia"
-                    name="surpresa" 
-                    label="Uma experiência sincronizada com música ou respiração"
-                    :ui="{ wrapper: 'flex items-center gap-2' }"
+                  <URadioGroup
+                    v-model="formData.surpresa"
+                    name="surpresa"
+                    :ui="{ wrapper: 'flex flex-col gap-2' }"
+                    :items="[
+                      {
+                        label: 'Um presente inesperado (ex.: um objeto para provocar curiosidade)',
+                        value: 'presente'
+                      },
+                      {
+                        label: 'Um jogo com final aberto (ex.: o cliente escolhe o próximo passo)',
+                        value: 'jogo'
+                      },
+                      {
+                        label: 'Uma experiência sincronizada com música ou respiração',
+                        value: 'experiencia'
+                      }
+                    ]"
                   />
                 </div>
                 <div class="mt-3">
                   <label class="text-sm mb-1 block">Descreva seu elemento surpresa:</label>
-                  <UTextarea 
-                    v-model="formData.surpresaDescricao" 
-                    rows="2"
+                  <UTextarea
+                    v-model="formData.surpresaDescricao"
+                    :rows="2"
                     placeholder="Qual seria seu elemento surpresa para tornar o momento único..."
                     :ui="{ base: 'w-full' }"
                   />
                 </div>
               </div>
             </div>
-            
+
             <!-- Seção 3: O Clímax da Experiência -->
             <div class="bg-indigo-50 dark:bg-indigo-900/30 p-6 rounded-xl">
               <h4 class="text-xl font-bold text-primary-600 dark:text-primary-400 mb-4">
@@ -205,7 +202,7 @@
               <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 italic">
                 (Como você imaginaria a transição do bem-estar para a intimidade?)
               </p>
-              
+
               <div>
                 <label class="font-medium mb-2 block">
                   Qual seria a ponte perfeita entre descontração e desejo?
@@ -213,40 +210,38 @@
                   <span class="help-tooltip" data-tooltip="Escolha uma das opções ou descreva sua ideia de transição no campo abaixo">?</span>
                 </label>
                 <div class="pl-2" :class="{'has-error': formErrors.ponte, 'field-success': formData.ponte || formData.ponteDescricao}">
-                  <URadio 
-                    v-model="formData.ponte" 
-                    value="toque"
-                    name="ponte" 
-                    label="&quot;Um toque inesperado após uma gargalhada&quot;"
-                    :ui="{ wrapper: 'flex items-center gap-2' }"
-                  />
-                  <URadio 
-                    v-model="formData.ponte" 
-                    value="jogo"
-                    name="ponte" 
-                    label="&quot;Um jogo que lentamente se torna mais intenso&quot;"
-                    :ui="{ wrapper: 'flex items-center gap-2' }"
-                  />
-                  <URadio 
-                    v-model="formData.ponte" 
-                    value="pausa"
-                    name="ponte" 
-                    label="&quot;Uma pausa para respiração... que vira um suspiro de prazer&quot;"
-                    :ui="{ wrapper: 'flex items-center gap-2' }"
+                  <URadioGroup
+                    v-model="formData.ponte"
+                    name="ponte"
+                    :ui="{ wrapper: 'flex flex-col gap-2' }"
+                    :items="[
+                      {
+                        label: '&quot;Um toque inesperado após uma gargalhada&quot;',
+                        value: 'toque'
+                      },
+                      {
+                        label: '&quot;Um jogo que lentamente se torna mais intenso&quot;',
+                        value: 'jogo'
+                      },
+                      {
+                        label: '&quot;Uma pausa para respiração... que vira um suspiro de prazer&quot;',
+                        value: 'pausa'
+                      }
+                    ]"
                   />
                 </div>
                 <div class="mt-3">
                   <label class="text-sm mb-1 block">Descreva sua ideia de transição:</label>
-                  <UTextarea 
-                    v-model="formData.ponteDescricao" 
-                    rows="3"
+                  <UTextarea
+                    v-model="formData.ponteDescricao"
+                    :rows="3"
                     placeholder="Como você imaginaria essa transição de forma única..."
                     :ui="{ base: 'w-full' }"
                   />
                 </div>
               </div>
             </div>
-            
+
             <!-- Seção 4: Pós-Experiência -->
             <div class="bg-fuchsia-50 dark:bg-fuchsia-900/30 p-6 rounded-xl">
               <h4 class="text-xl font-bold text-primary-600 dark:text-primary-400 mb-4">
@@ -255,7 +250,7 @@
               <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 italic">
                 (Como deixar o cliente com vontade de mais?)
               </p>
-              
+
               <div>
                 <label class="font-medium mb-2 block">
                   Que lembrança sensorial você daria no final?
@@ -263,68 +258,66 @@
                   <span class="help-tooltip" data-tooltip="Escolha uma das opções ou descreva sua lembrança sensorial no campo abaixo">?</span>
                 </label>
                 <div class="pl-2" :class="{'has-error': formErrors.lembranca, 'field-success': formData.lembranca || formData.lembrancaDescricao}">
-                  <URadio 
-                    v-model="formData.lembranca" 
-                    value="cheiro"
-                    name="lembranca" 
-                    label="Um cheiro marcante (ex.: perfume personalizado)"
-                    :ui="{ wrapper: 'flex items-center gap-2' }"
-                  />
-                  <URadio 
-                    v-model="formData.lembranca" 
-                    value="objeto"
-                    name="lembranca" 
-                    label="Um objeto simbólico (ex.: carta com um desafio para a próxima vez)"
-                    :ui="{ wrapper: 'flex items-center gap-2' }"
-                  />
-                  <URadio 
-                    v-model="formData.lembranca" 
-                    value="mensagem"
-                    name="lembranca" 
-                    label="Uma mensagem de voz provocante (enviada depois)"
-                    :ui="{ wrapper: 'flex items-center gap-2' }"
+                  <URadioGroup
+                    v-model="formData.lembranca"
+                    name="lembranca"
+                    :ui="{ wrapper: 'flex flex-col gap-2' }"
+                    :items="[
+                      {
+                        label: 'Um cheiro marcante (ex.: perfume personalizado)',
+                        value: 'cheiro'
+                      },
+                      {
+                        label: 'Um objeto simbólico (ex.: carta com um desafio para a próxima vez)',
+                        value: 'objeto'
+                      },
+                      {
+                        label: 'Uma mensagem de voz provocante (enviada depois)',
+                        value: 'mensagem'
+                      }
+                    ]"
                   />
                 </div>
                 <div class="mt-3">
                   <label class="text-sm mb-1 block">Sua ideia de lembrança sensorial:</label>
-                  <UTextarea 
-                    v-model="formData.lembrancaDescricao" 
-                    rows="2"
+                  <UTextarea
+                    v-model="formData.lembrancaDescricao"
+                    :rows="2"
                     placeholder="Que lembrança única você deixaria..."
                     :ui="{ base: 'w-full' }"
                   />
                 </div>
               </div>
-              
+
               <div class="mt-6">
                 <label class="font-medium mb-2 block">
                   Gostaria de incluir algum destes elementos extras na experiência?
                 </label>
                 <div class="space-y-2">
-                  <UCheckbox 
+                  <UCheckbox
                     :model-value="formData.extras.includes('biofeedback')"
-                    name="extras" 
+                    name="extras"
                     label="Biofeedback (ex.: sincronizar respiração + toque)"
                     :ui="{ wrapper: 'flex items-center gap-2' }"
                     @update:model-value="val => updateCheckboxArray('extras', 'biofeedback', val)"
                   />
-                  <UCheckbox 
+                  <UCheckbox
                     :model-value="formData.extras.includes('roleplay')"
-                    name="extras" 
+                    name="extras"
                     label="Roleplay leve (ex.: histórias sensuais durante o relaxamento)"
                     :ui="{ wrapper: 'flex items-center gap-2' }"
                     @update:model-value="val => updateCheckboxArray('extras', 'roleplay', val)"
                   />
-                  <UCheckbox 
+                  <UCheckbox
                     :model-value="formData.extras.includes('tantra')"
-                    name="extras" 
+                    name="extras"
                     label="Elementos de tantra (ex.: práticas de respiração e energia)"
                     :ui="{ wrapper: 'flex items-center gap-2' }"
                     @update:model-value="val => updateCheckboxArray('extras', 'tantra', val)"
                   />
-                  <UCheckbox 
+                  <UCheckbox
                     :model-value="formData.extras.includes('bdsm')"
-                    name="extras" 
+                    name="extras"
                     label="BDSM leve (ex.: jogos de poder consensuais e seguros)"
                     :ui="{ wrapper: 'flex items-center gap-2' }"
                     @update:model-value="val => updateCheckboxArray('extras', 'bdsm', val)"
@@ -339,78 +332,78 @@
                 INFORMAÇÕES DE CONTATO
               </h4>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <UFormGroup label="Nome Completo" :class="{'required': !formData.nome}" :error="formErrors.nome ? 'Campo recomendado' : null">
-                  <UInput 
+                <UFormField label="Nome Completo" :class="{'required': !formData.nome}" :error="formErrors.nome ? 'Campo recomendado' : null">
+                  <UInput
                     ref="nomeRef"
-                    v-model="formData.nome" 
-                    placeholder="Seu nome completo" 
+                    v-model="formData.nome"
+                    placeholder="Seu nome completo"
                     :ui="{ base: formErrors.nome ? 'focus:ring-rose-500 has-error' : formData.nome ? 'field-success' : '' }"
                     @keydown="(e) => handleEnterKey(e, nomeArtisticoRef)"
                   />
-                </UFormGroup>
-                <UFormGroup label="Nome Artístico">
-                  <UInput 
+                </UFormField>
+                <UFormField label="Nome Artístico">
+                  <UInput
                     ref="nomeArtisticoRef"
-                    v-model="formData.nomeArtistico" 
-                    placeholder="Como prefere ser chamada" 
+                    v-model="formData.nomeArtistico"
+                    placeholder="Como prefere ser chamada"
                     @keydown="(e) => handleEnterKey(e, emailRef)"
                   />
-                </UFormGroup>
-                <UFormGroup label="Email" :class="{'required': !formData.email}" :error="formErrors.email ? 'Campo recomendado' : null">
-                  <UInput 
+                </UFormField>
+                <UFormField label="Email" :class="{'required': !formData.email}" :error="formErrors.email ? 'Campo recomendado' : null">
+                  <UInput
                     ref="emailRef"
-                    v-model="formData.email" 
-                    placeholder="Seu email" 
+                    v-model="formData.email"
+                    placeholder="Seu email"
                     type="email"
                     :ui="{ base: formErrors.email ? 'focus:ring-rose-500 has-error' : formData.email ? 'field-success' : '' }"
                     @keydown="(e) => handleEnterKey(e, telefoneRef)"
                   />
-                </UFormGroup>
-                <UFormGroup label="Telefone/WhatsApp" :class="{'required': !formData.telefone}" :error="formErrors.telefone ? 'Campo recomendado' : null">
-                  <UInput 
+                </UFormField>
+                <UFormField label="Telefone/WhatsApp" :class="{'required': !formData.telefone}" :error="formErrors.telefone ? 'Campo recomendado' : null">
+                  <UInput
                     ref="telefoneRef"
-                    v-model="formData.telefone" 
+                    v-model="formData.telefone"
                     placeholder="(00) 00000-0000"
                     :ui="{ base: formErrors.telefone ? 'focus:ring-rose-500 has-error' : formData.telefone ? 'field-success' : '' }"
                     @input="formatPhoneNumber"
                     @blur="formatPhoneOnBlur"
                     @keydown="(e) => handleEnterKey(e, instagramRef)"
                   />
-                </UFormGroup>
-                <UFormGroup label="Instagram">
-                  <UInput 
+                </UFormField>
+                <UFormField label="Instagram">
+                  <UInput
                     ref="instagramRef"
-                    v-model="formData.instagram" 
+                    v-model="formData.instagram"
                     placeholder="@seuinsta"
                     @blur="formatInstagramOnBlur"
                     @keydown="(e) => handleEnterKey(e, cidadeRef)"
                   />
-                </UFormGroup>
-                <UFormGroup label="Cidade/Estado" :class="{'required': !formData.cidade}" :error="formErrors.cidade ? 'Campo recomendado' : null">
-                  <UInput 
+                </UFormField>
+                <UFormField label="Cidade/Estado" :class="{'required': !formData.cidade}" :error="formErrors.cidade ? 'Campo recomendado' : null">
+                  <UInput
                     ref="cidadeRef"
-                    v-model="formData.cidade" 
+                    v-model="formData.cidade"
                     placeholder="São Paulo, SP"
                     :ui="{ base: formErrors.cidade ? 'focus:ring-rose-500 has-error' : formData.cidade ? 'field-success' : '' }"
                     @keydown.enter="submitForm"
                   />
-                </UFormGroup>
+                </UFormField>
               </div>
             </div>
           </div>
 
           <template #footer>
             <div class="flex justify-between gap-3">
-              <UButton 
-                color="gray" 
-                variant="ghost" 
+              <UButton
+                color="gray"
+                variant="ghost"
                 icon="i-heroicons-arrow-left"
                 @click="navigateHome"
               >
                 Voltar
               </UButton>
-              <UButton 
-                color="primary" 
+              <UButton
+                color="primary"
                 :loading="loading"
                 :ui="{
                   variant: { solid: 'bg-primary-500 hover:bg-primary-600 shadow-md hover:shadow-lg transition-all duration-200' }
@@ -424,7 +417,7 @@
             </div>
           </template>
         </UCard>
-        
+
         <!-- Back to home button -->
         <div class="text-center mt-8">
           <UButton
@@ -452,22 +445,22 @@ const formData = reactive({
   antiStressOutro: '',
   descontracao: null,
   descontracaoOutro: '',
-  
+
   // Seção 2
   dinamica: null,
   dinamicaOutro: '',
   surpresa: null,
   surpresaDescricao: '',
-  
+
   // Seção 3
   ponte: null,
   ponteDescricao: '',
-  
+
   // Seção 4
   lembranca: null,
   lembrancaDescricao: '',
   extras: [],
-  
+
   // Contato
   nome: '',
   nomeArtistico: '',
@@ -489,12 +482,12 @@ async function navigateHome() {
 function formatPhoneNumber(_event) {
   // Remove todos os caracteres não numéricos
   const value = formData.telefone.replace(/\D/g, '')
-  
+
   // Se o campo está vazio, não faça nada
   if (!value) return
-  
+
   let formattedValue = ''
-  
+
   // Formata como (XX) XXXXX-XXXX
   if (value.length <= 2) {
     // Só tem o DDD ou parte dele
@@ -506,7 +499,7 @@ function formatPhoneNumber(_event) {
     // Tem o número completo
     formattedValue = `(${value.substring(0, 2)}) ${value.substring(2, 7)}-${value.substring(7, 11)}`
   }
-  
+
   // Atualiza o valor formatado
   formData.telefone = formattedValue
 }
@@ -514,7 +507,7 @@ function formatPhoneNumber(_event) {
 // Função para formatar número de telefone quando o campo perde o foco
 function formatPhoneOnBlur() {
   const value = formData.telefone.replace(/\D/g, '')
-  
+
   // Se o número não estiver completo, completa com o formato correto
   if (value.length > 0) {
     if (value.length < 11) {
@@ -531,18 +524,18 @@ function formatPhoneOnBlur() {
 // Função para adicionar @ no Instagram quando o campo perde o foco
 function formatInstagramOnBlur() {
   let value = formData.instagram.trim()
-  
+
   // Se o campo está vazio, não faça nada
   if (!value) return
-  
+
   // Remove @ se o usuário digitar duas vezes
   value = value.replace(/^@+/, '')
-  
+
   // Adiciona @ se não existir
   if (!value.startsWith('@')) {
     value = '@' + value
   }
-  
+
   // Atualiza o valor
   formData.instagram = value
 }
@@ -558,7 +551,7 @@ function handleEnterKey(event, nextFieldRef) {
 async function submitForm() {
   // Reset error state
   formErrors.value = {}
-  
+
   // Verificações suaves
   const requiredSections = [
     {
@@ -592,11 +585,11 @@ async function submitForm() {
       message: 'Que lembrança sensorial você deixaria?'
     }
   ];
-  
+
   // Conta quantos campos das seções estão preenchidos
   const filledSections = requiredSections.filter(section => !section.condition).length;
   const percentComplete = Math.round((filledSections / requiredSections.length) * 100);
-  
+
   // Se menos de 4 campos preenchidos, mostra dica amigável
   if (filledSections < 4) {
     // Marca os campos não preenchidos
@@ -605,7 +598,7 @@ async function submitForm() {
         formErrors.value[section.field] = true;
       }
     });
-    
+
     // Feedback amigável
     toast.add({
       id: 'form-progress',
@@ -615,7 +608,7 @@ async function submitForm() {
       icon: 'i-heroicons-sparkles',
       timeout: 4000
     });
-    
+
     // Scroll para o primeiro campo com erro
     const firstErrorField = requiredSections.find(section => section.condition)?.field;
     if (firstErrorField) {
@@ -624,15 +617,15 @@ async function submitForm() {
         element.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     }
-    
+
     return;
   }
-  
+
   // Verifica campos de contato essenciais (nome e email, no mínimo)
   if (!formData.nome || !formData.email) {
     if (!formData.nome) formErrors.value.nome = true;
     if (!formData.email) formErrors.value.email = true;
-    
+
     // Feedback amigável
     toast.add({
       id: 'contact-missing',
@@ -642,15 +635,15 @@ async function submitForm() {
       icon: 'i-heroicons-identification',
       timeout: 4000
     });
-    
+
     // Scroll para a seção de contato
     document.querySelector('#contact-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    
+
     return;
   }
-  
+
   loading.value = true;
-  
+
   console.log('Iniciando envio do formulário...');
   console.log('Dados a serem enviados:', formData);
 
@@ -661,27 +654,27 @@ async function submitForm() {
       method: 'POST',
       body: formData
     });
-    
+
     console.log('Resposta recebida:', response);
-    
+
     if (response && response.success) {
       // Mostrar notificação de sucesso
       console.log('Formulário enviado com sucesso!');
-      
+
       let title = 'Experiência cadastrada!';
       let text = 'Suas ideias criativas foram registradas. Entraremos em contato em breve!';
-      
+
       if (response.fallback) {
         title = 'Dados registrados com sucesso!';
         text = 'Os dados foram registrados localmente, mas não na planilha. ' + (response.message || '');
-        
+
         // Log error details for debugging
         console.error('Erro na integração com Google Sheets:', response.error);
         if (response.errorDetails) {
           console.error('Detalhes do erro:', response.errorDetails);
         }
       }
-      
+
       toast.add({
         id: 'form-success',
         color: 'green',
@@ -690,7 +683,7 @@ async function submitForm() {
         icon: 'i-heroicons-sparkles',
         timeout: 5000
       });
-      
+
       // Redirecionar para página inicial após envio
       setTimeout(async () => {
         await navigateTo('/')
@@ -718,7 +711,7 @@ function updateCheckboxArray(arrayName, value, checked) {
   if (!Array.isArray(formData[arrayName])) {
     formData[arrayName] = []
   }
-  
+
   if (checked) {
     if (!formData[arrayName].includes(value)) {
       formData[arrayName].push(value)
@@ -780,7 +773,7 @@ const cidadeRef = ref(null)
 
 <style scoped>
 .modelo-page {
-  background-image: 
+  background-image:
     linear-gradient(to bottom right, rgba(255, 245, 255, 0.95), rgba(240, 220, 255, 0.95)),
     url('/images/hero.jpg');
   background-size: cover;
@@ -789,7 +782,7 @@ const cidadeRef = ref(null)
 }
 
 .dark .modelo-page {
-  background-image: 
+  background-image:
     linear-gradient(to bottom right, rgba(30, 10, 60, 0.95), rgba(15, 5, 30, 0.95)),
     url('/images/hero.jpg');
 }
@@ -903,4 +896,4 @@ const cidadeRef = ref(null)
 .field-success:focus-within {
   border-left: 3px solid rgba(16, 185, 129, 0.8) !important;
 }
-</style> 
+</style>

@@ -1,11 +1,11 @@
 <template>
   <div class="lazy-image-container" :style="{ height: height || 'auto' }">
-    <img 
-      v-if="!error" 
-      :src="src" 
+    <img
+      v-if="!error"
+      :src="src"
       :alt="alt || 'Image'"
-      class="lazy-image" 
-      @error="handleError" 
+      class="lazy-image"
+      @error="handleError"
       @load="loaded = true"
       :class="{ 'lazy-image-loaded': loaded }"
     />
@@ -104,4 +104,4 @@ function handleError() {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-</style> 
+</style>

@@ -13,11 +13,11 @@
           <h3 class="text-lg font-bold">Escolha seus Números da Sorte</h3>
         </div>
       </template>
-      
+
       <div class="ticket-grid p-4">
-        <button 
-          v-for="n in 100" 
-          :key="n" 
+        <button
+          v-for="n in 100"
+          :key="n"
           :class="[
             'ticket-number',
             selectedTickets.includes(n) ? 'bg-primary-500 text-white' : '',
@@ -30,7 +30,7 @@
         </button>
       </div>
     </UCard>
-    
+
     <UCard
       :ui="{
         base: 'bg-primary-50 dark:bg-primary-950/30',
@@ -47,7 +47,7 @@
             R$ {{ selectedTickets.length * ticketPrice }}
           </div>
         </div>
-        
+
         <UButton
           color="primary"
           :disabled="selectedTickets.length === 0"
@@ -55,7 +55,7 @@
           :ui="{
             rounded: 'rounded-full',
             padding: 'px-6 py-2',
-            variant: { 
+            variant: {
               solid: 'bg-primary-500 hover:bg-primary-600'
             }
           }"
@@ -90,10 +90,10 @@ const toggleTicket = (number) => {
   if (props.soldTickets.includes(number)) {
     return;
   }
-  
+
   // Create a copy of the selected tickets
   const updatedTickets = [...props.selectedTickets];
-  
+
   // Toggle ticket selection
   const index = updatedTickets.indexOf(number);
   if (index === -1) {
@@ -101,10 +101,10 @@ const toggleTicket = (number) => {
   } else {
     updatedTickets.splice(index, 1);
   }
-  
+
   // Emit the updated selection
   emit('update:selectedTickets', updatedTickets);
-  
+
   // Optional: Add haptic feedback or animation
   console.log(`Ticket ${number} ${index === -1 ? 'selected' : 'unselected'}`);
 };
@@ -183,4 +183,4 @@ const toggleTicket = (number) => {
   border: 2px solid #8b5cf6;
   box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
 }
-</style> 
+</style>

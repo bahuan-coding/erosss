@@ -1,27 +1,12 @@
-<script setup>
-const ageVerified = ref(false)
-
-const handleAgeVerification = () => {
-  ageVerified.value = true
-}
-</script>
-
 <template>
-  <div>
-    <!-- Age Gate -->
-    <AgeGate v-if="!ageVerified" @access-granted="handleAgeVerification" />
-
-    <!-- Main Application Layout (Only visible after age verification) -->
-    <div v-else class="app-layout">
-      <!-- Site Header -->
+  <div class="relative">
+    <div class="app-layout">
       <AppHeader />
 
-      <!-- Main Content -->
       <main class="main-content">
         <slot />
       </main>
 
-      <!-- Footer -->
       <footer class="bg-gray-50 dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800">
         <div class="max-w-6xl mx-auto py-12 px-4 md:px-6">
           <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-8">
@@ -31,7 +16,7 @@ const handleAgeVerification = () => {
                 © {{ new Date().getFullYear() }} Todos os direitos reservados.
               </p>
             </div>
-            
+
             <div class="flex gap-8">
               <div class="space-y-4">
                 <h4 class="text-sm font-semibold text-gray-900 dark:text-white mb-3">Links</h4>
@@ -53,7 +38,7 @@ const handleAgeVerification = () => {
                   </li>
                 </ul>
               </div>
-              
+
               <div class="space-y-4">
                 <h4 class="text-sm font-semibold text-gray-900 dark:text-white mb-3">Legal</h4>
                 <ul class="space-y-3">
@@ -72,8 +57,7 @@ const handleAgeVerification = () => {
             </div>
           </div>
         </div>
-      </footer>
-    </div>
+      </footer>    </div>
   </div>
 </template>
 
@@ -87,6 +71,7 @@ const handleAgeVerification = () => {
 
 .main-content {
   flex: 1;
-  padding-top: 64px; /* Matches the header height */
+  padding-top: 64px;
 }
-</style> 
+
+</style>

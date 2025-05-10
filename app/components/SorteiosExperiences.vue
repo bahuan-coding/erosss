@@ -3,12 +3,12 @@
     <UContainer>
       <div class="py-16 md:py-24">
         <div class="text-center mb-12">
-          <UBadge 
-            size="lg" 
-            color="primary" 
-            variant="subtle" 
+          <UBadge
+            size="lg"
+            color="primary"
+            variant="subtle"
             class="mb-4"
-            :ui="{ 
+            :ui="{
               base: 'font-bold uppercase tracking-wider',
               size: { lg: 'text-sm px-4 py-1' }
             }"
@@ -20,11 +20,11 @@
             Experiências exclusivas criadas por nossas modelos profissionais, disponíveis por tempo limitado.
           </p>
         </div>
-        
+
         <!-- Grid layout 2x2 for experiences -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <ExperienciaCard 
-            v-for="experience in experiences" 
+          <ExperienciaCard
+            v-for="experience in experiences"
             :key="experience.title"
             :experience="experience"
           />
@@ -41,7 +41,7 @@ const experiences = [
   {
     title: "Trilha Íntima no Pico do Jaraguá + Chá da Tarde Proibido",
     badge: "AVENTURA EXCLUSIVA",
-    image: "/images/sorteios/jaragua-sunset.jpg", 
+    image: "/images/sorteios/jaragua-sunset.jpg",
     progress: 75,
     remaining: 3,
     total: 12
@@ -57,7 +57,7 @@ const experiences = [
   {
     title: "Workshop de Comidas Afrodisíacas + Encontro na Suíte",
     badge: "EXPERIÊNCIA SENSORIAL",
-    image: "/images/sorteios/workshop-gourmet.jpg", 
+    image: "/images/sorteios/workshop-gourmet.jpg",
     progress: 85,
     remaining: 2,
     total: 12
@@ -65,7 +65,7 @@ const experiences = [
   {
     title: "Encontro de Fofoca & Sedução",
     badge: "CONFIDÊNCIAS ÍNTIMAS",
-    image: "/images/sorteios/fofoca-vintage.jpg", 
+    image: "/images/sorteios/fofoca-vintage.jpg",
     progress: 60,
     remaining: 5,
     total: 12
@@ -94,7 +94,7 @@ const experiences = [
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: 
+  background-image:
     radial-gradient(circle at 15% 50%, rgba(236, 72, 153, 0.04) 0%, transparent 50%),
     radial-gradient(circle at 85% 30%, rgba(147, 51, 234, 0.05) 0%, transparent 50%);
   pointer-events: none;

@@ -7,12 +7,12 @@
           <h1 class="title-animation text-5xl md:text-7xl font-extrabold mb-4 min-h-[80px]">
             {{ displayedTitle }}<span class="cursor" :class="{ 'hidden': isTitleComplete }">|</span>
           </h1>
-          
+
           <!-- CTAs -->
           <div class="mt-12 flex flex-col sm:flex-row gap-5 justify-center">
-            <UButton 
-              color="primary" 
-              size="xl" 
+            <UButton
+              color="primary"
+              size="xl"
               icon="i-heroicons-camera"
               :ui="{
                 base: 'font-bold',
@@ -25,10 +25,10 @@
             >
               SOU MODELO
             </UButton>
-            
-            <UButton 
-              color="white" 
-              size="xl" 
+
+            <UButton
+              color="white"
+              size="xl"
               icon="i-heroicons-ticket"
               :ui="{
                 base: 'font-bold',
@@ -43,13 +43,13 @@
             </UButton>
           </div>
         </div>
-        
+
         <!-- Sorteios Slider Cards -->
         <div class="mt-16">
           <h2 class="text-xl font-semibold mb-8 text-center text-purple-600 dark:text-purple-400">
             Experiências exclusivas esperando por você
           </h2>
-          
+
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div v-for="(sorteio, index) in sorteios" :key="index" class="bg-gray-900 rounded-xl overflow-hidden shadow-lg">
               <div class="relative">
@@ -60,12 +60,12 @@
                   <span v-else class="bg-green-600 text-white text-xs font-semibold px-2 py-1 rounded">{{ sorteio.vagas }} vagas</span>
                 </div>
               </div>
-              
+
               <div class="p-4">
                 <h3 class="text-white font-bold mb-2">{{ sorteio.title }}</h3>
-                
-                <UProgress 
-                  :value="sorteio.vagas === 0 ? 100 : sorteio.vagas < 0 ? 80 : 40" 
+
+                <UProgress
+                  :value="sorteio.vagas === 0 ? 100 : sorteio.vagas < 0 ? 80 : 40"
                   :color="sorteio.vagas === 0 ? 'red' : sorteio.vagas < 0 ? 'orange' : 'green'"
                   class="mb-3"
                   :ui="{
@@ -74,14 +74,14 @@
                     progress: { background: 'bg-gradient-to-r from-{color}-500 to-{color}-400' }
                   }"
                 />
-                
+
                 <div class="flex justify-between items-center">
                   <span class="text-sm text-gray-400">
                     {{ sorteio.vagas > 0 ? 'Disponível agora' : sorteio.vagas === 0 ? 'Esgotado' : sorteio.status }}
                   </span>
-                  <UButton 
-                    size="sm" 
-                    color="primary" 
+                  <UButton
+                    size="sm"
+                    color="primary"
                     :disabled="sorteio.vagas === 0"
                     variant="soft"
                     :to="`/experiencias/${sorteioToExperienceId(sorteio.title)}`"
@@ -190,14 +190,14 @@ function sorteioToExperienceId(title) {
     "Workshop de Comidas Afrodisíacas": 'workshop-afrodisiaco',
     "Encontro de Fofoca & Sedução": 'fofoca-seducao'
   }
-  
+
   return mapping[title] || 'experiencia-1'
 }
 </script>
 
 <style scoped>
 .hero-section {
-  background-image: 
+  background-image:
     linear-gradient(to bottom right, rgba(255, 245, 255, 0.9), rgba(240, 220, 255, 0.9)),
     url('/images/hero.jpg');
   background-size: cover;
@@ -207,7 +207,7 @@ function sorteioToExperienceId(title) {
 }
 
 .dark .hero-section {
-  background-image: 
+  background-image:
     linear-gradient(to bottom right, rgba(30, 10, 60, 0.9), rgba(15, 5, 30, 0.9)),
     url('/images/hero.jpg');
   background-size: cover;
@@ -267,7 +267,7 @@ function sorteioToExperienceId(title) {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: 
+  background-image:
     radial-gradient(circle at 20% 35%, rgba(126, 34, 206, 0.15) 0%, transparent 50%),
     radial-gradient(circle at 75% 60%, rgba(217, 70, 239, 0.1) 0%, transparent 50%);
   pointer-events: none;

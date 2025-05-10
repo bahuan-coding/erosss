@@ -7,4 +7,4 @@ export default defineContentConfig({
       source: '**/*.md'
     })
   }
-}) 
+})

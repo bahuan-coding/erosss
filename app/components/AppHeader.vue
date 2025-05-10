@@ -6,7 +6,7 @@
           <span class="logo-text">Sorteios Premium</span>
         </NuxtLink>
       </div>
-      
+
       <nav class="nav-menu">
         <ul class="nav-list">
           <li class="nav-item">
@@ -23,15 +23,15 @@
           </li>
         </ul>
       </nav>
-      
+
       <div class="flex items-center gap-2">
         <UColorModeButton color="primary" class="mr-2" />
-        <UButton 
-          color="primary" 
+        <UButton
+          color="primary"
           variant="solid"
           :ui="{
             rounded: 'rounded-full',
-            variant: { 
+            variant: {
               solid: 'bg-primary-500 hover:bg-primary-600'
             }
           }"
@@ -162,4 +162,4 @@ onUnmounted(() => {
     display: none;
   }
 }
-</style> 
+</style>

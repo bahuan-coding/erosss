@@ -23,7 +23,7 @@
             }"
           >
             <div class="relative">
-              <LazyImage
+              <UiLazyImage
                 :src="card.image"
                 :alt="card.title"
                 height="12rem"

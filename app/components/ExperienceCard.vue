@@ -1,5 +1,5 @@
 <template>
-  <UCard 
+  <UCard
     :ui="{
       base: 'transition-all duration-300 hover:shadow-xl overflow-hidden',
       body: { base: 'p-0' },
@@ -13,25 +13,25 @@
   >
     <!-- Faixa de progresso superior -->
     <div class="absolute top-0 left-0 right-0 h-1 bg-gray-100 dark:bg-gray-800 overflow-hidden">
-      <div 
+      <div
         class="h-full bg-gradient-to-r from-purple-600 to-pink-500 transition-all duration-500 ease-out"
         :style="{ width: `${progress || 30}%` }"
       />
     </div>
-    
+
     <!-- Card header -->
     <template #header>
       <div class="relative">
         <!-- Imagem de fundo com efeito gradiente -->
         <div class="relative aspect-video overflow-hidden">
-          <img 
-            :src="image || '/images/experience-default.jpg'" 
+          <img
+            :src="image || '/images/experience-default.jpg'"
             :alt="title"
             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           >
           <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
         </div>
-        
+
         <!-- Badges e status em overlay -->
         <div class="absolute top-3 left-3 flex gap-2">
           <UBadge v-if="type" color="white" class="shadow-md" variant="solid">{{ type }}</UBadge>
@@ -44,7 +44,7 @@
             </template>
           </UBadge>
         </div>
-        
+
         <!-- Tags e preço em overlay -->
         <div class="absolute bottom-3 right-3 flex gap-2">
           <UBadge v-if="price" color="white" class="shadow-md text-lg font-medium" variant="solid">
@@ -59,7 +59,7 @@
         </div>
       </div>
     </template>
-    
+
     <!-- Card body -->
     <div class="p-4">
       <!-- Estatísticas em ícones -->
@@ -68,18 +68,18 @@
           <span class="i-heroicons-clock" />
           <span>{{ duration || '2-3 horas' }}</span>
         </div>
-        
+
         <div class="flex items-center gap-1">
           <span class="i-heroicons-user-group" />
           <span>{{ participants || '1 pessoa' }}</span>
         </div>
-        
+
         <div class="flex items-center gap-1">
           <span class="i-heroicons-star" />
           <span>{{ rating || '4.9' }}</span>
         </div>
       </div>
-      
+
       <!-- Barra de progresso detalhada -->
       <div class="mb-4">
         <div class="flex justify-between text-xs mb-1">
@@ -91,32 +91,32 @@
           </span>
         </div>
         <div class="w-full h-2 bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
-          <div 
+          <div
             class="h-full transition-all duration-500 ease-out rounded-full"
             :class="spotsLeft <= 5 ? 'bg-rose-500' : 'bg-gradient-to-r from-purple-600 to-pink-500'"
             :style="{ width: `${100 - (spotsLeft / availableSlots * 100) || 70}%` }"
           />
         </div>
       </div>
-      
+
       <!-- Descrição com expansão -->
       <div>
-        <p 
+        <p
           class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed"
           :class="expanded ? '' : 'line-clamp-3'"
         >
           {{ description || 'Uma experiência exclusiva que une relaxamento e prazer em um ambiente acolhedor, com técnicas personalizadas para proporcionar momentos inesquecíveis.' }}
         </p>
-        
-        <button 
+
+        <button
           class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 mt-2 flex items-center"
-          @click="expanded = !expanded" 
+          @click="expanded = !expanded"
         >
           <span>{{ expanded ? 'Menos detalhes' : 'Mais detalhes' }}</span>
           <span :class="expanded ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'" class="ml-1" />
         </button>
       </div>
-      
+
       <!-- Detalhes expandidos -->
       <div v-if="expanded" class="mt-4 space-y-4">
         <!-- Separador elegante -->
@@ -125,7 +125,7 @@
           <span class="text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400">Detalhes</span>
           <div class="h-px bg-gray-200 dark:bg-gray-700 flex-1" />
         </div>
-        
+
         <!-- Destaques da experiência -->
         <div class="space-y-2">
           <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">Destaques</h4>
@@ -136,7 +136,7 @@
             </li>
           </ul>
         </div>
-        
+
         <!-- O que está incluído -->
         <div class="space-y-2">
           <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">Incluso na experiência</h4>
@@ -147,7 +147,7 @@
             </li>
           </ul>
         </div>
-        
+
         <!-- Datas disponíveis -->
         <div
           v-if="availableDates?.length"
@@ -155,8 +155,8 @@
         >
           <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">Datas disponíveis</h4>
           <div class="flex gap-2 flex-wrap">
-            <UBadge 
-              v-for="(date, index) in availableDates" 
+            <UBadge
+              v-for="(date, index) in availableDates"
               :key="index"
               color="gray"
               variant="subtle"
@@ -168,7 +168,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- Card footer -->
     <template #footer>
       <div class="flex items-center justify-between">
@@ -180,7 +180,7 @@
         >
           Ver detalhes completos
         </UButton>
-        
+
         <UButton
           color="primary"
           size="md"
@@ -316,4 +316,4 @@ defineEmits(['select', 'details'])
 .hover\:shadow-xl:hover {
   animation: pulse-subtle 2s infinite ease-in-out;
 }
-</style> 
+</style>

@@ -1,8 +1,6 @@
 <template>
   <UHeader
     :ui="{
-      wrapper:
-        'bg-[rgba(254,250,255,1)] dark:bg-gray-900 border-b border-primary-100 dark:border-primary-800',
       container: 'max-w-[480px] lg:max-w-6xl mx-auto',
     }"
   >
@@ -19,7 +17,7 @@
       />
     </template>
 
-    <template #center>
+    <template>
       <UPageHeader
         title="Sorteios Premium"
         :ui="{
@@ -58,10 +56,6 @@
     </template>
   </UHeader>
 </template>
-
-<script setup>
-// Header component with status bar and navigation
-</script>
 
 <style scoped>
 .status-bar {

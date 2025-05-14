@@ -19,5 +19,6 @@ export default defineNuxtConfig({
     strict: true,
     typeCheck: false
   },
+  buildDir: 'dist',
   compatibilityDate: "2024-05-07",
 })

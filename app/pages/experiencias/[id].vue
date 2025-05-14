@@ -163,7 +163,7 @@
                   <div class="flex justify-between items-start mb-4">
                     <div>
                       <h3 class="text-2xl font-bold text-gray-900 dark:text-white">{{ experience.modelName }}</h3>
-                      <p class="text-sm text-primary-600 dark:text-primary-400">Especialista em {{ experience.badge.toLowerCase() }}</p>
+                      <p class="text-sm text-primary-600 dark:text-primary-400">Especialista em {{ experience.badge?.toLowerCase() }}</p>
                     </div>
                     <UBadge
                       color="primary"
@@ -765,7 +765,6 @@
 </template>
 
 <script setup>
-import ExperienceCalendar from '~/components/ExperienceCalendar.vue';
 
 const route = useRoute();
 const experienceId = route.params.id;
@@ -974,33 +973,6 @@ const modelFAQs = computed(() =>
   })) || []
 );
 
-// Model signature moments - Special experiences that create memorable moments
-const _modelSignatureMoments = computed(() => {
-  if (!experience.value) return [];
-
-  // Default signature moments if not specified in the experience
-  return [
-    {
-      title: 'Momento Surpresa',
-      timing: 'Durante a experiência',
-      description: 'Um momento especial e inesperado personalizado pela modelo para criar uma memória inesquecível.',
-      icon: 'i-heroicons-sparkles'
-    },
-    {
-      title: 'Lembrança Exclusiva',
-      timing: 'Ao final da experiência',
-      description: 'Um item físico exclusivo para recordar os momentos vividos nesta experiência única.',
-      icon: 'i-heroicons-gift'
-    },
-    {
-      title: 'Mensagem Personalizada',
-      timing: '3 dias após a experiência',
-      description: 'Uma mensagem especial enviada pela modelo alguns dias depois, relembrando os melhores momentos.',
-      icon: 'i-heroicons-envelope'
-    }
-  ];
-});
-
 onMounted(async () => {
   try {
     experience.value = await $fetch(`/api/experiencias/${experienceId}`);
@@ -1016,29 +988,17 @@ onMounted(async () => {
   }
 });
 
-onMounted(() => {
-  // Animation and parallax effects initialization would go here
-  window.addEventListener('scroll', handleScroll);
-});
-
-const handleScroll = () => {
-  // Handle parallax scrolling effect
-  // This would be implemented with actual calculations based on scroll position
-};
 </script>
 
 <style scoped>
-/* Base Styles with dark mode support */
 .experience-page {
   overflow-x: hidden;
 }
 
-/* Hero Section */
 .experience-hero {
   height: 100vh;
 }
 
-/* Pattern Background */
 .pattern-diagonal {
   background-image: linear-gradient(135deg, #a78bfa 25%, transparent 25%),
                   linear-gradient(225deg, #a78bfa 25%, transparent 25%),
@@ -1049,7 +1009,6 @@ const handleScroll = () => {
   background-repeat: repeat;
 }
 
-/* Ticket Grid */
 .ticket-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);

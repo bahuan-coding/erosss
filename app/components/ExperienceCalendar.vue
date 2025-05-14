@@ -20,8 +20,8 @@
           :key="n"
           :class="[
             'ticket-number',
-            selectedTickets.includes(n) ? 'bg-primary-500 text-white' : '',
-            soldTickets.includes(n) ? 'bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed' : ''
+            selectedTickets.includes(n) ? 'bg-primary-500! text-white!' : '',
+            soldTickets.includes(n) ? 'bg-gray-200! dark:bg-gray-700! text-gray-400! dark:text-gray-500! cursor-not-allowed!' : ''
           ]"
           :disabled="soldTickets.includes(n)"
           @click="toggleTicket(n)"
@@ -52,13 +52,6 @@
           color="primary"
           :disabled="selectedTickets.length === 0"
           icon="i-heroicons-shopping-cart"
-          :ui="{
-            rounded: 'rounded-full',
-            padding: 'px-6 py-2',
-            variant: {
-              solid: 'bg-primary-500 hover:bg-primary-600'
-            }
-          }"
         >
           Comprar Agora
         </UButton>
@@ -86,15 +79,12 @@ const props = defineProps({
 });
 
 const toggleTicket = (number) => {
-  // Prevent clicking on sold tickets
   if (props.soldTickets.includes(number)) {
     return;
   }
 
-  // Create a copy of the selected tickets
   const updatedTickets = [...props.selectedTickets];
 
-  // Toggle ticket selection
   const index = updatedTickets.indexOf(number);
   if (index === -1) {
     updatedTickets.push(number);
@@ -102,11 +92,7 @@ const toggleTicket = (number) => {
     updatedTickets.splice(index, 1);
   }
 
-  // Emit the updated selection
   emit('update:selectedTickets', updatedTickets);
-
-  // Optional: Add haptic feedback or animation
-  console.log(`Ticket ${number} ${index === -1 ? 'selected' : 'unselected'}`);
 };
 </script>
 

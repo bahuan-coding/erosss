@@ -102,7 +102,7 @@
                 base: 'font-bold uppercase tracking-wider'
               }"
             >
-              Conheça Sua Acompanhante
+              Conheça Sua Artista
             </UBadge>
 
             <h2 class="text-3xl md:text-4xl font-bold mb-4" style="background: linear-gradient(90deg, #9333ea, #ec4899); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
@@ -110,7 +110,7 @@
             </h2>
 
             <p class="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
-              Descubra quem irá te acompanhar nesta experiência exclusiva
+              Descubra quem irá criar uma experiência artística exclusiva para você
             </p>
           </div>
 
@@ -334,215 +334,6 @@
               <UAccordion :items="modelFAQs" :ui="{
                 wrapper: 'divide-y divide-gray-200 dark:divide-gray-700 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden'
               }" />
-            </div>
-          </div>
-        </UContainer>
-      </section>
-
-      <!-- Signature Moments - Apple Style Design -->
-      <section class="py-24 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950 overflow-hidden">
-        <UContainer>
-          <div class="text-center mb-20">
-            <p class="text-sm font-semibold text-primary-600 dark:text-primary-400 uppercase tracking-wider mb-3">
-              Área da Modelo
-            </p>
-            <h2 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              <span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600">
-                Model Creativity Program
-              </span>
-            </h2>
-            <p class="text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-              Conheça o universo criativo de {{ experience.modelName }}
-              e seus talentos exclusivos para esta experiência
-            </p>
-          </div>
-
-          <!-- Apple-style "Tabs" (actually buttons that change content) -->
-          <div class="flex justify-center mb-16 space-x-2 md:space-x-4">
-            <button
-              class="px-6 py-3 rounded-full text-sm font-medium bg-primary-100 text-primary-700 dark:bg-primary-900/50 dark:text-primary-300"
-            >
-              Visão Geral
-            </button>
-            <button
-              class="px-6 py-3 rounded-full text-sm font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800/50"
-            >
-              Fotos
-            </button>
-            <button
-              class="px-6 py-3 rounded-full text-sm font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800/50"
-            >
-              Vídeos
-            </button>
-            <button
-              class="px-6 py-3 rounded-full text-sm font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800/50"
-            >
-              Conteúdo Exclusivo
-            </button>
-          </div>
-
-          <!-- Content Showcase - Apple Style Layout -->
-          <div class="max-w-7xl mx-auto">
-            <!-- First Row - Hero Showcase -->
-            <div class="grid grid-cols-10 gap-6 mb-10">
-              <!-- Main Feature - 60% width -->
-              <div class="col-span-10 md:col-span-6 relative rounded-3xl overflow-hidden group">
-                <img
-                  :src="experience.heroImage"
-                  :alt="experience.title"
-                  class="w-full h-[500px] object-cover transition-transform duration-1000 group-hover:scale-105"
-                >
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-8">
-                  <h3 class="text-white text-2xl font-bold mb-2">{{ experience.title }}</h3>
-                  <p class="text-white/80 mb-4">Criado por {{ experience.modelName }}</p>
-                  <UButton
-                    color="white"
-                    variant="solid"
-                    size="sm"
-                    icon="i-heroicons-arrow-right"
-                    trailing
-                    :ui="{
-                      rounded: 'rounded-full',
-                    }"
-                  >
-                    Explorar
-                  </UButton>
-                </div>
-              </div>
-
-              <!-- Side Content - Stats and Info - 40% width -->
-              <div class="col-span-10 md:col-span-4 grid grid-rows-2 gap-6">
-                <!-- Stats Card -->
-                <div class="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-lg">
-                  <h3 class="font-semibold text-lg mb-4 text-gray-900 dark:text-white">Dados da Experiência</h3>
-                  <div class="space-y-4">
-                    <div class="flex justify-between items-center">
-                      <span class="text-gray-600 dark:text-gray-400">Satisfação</span>
-                      <div class="flex items-center">
-                        <span class="text-primary-600 dark:text-primary-400 font-bold mr-2">98%</span>
-                        <div class="h-2 w-24 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                          <div class="h-full w-[98%] bg-gradient-to-r from-primary-500 to-pink-500 rounded-full"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flex justify-between items-center">
-                      <span class="text-gray-600 dark:text-gray-400">Participantes</span>
-                      <div class="flex items-center">
-                        <span class="text-primary-600 dark:text-primary-400 font-bold mr-2">30+</span>
-                        <div class="h-2 w-24 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                          <div class="h-full w-[75%] bg-gradient-to-r from-primary-500 to-pink-500 rounded-full"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flex justify-between items-center">
-                      <span class="text-gray-600 dark:text-gray-400">Exclusividade</span>
-                      <div class="flex items-center">
-                        <span class="text-primary-600 dark:text-primary-400 font-bold mr-2">100%</span>
-                        <div class="h-2 w-24 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                          <div class="h-full w-full bg-gradient-to-r from-primary-500 to-pink-500 rounded-full"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Quote Card -->
-                <div class="bg-gradient-to-br from-primary-500/90 to-pink-500/90 rounded-3xl p-6 text-white flex flex-col justify-between shadow-lg">
-                  <UIcon name="i-heroicons-quotation-mark" class="w-10 h-10 text-white/30 mb-2" />
-                  <p class="font-medium mb-4 leading-relaxed">
-                    "Cada momento desta experiência foi planejado para criar memórias que durarão para sempre. É meu compromisso pessoal."
-                  </p>
-                  <div class="flex items-center">
-                    <img
-                      :src="experience.modelProfileImage"
-                      :alt="experience.modelName"
-                      class="w-10 h-10 rounded-full object-cover mr-3 border-2 border-white"
-                    >
-                    <div>
-                      <p class="font-semibold">{{ experience.modelName }}</p>
-                      <p class="text-sm text-white/80">Criadora da Experiência</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Content Grid - Apple Style -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-              <div
-                v-for="(photo, idx) in modelPhotos.slice(0, 3)"
-                :key="idx"
-                class="relative group overflow-hidden rounded-2xl"
-              >
-                <img
-                  :src="photo.url"
-                  :alt="photo.caption"
-                  class="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-105"
-                >
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                  <p class="text-white text-sm font-medium">{{ photo.caption }}</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Video Showcase (Placeholder) -->
-            <div class="rounded-3xl overflow-hidden bg-gray-100 dark:bg-gray-800 mb-16 relative group shadow-xl">
-              <div class="aspect-video relative overflow-hidden">
-                <!-- Video Placeholder - Will be replaced with actual video iframe -->
-                <div class="absolute inset-0 bg-gradient-to-br from-primary-600/20 to-pink-600/20 flex items-center justify-center">
-                  <div class="text-center p-8">
-                    <div class="w-20 h-20 rounded-full bg-white flex items-center justify-center mx-auto mb-6 shadow-xl group-hover:scale-110 transition-transform duration-300">
-                      <UIcon name="i-heroicons-play" class="w-10 h-10 text-primary-600 ml-1" />
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                      Conheça {{ experience.modelName }} em Ação
-                    </h3>
-                    <p class="text-gray-600 dark:text-gray-400 max-w-lg mx-auto">
-                      Veja um preview desta experiência única e descubra o que faz dela tão especial
-                    </p>
-                    <div class="mt-6">
-                      <UButton
-                        color="primary"
-                        variant="solid"
-                        size="lg"
-                        icon="i-heroicons-lock-closed"
-                        :ui="{
-                          rounded: 'rounded-full',
-                        }"
-                      >
-                        Desbloquear Conteúdo Premium
-                      </UButton>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Apple-style "Learn More" section -->
-          <div class="text-center mt-16">
-            <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-              Quero Esta Experiência Agora
-            </h3>
-            <div class="flex flex-col items-center justify-center space-y-4">
-              <UButton
-                color="primary"
-                variant="solid"
-                size="xl"
-                icon="i-heroicons-ticket"
-                :ui="{
-                  rounded: 'rounded-full',
-                  padding: 'px-8 py-4',
-                  shadow: 'shadow-xl',
-                  base: 'transform transition-all duration-300 hover:-translate-y-1'
-                }"
-              >
-                Participar do Sorteio • R$ 19
-              </UButton>
-              <p class="text-gray-500 dark:text-gray-400 text-sm">
-                Use o código <span class="font-semibold text-primary-600 dark:text-primary-400">MCP10</span>
-                para 10% de desconto na compra de 3 ou mais bilhetes
-              </p>
             </div>
           </div>
         </UContainer>
@@ -791,7 +582,7 @@ const otherExperiences = [
     image: '/images/sorteios/drive-in-vintage.jpg'
   },
   {
-    id: 'workshop-afrodisiaco',
+    id: 'standup-airbnb',
     title: 'Workshop de Comidas Afrodisíacas',
     description: 'Descoberta do prazer através dos sentidos',
     image: '/images/sorteios/workshop-gourmet.jpg'
@@ -809,7 +600,7 @@ const otherExperiences = [
 const modelSkillsMap = {
   'trilha-jaragua': ['Trilhas', 'Fotografia', 'Aventuras ao ar livre', 'Conhecimento em botânica', 'Primeiros socorros'],
   'drive-in-sensual': ['Cinema clássico', 'Vintage style', 'Mixologia', 'Storytelling', 'Photogenic'],
-  'workshop-afrodisiaco': ['Gastronomia', 'Aromas', 'Experiências sensoriais', 'Vinhos', 'Fine dining'],
+  'standup-airbnb': ['Humor Terapêutico', 'Arte da Comédia', 'Criação de Conexões', 'Relaxamento pelo Riso', 'Experiências Transformadoras'],
   'fofoca-seducao': ['Conversação', 'Confidências', 'Psicologia', 'Criação de ambiente', 'Empatia']
 };
 
@@ -827,11 +618,11 @@ const modelPhotosMap = {
     { url: '/images/sorteios/drive-in-vintage.jpg', caption: 'Ambientação com estilo vintage' },
     { url: '/images/sorteios/cinema-suite.jpg', caption: 'Arranjo especial na suíte Cinema Paradiso' }
   ],
-  'workshop-afrodisiaco': [
-    { url: '/images/sorteios/chef-modelo.jpg', caption: 'Preparando ingredientes especiais' },
-    { url: '/images/sorteios/chef-cooking.jpg', caption: 'Demonstrando técnicas culinárias' },
-    { url: '/images/sorteios/workshop-gourmet.jpg', caption: 'Na cozinha gourmet' },
-    { url: '/images/sorteios/degustacao-casal.jpg', caption: 'Guiando uma experiência de degustação' }
+  'standup-airbnb': [
+    { url: '/images/sorteios/chef-modelo.jpg', caption: 'Conduzindo uma sessão de risoterapia' },
+    { url: '/images/sorteios/chef-cooking.jpg', caption: 'No Comedy Club criando momentos de humor' },
+    { url: '/images/sorteios/workshop-gourmet.jpg', caption: 'Preparando o Refúgio do Riso' },
+    { url: '/images/sorteios/degustacao-casal.jpg', caption: 'Transformando risadas em conexões genuínas' }
   ],
   'fofoca-seducao': [
     { url: '/images/sorteios/fofoca-modelo.jpg', caption: 'Criando ambiente de confidências' },
@@ -871,18 +662,18 @@ const modelTestimonialsMap = {
       content: 'Uma viagem no tempo! A atenção aos detalhes vintage e a seleção de filmes foi perfeita. A hostess sabe realmente como criar um ambiente romântico e nostálgico.'
     }
   ],
-  'workshop-afrodisiaco': [
+  'standup-airbnb': [
     {
       name: 'Guilherme N.',
       avatar: '/images/avatars/avatar-5.jpg',
       rating: 5,
-      content: 'A Chef Sensorial criou uma experiência gastronômica inesquecível. Aprendi muito sobre ingredientes que nem sabia que existiam, e a forma como ela conduziu a experiência foi extremamente profissional e encantadora.'
+      content: 'Uma experiência verdadeiramente mágica! O Comedy Club Secreto já seria incrível por si só, mas a presença da artista elevou tudo a outro nível. A Mesa Dourada ofereceu uma visão perfeita do show, e os drinks temáticos eram deliciosos e criativos. O momento que mais me surpreendeu foi a transição para o Refúgio do Riso - caminhar pelas ruas de Pinheiros descobrindo pequenos segredos da cidade foi fascinante. E o Airbnb? Cada detalhe meticulosamente planejado, desde a iluminação que mudava sutilmente até o terraço com vista para as estrelas. Uma obra de arte experiencial!'
     },
     {
-      name: 'Beatriz A.',
-      avatar: '/images/avatars/avatar-6.jpg',
+      name: 'Rodrigo M.',
+      avatar: '/images/avatars/avatar-3.jpg',
       rating: 5,
-      content: 'Participei com meu marido e foi uma das experiências mais íntimas e divertidas que já tivemos. A chef tem um conhecimento impressionante sobre gastronomia afrodisíaca e nos fez sentir completamente à vontade durante todo o workshop.'
+      content: 'Participei do sorteio sem grandes expectativas e fui completamente surpreendido. O show de stand-up foi apenas o começo de uma noite extraordinária. A artista tem um talento único para criar momentos de conexão genuína, misturando perfeitamente humor e intimidade. Cada espaço do Refúgio do Riso conta uma história diferente, e o "Baú de Conexões" nos proporcionou conversas surpreendentemente profundas e divertidas. As taças que se iluminam ao brinde são um toque mágico que não vou esquecer. Uma experiência premium que valeu cada centavo do bilhete!'
     }
   ],
   'fofoca-seducao': [
@@ -923,26 +714,26 @@ const modelFAQsMap = {
       content: 'Sim, a hostess oferece uma curadoria de filmes clássicos, mas você pode solicitar previamente títulos específicos que gostaria de assistir durante a experiência.'
     },
     {
-      title: 'É permitido levar acompanhante para a experiência?',
-      content: 'Sim, a experiência é projetada para casais. O vencedor do sorteio pode trazer um(a) acompanhante para desfrutar da experiência completa.'
+      title: 'É permitido levar um(a) convidado(a) para a experiência?',
+      content: 'Sim, a experiência é projetada para casais. O vencedor do sorteio pode trazer um(a) convidado(a) para desfrutar da experiência completa.'
     },
     {
       title: 'Como funciona a hospedagem na suíte temática?',
       content: 'A suíte Cinema Paradiso está completamente ambientada com referências cinematográficas vintage. A pernoite inclui todo o conforto de um hotel boutique premium, com serviços extras inspirados no cinema clássico.'
     }
   ],
-  'workshop-afrodisiaco': [
+  'standup-airbnb': [
     {
-      title: 'Preciso ter conhecimentos prévios de culinária?',
-      content: 'Não é necessário nenhum conhecimento prévio. A Chef Sensorial conduz o workshop de forma didática e acessível para todos os níveis, desde iniciantes até entusiastas da gastronomia.'
+      title: 'Como funciona o Comedy Club Secreto?',
+      content: 'O Comedy Club Secreto é um espaço exclusivo com acesso limitado, localizado em um charmoso porão vintage no coração de Pinheiros. Você e nossa artista terão acesso privilegiado através de uma entrada discreta, onde serão recebidos por um anfitrião dedicado que os conduzirá à Mesa Dourada, estrategicamente posicionada para uma experiência perfeita de visualização sem interações indesejadas com outros espectadores ou comediantes.'
     },
     {
-      title: 'Existem opções para pessoas com restrições alimentares?',
-      content: 'Sim, a chef adapta o menu conforme necessidades específicas. Restrições alimentares devem ser informadas com antecedência para que a experiência seja personalizada.'
+      title: 'O que inclui o Kit Risadas Premium?',
+      content: 'O Kit Risadas Premium é uma experiência sensorial completa que acompanha o show de stand-up. Inclui um card personalizado com uma mensagem exclusiva da artista sobre o poder transformador do riso, degustação de 3 drinks temáticos inspirados em piadas clássicas, e um menu de finger food gourmet cuidadosamente elaborado para ser servido em momentos estratégicos entre as apresentações, complementando perfeitamente os momentos de humor.'
     },
     {
-      title: 'O que acontece após o workshop culinário?',
-      content: 'Após o workshop, o casal desfruta de um jantar privativo com os pratos preparados, seguido de uma noite na Suíte dos Desejos, especialmente decorada para complementar a experiência sensorial iniciada na cozinha.'
+      title: 'Como é a experiência no Refúgio do Riso?',
+      content: 'O Refúgio do Riso é um Airbnb exclusivamente preparado com ambientação temática que evolui ao longo da noite. Possui três espaços distintos: a "Cabine de Risos" com sofá-cama ultra macio e almofadas especiais, o "Recanto das Histórias" com bar intimista e seleção premium de vinhos, e o "Spa de Relaxamento" com aromaterapia e luzes especiais. Momentos assinatura incluem o "Baú de Conexões" com jogos personalizados, taças que se iluminam ao brinde, e um livro de memórias para registrar momentos especiais. A experiência culmina no terraço privativo, onde a artista conduz uma sessão de relaxamento sensorial sob o céu estrelado de São Paulo.'
     }
   ],
   'fofoca-seducao': [

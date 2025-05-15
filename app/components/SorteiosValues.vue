@@ -5,7 +5,10 @@
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold mb-4 text-gradient">Nossa proposta de valor</h2>
           <p class="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
-            Uma plataforma que valoriza profissionais e entrega experiências exclusivas
+            Não precisa pagar caro para sonhar.
+          </p>
+          <p class="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto mt-4">
+            Sorteios exclusivos para encontros reais com as melhores criadoras de conteúdo adulto.
           </p>
         </div>
 
@@ -45,6 +48,12 @@
           </UCard>
         </div>
 
+        <div class="text-center mt-12">
+          <p class="text-lg font-semibold text-primary-600 dark:text-primary-400">
+            Isso não é só fantasia. Está acontecendo.
+          </p>
+        </div>
+
         <!-- FAQ Section -->
         <div class="mt-20">
           <h3 class="text-2xl font-bold mb-8 text-center">Perguntas Frequentes</h3>
@@ -68,20 +77,20 @@
 const valueCards = [
   {
     icon: "i-lucide-crown",
-    title: "Para Modelos",
-    text: "Controle total da sua imagem e lucratividade. Ganhe R$3k-10k por experiência criada.",
+    title: "Para Criadoras",
+    text: "Você define as regras, ganha muito e é tratada como estrela. Sem intermediários, sem complicação.",
     image: "/images/values/value1.jpg"
   },
   {
     icon: "i-heroicons-key",
-    title: "Para Clientes",
-    text: "Acesse sorteios que nenhum dinheiro convencional compra. Experiências feitas por profissionais, para conhecedores.",
+    title: "Para Fãs",
+    text: "Ingressos acessíveis, experiências únicas. Sem leilões, sem exploração — só chances reais de viver uma fantasia.",
     image: "/images/values/value2.jpg"
   },
   {
     icon: "i-heroicons-shield-check",
-    title: "Segurança",
-    text: "Verificação em 3 níveis. Seu conforto é lei.",
+    title: "100% Real",
+    text: "Só acontece se for verdade. Ganhadores compartilham provas, histórias viram lendas.",
     image: "/images/values/value3.jpg"
   }
 ];

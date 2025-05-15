@@ -121,7 +121,7 @@ const sorteios = [
     image: "/images/sorteios/drive-in-night.jpg"
   },
   {
-    title: "Workshop de Comidas Afrodisíacas",
+    title: "Stand-up Exclusivo + Airbnb Aconchegante",
     vagas: -1,
     status: "2 dias restantes",
     days: "2 dias restantes",
@@ -187,7 +187,7 @@ function sorteioToExperienceId(title) {
   const mapping = {
     "Trilha Íntima no Pico do Jaraguá": 'trilha-jaragua',
     "Drive-in Sensual + Suíte Cinema": 'drive-in-sensual',
-    "Workshop de Comidas Afrodisíacas": 'workshop-afrodisiaco',
+    "Stand-up Exclusivo + Airbnb Aconchegante": 'standup-airbnb',
     "Encontro de Fofoca & Sedução": 'fofoca-seducao'
   }
 

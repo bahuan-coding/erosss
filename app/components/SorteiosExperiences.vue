@@ -55,8 +55,8 @@ const experiences = [
     total: 10
   },
   {
-    title: "Workshop de Comidas Afrodisíacas + Encontro na Suíte",
-    badge: "EXPERIÊNCIA SENSORIAL",
+    title: "Stand-up Exclusivo + Airbnb Aconchegante",
+    badge: "RISADAS & INTIMIDADE",
     image: "/images/sorteios/workshop-gourmet.jpg",
     progress: 85,
     remaining: 2,

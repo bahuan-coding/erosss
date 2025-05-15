@@ -87,7 +87,7 @@ function getExperienceId(title) {
   const experienceIds = {
     'Trilha Íntima no Pico do Jaraguá + Chá da Tarde Proibido': 'trilha-jaragua',
     'Drive-in Sensual + Suíte Cinema Paradiso': 'drive-in-sensual',
-    'Workshop de Comidas Afrodisíacas + Encontro na Suíte': 'workshop-afrodisiaco',
+    'Stand-up Exclusivo + Airbnb Aconchegante': 'standup-airbnb',
     'Encontro de Fofoca & Sedução': 'fofoca-seducao'
   }
 
